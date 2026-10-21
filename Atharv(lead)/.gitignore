@@ -1,20 +1,31 @@
-# Dependency directories
+# Dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# Production builds
 dist/
 build/
 
-# Environment variables (keeps passwords & local config secret)
+# Environment files
 .env
 .env.local
+.env.*.local
 .env.production
 
-# Log files
+# Local Planning & Reference Documents (Private / Untracked)
+PROJECT_DECISIONS.md
+CHECKLIST.md
+DESIGN_SYSTEM.md
+FOLDER_STRUCTURE.md
+
+# Logs & Debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 *.log
 
-# Editor & OS files
+# OS & Editor files
 .DS_Store
 Thumbs.db
 .vscode/
