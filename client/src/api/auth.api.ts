@@ -30,6 +30,8 @@ export const authApi = {
   },
 
   logout: async (): Promise<void> => {
+    localStorage.removeItem("almalink_token");
+    localStorage.removeItem("almalink_user");
     await apiClient.post("/auth/logout");
   },
 

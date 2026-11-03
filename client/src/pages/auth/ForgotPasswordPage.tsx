@@ -6,6 +6,7 @@ import { forgotPasswordSchema, type ForgotPasswordInput } from "@almalink/shared
 import { AuthLayout } from "@/layouts/AuthLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { authApi } from "@/api/auth.api";
 import { Mail, ArrowLeft, CheckCircle2, AlertCircle } from "lucide-react";
 
 export const ForgotPasswordPage: React.FC = () => {
@@ -30,8 +31,7 @@ export const ForgotPasswordPage: React.FC = () => {
     setServerError(null);
 
     try {
-      console.log("Sending password reset email to:", data.email);
-      // Backend integration will connect in Phase 3
+      await authApi.forgotPassword(data);
       setSubmittedEmail(data.email);
       setIsSubmitted(true);
     } catch (err: unknown) {

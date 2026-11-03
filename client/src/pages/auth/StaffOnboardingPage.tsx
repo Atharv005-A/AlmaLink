@@ -7,6 +7,7 @@ import { AuthLayout } from "@/layouts/AuthLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { authApi } from "@/api/auth.api";
 import { PasswordStrengthIndicator } from "@/components/common/PasswordStrengthIndicator";
 import { Lock, Eye, EyeOff, CheckCircle2, Building2, UserCheck, AlertCircle } from "lucide-react";
 
@@ -71,8 +72,10 @@ export const StaffOnboardingPage: React.FC = () => {
     setServerError(null);
 
     try {
-      console.log("Setting staff password with token:", token, data.password);
-      // Backend integration will connect in Phase 3
+      await authApi.resetPassword({
+        token,
+        password: data.password,
+      });
       setIsSuccess(true);
     } catch (err: unknown) {
       if (err instanceof Error) {
