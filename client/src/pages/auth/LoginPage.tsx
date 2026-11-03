@@ -66,7 +66,7 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col lg:flex-row bg-slate-50 lg:bg-white">
+    <div className="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col lg:flex-row bg-[#F8FAFC]">
       {/* ============================================================== */}
       {/* MOBILE TOP BAR: Brand Header (Visible ONLY on Mobile < lg)     */}
       {/* ============================================================== */}
@@ -124,9 +124,9 @@ export const LoginPage: React.FC = () => {
       </div>
 
       {/* ============================================================== */}
-      {/* RIGHT COLUMN: Account Form (Desktop & Mobile Refined)         */}
+      {/* RIGHT COLUMN: Account Form (Refined Contrast & Elevation)     */}
       {/* ============================================================== */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start lg:pl-14 xl:pl-20 lg:pr-8 px-4 sm:px-6 py-6 sm:py-8 lg:py-0 h-auto lg:h-full overflow-y-auto lg:overflow-y-hidden">
+      <div className="w-full lg:w-1/2 bg-[#F8FAFC] flex flex-col justify-center items-center lg:items-start lg:pl-14 xl:pl-20 lg:pr-8 px-4 sm:px-6 py-6 sm:py-8 lg:py-0 h-auto lg:h-full overflow-y-auto lg:overflow-y-hidden">
         <div className="w-full max-w-[460px] space-y-4 sm:space-y-5">
           {/* Heading & Subtitle */}
           <div className="space-y-1">
@@ -140,14 +140,14 @@ export const LoginPage: React.FC = () => {
 
           {/* Error Banner */}
           {serverError && (
-            <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-center gap-2">
+            <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-center gap-2 shadow-xs">
               <AlertCircle className="h-4 w-4 shrink-0" />
               <span>{serverError}</span>
             </div>
           )}
 
-          {/* Form Card Container */}
-          <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-7 shadow-xs">
+          {/* Form Card Container (Elevated Crisp White Card) */}
+          <div className="bg-white rounded-2xl border border-slate-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.04),0_1px_3px_rgb(0,0,0,0.02)] p-6 sm:p-7">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Email Address */}
               <div className="space-y-1.5">
@@ -160,7 +160,7 @@ export const LoginPage: React.FC = () => {
                   error={!!errors.email}
                   {...register("email")}
                   autoComplete="email"
-                  className="h-11 rounded-xl border-slate-300 text-sm focus-visible:ring-brand-iris"
+                  className="h-11 rounded-xl bg-slate-50/50 hover:bg-slate-50/90 focus:bg-white border-slate-200 focus:border-brand-iris focus:ring-4 focus:ring-brand-iris/10 text-sm transition-all"
                 />
                 {errors.email && (
                   <p className="text-xs text-rose-600">{errors.email.message}</p>
@@ -179,7 +179,7 @@ export const LoginPage: React.FC = () => {
                     error={!!errors.password}
                     {...register("password")}
                     autoComplete="current-password"
-                    className="h-11 rounded-xl border-slate-300 pr-10 text-sm focus-visible:ring-brand-iris"
+                    className="h-11 rounded-xl bg-slate-50/50 hover:bg-slate-50/90 focus:bg-white border-slate-200 pr-10 text-sm focus-visible:ring-brand-iris transition-all"
                   />
                   <button
                     type="button"
@@ -241,7 +241,7 @@ export const LoginPage: React.FC = () => {
             <Link to="/register" className="block">
               <button
                 type="button"
-                className="w-full py-3 rounded-xl border border-slate-300 bg-white text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors shadow-xs"
+                className="w-full py-3 rounded-xl border border-slate-200/90 bg-white text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors shadow-xs"
               >
                 Register as an alumnus
               </button>

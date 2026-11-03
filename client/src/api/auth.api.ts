@@ -44,5 +44,27 @@ export const authApi = {
     const res = await apiClient.post<{ message: string }>("/auth/reset-password", data);
     return res.data.message;
   },
+
+  verifyInvitation: async (
+    token: string
+  ): Promise<{
+    fullName: string;
+    email: string;
+    role: string;
+    assignedCell: string;
+    cellCode: string;
+  }> => {
+    const res = await apiClient.get<{
+      status: string;
+      data: {
+        fullName: string;
+        email: string;
+        role: string;
+        assignedCell: string;
+        cellCode: string;
+      };
+    }>(`/auth/invitation/${token}`);
+    return res.data.data;
+  },
 };
 
