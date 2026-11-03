@@ -14,6 +14,7 @@ const router = Router();
 router.post("/login", validateBody(loginSchema), AuthController.login);
 router.post("/forgot-password", validateBody(forgotPasswordSchema), AuthController.forgotPassword);
 router.post("/reset-password", validateBody(resetPasswordSchema), AuthController.resetPassword);
+router.get("/invitation/:token", AuthController.verifyInvitation);
 
 // Protected Routes (Session Required)
 router.get("/me", requireAuth, AuthController.getCurrentUser);

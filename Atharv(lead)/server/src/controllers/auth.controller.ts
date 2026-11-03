@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { prisma } from "../config/prisma.js";
 import { AuthService } from "../services/auth.service.js";
+import { EmailService } from "../services/email.service.js";
 import {
   LoginInput,
   ForgotPasswordInput,
@@ -188,14 +189,72 @@ export class AuthController {
       "1h"
     );
 
-    // In local development, return the preview URL in console/response for effortless testing
-    const resetLink = `${process.env.CLIENT_URL || "http://localhost:5173"}/reset-password?token=${resetToken}`;
+    // Construct reset link dynamically adapting to client origin (localhost:5174 in dev or custom domain in prod)
+    const clientOrigin = req.headers.origin || process.env.CLIENT_URL || "http://localhost:5174";
+    const resetLink = `${clientOrigin}/reset-password?token=${resetToken}`;
     console.log(`[DEV] Password reset link for ${email}: ${resetLink}`);
+
+    // Dispatch password reset email via Brevo service (or console simulation in dev)
+    await EmailService.sendPasswordResetEmail(user.email, user.fullName, resetLink);
 
     res.status(200).json({
       status: "success",
       message: "If that email is registered, password recovery instructions have been sent.",
       devResetLink: process.env.NODE_ENV === "development" ? resetLink : undefined,
+    });
+  }
+
+  /**
+   * GET /api/auth/invitation/:token
+   * Validates a staff onboarding token and returns prefilled coordinator details
+   */
+  static async verifyInvitation(req: Request, res: Response): Promise<void> {
+    const { token } = req.params;
+
+    if (!token) {
+      res.status(400).json({
+        status: "fail",
+        message: "Invitation token is required.",
+      });
+      return;
+    }
+
+    const decoded = AuthService.verifyToken(token) as { userId: number; email: string } | null;
+    if (!decoded || !decoded.userId) {
+      res.status(400).json({
+        status: "fail",
+        message: "This invitation link is invalid or has expired.",
+      });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { userId: decoded.userId },
+      include: {
+        role: true,
+        cellCoordinator: {
+          include: { cell: true },
+        },
+      },
+    });
+
+    if (!user) {
+      res.status(404).json({
+        status: "fail",
+        message: "Staff account not found.",
+      });
+      return;
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        fullName: user.fullName,
+        email: user.email,
+        role: "Cell Coordinator",
+        assignedCell: user.cellCoordinator?.cell?.name || "General Academic Cell",
+        cellCode: user.cellCoordinator?.cell?.code || "GENERAL",
+      },
     });
   }
 
