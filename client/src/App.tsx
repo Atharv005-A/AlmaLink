@@ -1,17 +1,23 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LoginPage } from "@/pages/auth/LoginPage";
+import { ForgotPasswordPage } from "@/pages/auth/ForgotPasswordPage";
+import { ResetPasswordPage } from "@/pages/auth/ResetPasswordPage";
+import { StaffOnboardingPage } from "@/pages/auth/StaffOnboardingPage";
 
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public Auth Routes */}
+        {/* Module 1: Public Authentication Routes */}
         <Route path="/login" element={<LoginPage />} />
-        
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/onboarding/staff" element={<StaffOnboardingPage />} />
+
         {/* Default Redirect to Login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
-        
+
         {/* Fallback 404 */}
         <Route
           path="*"
@@ -34,4 +40,3 @@ export const App: React.FC = () => {
 };
 
 export default App;
-
