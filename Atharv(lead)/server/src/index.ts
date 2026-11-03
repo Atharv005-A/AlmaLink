@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import apiRouter from "./routes/index.js";
 
 dotenv.config();
 
@@ -27,10 +28,12 @@ app.get("/api/health", (_req: Request, res: Response) => {
   });
 });
 
+// Mount All API Routes
+app.use("/api", apiRouter);
+
 app.listen(PORT, () => {
   console.log(`🚀 AlmaLink Server running on port ${PORT}`);
   console.log(`🌐 Environment: ${process.env.NODE_ENV || "development"}`);
 });
 
 export default app;
-

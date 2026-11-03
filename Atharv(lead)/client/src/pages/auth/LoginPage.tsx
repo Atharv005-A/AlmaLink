@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, type LoginInput } from "@almalink/shared";
+import { loginSchema, type LoginInput, Role } from "@almalink/shared";
 import { AuthLayout } from "@/layouts/AuthLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { authApi } from "@/api/auth.api";
 import { Eye, EyeOff, Lock, Mail, AlertCircle } from "lucide-react";
 
 export const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,10 +33,23 @@ export const LoginPage: React.FC = () => {
     setServerError(null);
 
     try {
-      console.log("Submitting login form:", data);
-      // Backend integration will connect in Phase 3
-      // Simulated response for visual verification
-      alert(`Login submitted for: ${data.email}`);
+      const response = await authApi.login(data);
+      const user = response.user;
+
+      // Role-based automatic routing
+      if (user.role === Role.SUPER_ADMIN || user.role === Role.COLLEGE_ADMIN) {
+        navigate("/admin/dashboard");
+      } else if (user.role === Role.CELL_COORDINATOR) {
+        navigate("/coordinator/dashboard");
+      } else if (user.role === Role.ALUMNI) {
+        if (response.alumniVerificationStatus === "PENDING") {
+          navigate("/alumni/pending");
+        } else {
+          navigate("/alumni/home");
+        }
+      } else {
+        navigate("/");
+      }
     } catch (err: unknown) {
       if (err instanceof Error) {
         setServerError(err.message);
@@ -67,7 +82,7 @@ export const LoginPage: React.FC = () => {
           </label>
           <Input
             type="email"
-            placeholder="e.g. yourname@domain.com"
+            placeholder="e.g. admin@imcc.mespune.in"
             error={!!errors.email}
             {...register("email")}
             autoComplete="email"
@@ -159,4 +174,3 @@ export const LoginPage: React.FC = () => {
     </AuthLayout>
   );
 };
-
