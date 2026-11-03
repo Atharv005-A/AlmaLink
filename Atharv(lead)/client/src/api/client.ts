@@ -8,6 +8,18 @@ export const apiClient = axios.create({
   },
 });
 
+// Request Interceptor: Attach Authorization Bearer token from localStorage as fallback
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("almalink_token");
+    if (token && config.headers) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 // Response Interceptor for centralized API error extraction
 apiClient.interceptors.response.use(
   (response) => response,

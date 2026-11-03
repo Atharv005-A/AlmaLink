@@ -6,6 +6,7 @@ import { z } from "zod";
 import { AuthLayout } from "@/layouts/AuthLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { authApi } from "@/api/auth.api";
 import { PasswordStrengthIndicator } from "@/components/common/PasswordStrengthIndicator";
 import { Lock, Eye, EyeOff, CheckCircle2, AlertCircle } from "lucide-react";
 
@@ -61,8 +62,10 @@ export const ResetPasswordPage: React.FC = () => {
     setServerError(null);
 
     try {
-      console.log("Submitting password reset with token:", token, data.password);
-      // Backend integration will connect in Phase 3
+      await authApi.resetPassword({
+        token,
+        password: data.password,
+      });
       setIsSuccess(true);
     } catch (err: unknown) {
       if (err instanceof Error) {
