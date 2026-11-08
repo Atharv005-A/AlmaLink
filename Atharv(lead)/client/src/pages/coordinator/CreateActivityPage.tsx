@@ -242,7 +242,7 @@ export const CreateActivityPage: React.FC = () => {
                 disabled={loadingCategories}
               >
                 <option value="">
-                  {loadingCategories ? "Loading categories…" : "Select a category"}
+                  Select an event category (e.g. Guest Lecture, Hackathon, Mock Interview)
                 </option>
                 {categories.map((cat) => (
                   <option key={cat.categoryId} value={cat.categoryId}>
@@ -343,33 +343,43 @@ export const CreateActivityPage: React.FC = () => {
                 name="requiredExpertise"
                 control={control}
                 render={({ field }) => (
-                  <TagInput
-                    tags={field.value ?? []}
-                    onChange={field.onChange}
-                    placeholder='e.g., "React", "Cloud Architecture", "Machine Learning"'
-                  />
+                  <div className="space-y-2">
+                    <TagInput
+                      tags={field.value ?? []}
+                      onChange={field.onChange}
+                      placeholder='e.g., "React", "Cloud Architecture", "Machine Learning"'
+                    />
+                    {/* Suggested tags for quick selection */}
+                    <div className="flex flex-wrap gap-1.5 items-center">
+                      <span className="text-xs text-slate-400">Quick add:</span>
+                      {[
+                        "React",
+                        "Python",
+                        "Machine Learning",
+                        "Cloud Architecture",
+                        "Data Analytics",
+                        "DevOps",
+                        "Finance",
+                        "HR Strategy",
+                      ].map((suggestion) => (
+                        <button
+                          key={suggestion}
+                          type="button"
+                          onClick={() => {
+                            const current = field.value || [];
+                            if (!current.includes(suggestion)) {
+                              field.onChange([...current, suggestion]);
+                            }
+                          }}
+                          className="text-xs px-2.5 py-0.5 rounded-full border border-slate-200 text-slate-600 hover:border-brand-iris hover:text-brand-iris hover:bg-brand-iris/5 transition-colors cursor-pointer"
+                        >
+                          + {suggestion}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 )}
               />
-              {/* Suggested tags for quick selection */}
-              <div className="flex flex-wrap gap-1.5 mt-2">
-                <span className="text-xs text-slate-400">Quick add:</span>
-                {[
-                  "React", "Python", "Machine Learning", "Cloud Architecture",
-                  "Data Analytics", "DevOps", "Finance", "HR Strategy",
-                ].map((suggestion) => (
-                  <button
-                    key={suggestion}
-                    type="button"
-                    onClick={() => {
-                      // This is handled through Controller so we need a workaround
-                      // — user can still type manually; these are just hints
-                    }}
-                    className="text-xs px-2 py-0.5 rounded-full border border-slate-200 text-slate-500 hover:border-brand-iris hover:text-brand-iris transition-colors"
-                  >
-                    + {suggestion}
-                  </button>
-                ))}
-              </div>
             </Field>
 
             {/* Points Weight */}
