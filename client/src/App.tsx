@@ -9,6 +9,7 @@ import { ActivitiesListPage } from "@/pages/coordinator/ActivitiesListPage";
 import { CreateActivityPage } from "@/pages/coordinator/CreateActivityPage";
 import { FindAndInvitePage } from "@/pages/coordinator/FindAndInvitePage";
 import { InvitationTrackingPage } from "@/pages/coordinator/InvitationTrackingPage";
+import { InvitationsHubPage } from "@/pages/alumni/InvitationsHubPage";
 import { Button } from "@/components/ui/button";
 import { ShieldCheck, UserCheck, GraduationCap, Clock } from "lucide-react";
 
@@ -37,6 +38,8 @@ export const App: React.FC = () => {
         <Route path="/coordinator/activities/create" element={<CreateActivityPage />} />
         <Route path="/coordinator/activities/:id/invite" element={<FindAndInvitePage />} />
         <Route path="/coordinator/activities/:id/invitations" element={<InvitationTrackingPage />} />
+        {/* Module 4: Alumni Invitations Hub (Alumni Portal) */}
+        <Route path="/alumni/invitations" element={<InvitationsHubPage />} />
 
         {/* Post-Login Workspaces */}
         <Route
