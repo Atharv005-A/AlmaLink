@@ -38,7 +38,7 @@ import { useActivities, useUpdateActivityStatus, useDeleteActivity } from "@/api
 import { ActivityStatusBadge } from "@/components/modules/activities/ActivityStatusBadge";
 import { ActivityCard } from "@/components/modules/activities/ActivityCard";
 import { cn } from "@/lib/utils";
-import { ActivityStatus, ActivityDTO } from "@almalink/shared";
+import { ActivityStatus } from "@almalink/shared";
 
 // ─── Status Filter Tab Configuration ─────────────────────────────────────────
 const STATUS_TABS = [
@@ -385,3 +385,4 @@ export const ActivitiesListPage: React.FC = () => {
     </div>
   );
 };
+

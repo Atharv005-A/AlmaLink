@@ -165,3 +165,4 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
     </div>
   );
 };
+

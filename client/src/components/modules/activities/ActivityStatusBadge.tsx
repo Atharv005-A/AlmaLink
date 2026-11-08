@@ -74,3 +74,4 @@ export const ActivityStatusBadge: React.FC<ActivityStatusBadgeProps> = ({
     </span>
   );
 };
+
