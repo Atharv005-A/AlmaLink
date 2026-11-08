@@ -1,6 +1,7 @@
 import { Router } from "express";
 import authRoutes from "./auth.routes.js";
 import activitiesRoutes from "./activities.routes.js";
+import invitationsRoutes from "./invitations.routes.js";
 
 const apiRouter = Router();
 
@@ -9,6 +10,9 @@ apiRouter.use("/auth", authRoutes);
 
 // Module 3: Activity & Event Management
 apiRouter.use("/activities", activitiesRoutes);
+
+// Module 4: Alumni Invitations & Matchmaking
+apiRouter.use("/invitations", invitationsRoutes);
 
 export default apiRouter;
 
