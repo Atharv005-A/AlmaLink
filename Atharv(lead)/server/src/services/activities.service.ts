@@ -15,7 +15,7 @@
  * -------------------------------------------------
  */
 
-import prisma from "../config/prisma.js";
+import { prisma } from "../config/prisma.js";
 import { CreateActivityInput } from "@almalink/shared";
 
 // ─── Activity Category Seed Data (Real IMCC Pune Event Types) ───────────────
