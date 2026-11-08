@@ -1,0 +1,30 @@
+{
+  "name": "almalink",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Alumni Management & Engagement Platform — MES IMCC Pune",
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev:server": "npm.cmd --workspace=server run dev",
+    "dev:client": "npm.cmd --workspace=client run dev",
+    "build:shared": "npm.cmd --workspace=shared run build",
+    "build:server": "npm.cmd --workspace=server run build",
+    "build:client": "npm.cmd --workspace=client run build",
+    "prisma:generate": "npm.cmd --workspace=server run prisma:generate",
+    "prisma:migrate": "npm.cmd --workspace=server run prisma:migrate"
+  },
+  "keywords": [
+    "alumni",
+    "management",
+    "imcc",
+    "mes",
+    "pune"
+  ],
+  "author": "MES IMCC AlmaLink Team",
+  "license": "ISC"
+}
+
