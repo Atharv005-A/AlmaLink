@@ -411,6 +411,20 @@ export const ActivitiesListPage: React.FC = () => {
                         onClick={(e) => e.stopPropagation()}
                       >
                         <div className="flex items-center justify-end gap-1.5">
+                          {/* Find & Invite Alumni shortcut */}
+                          {activity.status !== ActivityStatus.DRAFT && (
+                            <button
+                              onClick={() =>
+                                navigate(`/coordinator/activities/${activity.activityId}/invite`)
+                              }
+                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition-colors"
+                              title="Match & Invite Alumni"
+                            >
+                              <Users className="h-3.5 w-3.5" />
+                              Invite
+                            </button>
+                          )}
+
                           {/* Lifecycle transition button — Coordinator only */}
                           {isCoordinator && nextAction && (
                             <button
@@ -593,6 +607,20 @@ export const ActivitiesListPage: React.FC = () => {
               >
                 Close
               </button>
+
+              {selectedActivity.status !== ActivityStatus.DRAFT && (
+                <button
+                  onClick={() => {
+                    const id = selectedActivity.activityId;
+                    setSelectedActivity(null);
+                    navigate(`/coordinator/activities/${id}/invite`);
+                  }}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 font-semibold transition-colors shadow-sm"
+                >
+                  <Users className="h-4 w-4" />
+                  Find & Invite Alumni
+                </button>
+              )}
 
               {isCoordinator &&
                 getNextAction(selectedActivity.status as ActivityStatus) && (
