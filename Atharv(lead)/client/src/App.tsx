@@ -1,14 +1,27 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LoginPage } from "@/pages/auth/LoginPage";
 import { ForgotPasswordPage } from "@/pages/auth/ForgotPasswordPage";
 import { ResetPasswordPage } from "@/pages/auth/ResetPasswordPage";
 import { StaffOnboardingPage } from "@/pages/auth/StaffOnboardingPage";
+import { ActivitiesListPage } from "@/pages/coordinator/ActivitiesListPage";
+import { CreateActivityPage } from "@/pages/coordinator/CreateActivityPage";
 import { Button } from "@/components/ui/button";
 import { ShieldCheck, UserCheck, GraduationCap, Clock } from "lucide-react";
 
+// TanStack Query client — manages all data fetching, caching, and invalidation
+// staleTime: 60s means data fetched in the last 60s is used from cache without refetching
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { staleTime: 60_000, retry: 1 },
+  },
+});
+
 export const App: React.FC = () => {
   return (
+    // QueryClientProvider wraps the entire app so ALL components can use TanStack Query hooks
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Routes>
         {/* Module 1: Public Authentication Routes */}
@@ -16,6 +29,10 @@ export const App: React.FC = () => {
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/onboarding/staff" element={<StaffOnboardingPage />} />
+
+        {/* Module 3: Activity & Event Management (Cell Coordinator Workspace) */}
+        <Route path="/coordinator/activities" element={<ActivitiesListPage />} />
+        <Route path="/coordinator/activities/create" element={<CreateActivityPage />} />
 
         {/* Post-Login Workspaces */}
         <Route
@@ -128,6 +145,7 @@ export const App: React.FC = () => {
         />
       </Routes>
     </BrowserRouter>
+    </QueryClientProvider>
   );
 };
 
