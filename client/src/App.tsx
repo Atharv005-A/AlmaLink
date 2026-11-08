@@ -7,6 +7,7 @@ import { ResetPasswordPage } from "@/pages/auth/ResetPasswordPage";
 import { StaffOnboardingPage } from "@/pages/auth/StaffOnboardingPage";
 import { ActivitiesListPage } from "@/pages/coordinator/ActivitiesListPage";
 import { CreateActivityPage } from "@/pages/coordinator/CreateActivityPage";
+import { FindAndInvitePage } from "@/pages/coordinator/FindAndInvitePage";
 import { Button } from "@/components/ui/button";
 import { ShieldCheck, UserCheck, GraduationCap, Clock } from "lucide-react";
 
@@ -33,6 +34,7 @@ export const App: React.FC = () => {
         {/* Module 3: Activity & Event Management (Cell Coordinator Workspace) */}
         <Route path="/coordinator/activities" element={<ActivitiesListPage />} />
         <Route path="/coordinator/activities/create" element={<CreateActivityPage />} />
+        <Route path="/coordinator/activities/:id/invite" element={<FindAndInvitePage />} />
 
         {/* Post-Login Workspaces */}
         <Route
