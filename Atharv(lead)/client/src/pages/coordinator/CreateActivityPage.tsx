@@ -162,7 +162,6 @@ export const CreateActivityPage: React.FC = () => {
     control,        // For custom components (Controller) like TagInput
     handleSubmit,   // Wraps onSubmit with validation
     formState: { errors }, // Contains per-field error messages
-    watch,
   } = useForm<CreateActivityInput>({
     resolver: zodResolver(createActivitySchema),
     defaultValues: {
@@ -175,7 +174,7 @@ export const CreateActivityPage: React.FC = () => {
   // ── Form submit handler ──
   const onSubmit = (data: CreateActivityInput) => {
     createActivity(data, {
-      onSuccess: (createdActivity) => {
+      onSuccess: () => {
         // After creation, go back to the activities list
         navigate("/coordinator/activities");
       },
@@ -431,3 +430,4 @@ export const CreateActivityPage: React.FC = () => {
     </div>
   );
 };
+

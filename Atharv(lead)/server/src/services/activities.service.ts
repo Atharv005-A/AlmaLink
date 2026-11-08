@@ -196,3 +196,4 @@ export async function deleteActivity(activityId: number) {
 
   return prisma.activity.delete({ where: { activityId } });
 }
+
