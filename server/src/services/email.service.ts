@@ -151,5 +151,170 @@ export class EmailService {
       htmlContent,
     });
   }
+
+  /**
+   * Dispatches an acknowledgment email when an alumnus registers
+   */
+  static async sendAlumniRegistrationReceivedEmail(
+    toEmail: string,
+    toName: string,
+    referenceId: string
+  ): Promise<boolean> {
+    const htmlContent = `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 580px; margin: 0 auto; padding: 24px; border: 1px solid #E2E8F0; border-radius: 12px; background: #ffffff;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h2 style="color: #161D2C; margin: 0; font-size: 24px;">MES IMCC AlmaLink</h2>
+          <p style="color: #64748B; font-size: 13px; margin-top: 4px;">Alumni Management & Engagement Platform</p>
+        </div>
+        
+        <h3 style="color: #1E293B; font-size: 18px;">Registration Received — Verification Pending</h3>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">Hello ${toName},</p>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">
+          Thank you for registering on MES IMCC AlmaLink. Your registration reference is <strong>${referenceId}</strong>.
+        </p>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">
+          Our administration is currently verifying your details against college records. Verification usually takes 2–3 working days. We will notify you once your account has been activated.
+        </p>
+        
+        <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 24px 0;" />
+        <p style="color: #94A3B8; font-size: 11px; text-align: center; margin: 0;">
+          MES Institute of Management & Career Courses, Pune · Since 1983
+        </p>
+      </div>
+    `;
+
+    return this.sendEmail({
+      toEmail,
+      toName,
+      subject: `Registration Received [Ref: ${referenceId}] - IMCC AlmaLink`,
+      htmlContent,
+    });
+  }
+
+  /**
+   * Dispatches an approval notification when alumnus is verified by Admin
+   */
+  static async sendAlumniApprovedEmail(
+    toEmail: string,
+    toName: string,
+    loginLink: string
+  ): Promise<boolean> {
+    const htmlContent = `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 580px; margin: 0 auto; padding: 24px; border: 1px solid #E2E8F0; border-radius: 12px; background: #ffffff;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h2 style="color: #161D2C; margin: 0; font-size: 24px;">MES IMCC AlmaLink</h2>
+          <p style="color: #64748B; font-size: 13px; margin-top: 4px;">Alumni Portal Access Granted</p>
+        </div>
+        
+        <h3 style="color: #1E293B; font-size: 18px;">Welcome to the IMCC Alumni Community!</h3>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">Hello ${toName},</p>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">
+          Your alumni registration has been verified and approved by the college administration. You now have full access to AlmaLink.
+        </p>
+        
+        <div style="text-align: center; margin: 28px 0;">
+          <a href="${loginLink}" style="background-color: #5D5FEF; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 14px; display: inline-block;">
+            Sign In to AlmaLink
+          </a>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 24px 0;" />
+        <p style="color: #94A3B8; font-size: 11px; text-align: center; margin: 0;">
+          MES Institute of Management & Career Courses, Pune · Since 1983
+        </p>
+      </div>
+    `;
+
+    return this.sendEmail({
+      toEmail,
+      toName,
+      subject: "Account Approved - Welcome to IMCC AlmaLink",
+      htmlContent,
+    });
+  }
+
+  /**
+   * Dispatches a changes-requested notification
+   */
+  static async sendAlumniChangesRequestedEmail(
+    toEmail: string,
+    toName: string,
+    changesNeeded: string
+  ): Promise<boolean> {
+    const htmlContent = `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 580px; margin: 0 auto; padding: 24px; border: 1px solid #E2E8F0; border-radius: 12px; background: #ffffff;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h2 style="color: #161D2C; margin: 0; font-size: 24px;">MES IMCC AlmaLink</h2>
+          <p style="color: #64748B; font-size: 13px; margin-top: 4px;">Alumni Verification Update</p>
+        </div>
+        
+        <h3 style="color: #1E293B; font-size: 18px;">Action Required: Clarification for your Alumni Account</h3>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">Hello ${toName},</p>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">
+          During verification of your alumni registration, the administration requested the following changes or clarification:
+        </p>
+        <div style="background-color: #F8FAFC; border-left: 4px solid #F59E0B; padding: 12px 16px; margin: 16px 0; border-radius: 4px; font-size: 14px; color: #334155;">
+          ${changesNeeded}
+        </div>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">
+          Please reply to this email or contact <a href="mailto:alumni@imcc.mespune.in" style="color: #5D5FEF;">alumni@imcc.mespune.in</a> with your updated details.
+        </p>
+        
+        <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 24px 0;" />
+        <p style="color: #94A3B8; font-size: 11px; text-align: center; margin: 0;">
+          MES Institute of Management & Career Courses, Pune · Since 1983
+        </p>
+      </div>
+    `;
+
+    return this.sendEmail({
+      toEmail,
+      toName,
+      subject: "Changes Requested for your IMCC Alumni Account",
+      htmlContent,
+    });
+  }
+
+  /**
+   * Dispatches a rejection notification
+   */
+  static async sendAlumniRejectedEmail(
+    toEmail: string,
+    toName: string,
+    reason: string
+  ): Promise<boolean> {
+    const htmlContent = `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 580px; margin: 0 auto; padding: 24px; border: 1px solid #E2E8F0; border-radius: 12px; background: #ffffff;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h2 style="color: #161D2C; margin: 0; font-size: 24px;">MES IMCC AlmaLink</h2>
+          <p style="color: #64748B; font-size: 13px; margin-top: 4px;">Alumni Verification Update</p>
+        </div>
+        
+        <h3 style="color: #1E293B; font-size: 18px;">Registration Update</h3>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">Hello ${toName},</p>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">
+          We were unable to verify your alumni registration against IMCC college records.
+        </p>
+        <div style="background-color: #FEF2F2; border-left: 4px solid #EF4444; padding: 12px 16px; margin: 16px 0; border-radius: 4px; font-size: 14px; color: #991B1B;">
+          <strong>Reason:</strong> ${reason}
+        </div>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6;">
+          If you believe this is in error, please contact the college administration at <a href="mailto:alumni@imcc.mespune.in" style="color: #5D5FEF;">alumni@imcc.mespune.in</a>.
+        </p>
+        
+        <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 24px 0;" />
+        <p style="color: #94A3B8; font-size: 11px; text-align: center; margin: 0;">
+          MES Institute of Management & Career Courses, Pune · Since 1983
+        </p>
+      </div>
+    `;
+
+    return this.sendEmail({
+      toEmail,
+      toName,
+      subject: "Update Regarding your IMCC Alumni Registration",
+      htmlContent,
+    });
+  }
 }
 

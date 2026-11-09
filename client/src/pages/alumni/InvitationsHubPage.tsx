@@ -31,16 +31,6 @@ import { useAlumniInvitations, useRsvpInvitation } from "@/api/invitations.api";
 import { InvitationStatus, InvitationDTO } from "@almalink/shared";
 import { cn } from "@/lib/utils";
 
-// Mock logged-in alumnus persona
-const CURRENT_ALUMNUS = {
-  alumniId: 1,
-  fullName: "Aarav Deshmukh",
-  program: "MCA",
-  graduationYear: 2018,
-  organization: "Persistent Systems Pune",
-  designation: "Senior SRE & Cloud Lead",
-};
-
 function formatDate(isoString: string): string {
   return new Date(isoString).toLocaleDateString("en-IN", {
     weekday: "short",
@@ -53,7 +43,21 @@ function formatDate(isoString: string): string {
 
 export const InvitationsHubPage: React.FC = () => {
   const navigate = useNavigate();
-  const alumnus = CURRENT_ALUMNUS;
+
+  let storedUser: { id?: number; fullName?: string; email?: string } = {};
+  try {
+    const raw = localStorage.getItem("almalink_user");
+    if (raw) storedUser = JSON.parse(raw);
+  } catch {}
+
+  const alumnus = {
+    alumniId: storedUser.id || 1,
+    fullName: storedUser.fullName || "Alumnus",
+    program: "MCA",
+    graduationYear: 2024,
+    organization: "IMCC Alumnus",
+    designation: "Member",
+  };
 
   // ── Fetch Invitations ──
   const { data: invitations = [], isLoading } = useAlumniInvitations(alumnus.alumniId);

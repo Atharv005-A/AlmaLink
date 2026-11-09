@@ -1,6 +1,7 @@
 import { apiClient } from "./client";
 import {
   LoginInput,
+  AlumniRegisterInput,
   ForgotPasswordInput,
   ResetPasswordInput,
   UserSession,
@@ -17,6 +18,60 @@ interface AuthResponse {
 }
 
 export const authApi = {
+  registerAlumni: async (
+    data: AlumniRegisterInput
+  ): Promise<{
+    referenceId: string;
+    fullName: string;
+    email: string;
+    program: string;
+    graduationYear: number;
+    submittedAt: string;
+  }> => {
+    const res = await apiClient.post<{
+      status: string;
+      message: string;
+      data: {
+        referenceId: string;
+        fullName: string;
+        email: string;
+        program: string;
+        graduationYear: number;
+        submittedAt: string;
+      };
+    }>("/auth/register", data);
+    return res.data.data;
+  },
+
+  checkRegistrationStatus: async (params: {
+    referenceId?: string;
+    email?: string;
+  }): Promise<{
+    referenceId: string;
+    fullName: string;
+    email: string;
+    program: string;
+    graduationYear: number;
+    verificationStatus: string;
+    verificationNote?: string | null;
+    isVerified: boolean;
+  }> => {
+    const res = await apiClient.get<{
+      status: string;
+      data: {
+        referenceId: string;
+        fullName: string;
+        email: string;
+        program: string;
+        graduationYear: number;
+        verificationStatus: string;
+        verificationNote?: string | null;
+        isVerified: boolean;
+      };
+    }>("/auth/registration-status", { params });
+    return res.data.data;
+  },
+
   login: async (credentials: LoginInput): Promise<AuthResponse["data"]> => {
     const res = await apiClient.post<AuthResponse>("/auth/login", credentials);
     return res.data.data;

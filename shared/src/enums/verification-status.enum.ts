@@ -1,5 +1,6 @@
 export enum VerificationStatus {
   PENDING = "PENDING",
+  CHANGES_REQUESTED = "CHANGES_REQUESTED",
   VERIFIED = "VERIFIED",
   REJECTED = "REJECTED",
 }

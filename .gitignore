@@ -47,6 +47,12 @@ yarn-error.log*
 coverage/
 .nyc_output/
 
+# Temporary Scratch Scripts & Python tooling
+scratch/
+*.py
+__pycache__/
+*.pyc
+
 # OS & Editor files
 .DS_Store
 Thumbs.db

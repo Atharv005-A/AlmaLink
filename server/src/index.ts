@@ -36,6 +36,23 @@ app.get("/api/health", (_req: Request, res: Response) => {
 // Mount All API Routes
 app.use("/api", apiRouter);
 
+// Global Error Handler
+app.use((err: any, _req: Request, res: Response, _next: any) => {
+  console.error("Unhandled Express Error:", err);
+  res.status(500).json({
+    status: "error",
+    message: err.message || "Internal server error",
+  });
+});
+
+process.on("unhandledRejection", (reason) => {
+  console.error("Unhandled Rejection at Promise:", reason);
+});
+
+process.on("uncaughtException", (error) => {
+  console.error("Uncaught Exception:", error);
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 AlmaLink Server running on port ${PORT}`);
   console.log(`🌐 Environment: ${process.env.NODE_ENV || "development"}`);

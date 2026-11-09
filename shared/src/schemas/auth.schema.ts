@@ -21,7 +21,7 @@ export const alumniRegisterSchema = z.object({
     .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
     .regex(/[0-9]/, "Password must contain at least one number"),
   program: z.string().min(2, "Academic program is required (e.g. MCA, MBA)").trim(),
-  graduationYear: z
+  graduationYear: z.coerce
     .number()
     .int()
     .min(1980, "Graduation year must be 1980 or later")

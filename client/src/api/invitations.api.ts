@@ -161,113 +161,20 @@ export const IMCC_DEMO_ALUMNI: DemoAlumnusProfile[] = [
 ];
 
 // ─── Initial Demo Invitations ────────────────────────────────────────────────
-export const INITIAL_IMCC_INVITATIONS: InvitationDTO[] = [
-  {
-    invitationId: 501,
-    activityId: 106, // GenAI Workshop
-    activityTitle: "Hands-on Generative AI & Retrieval-Augmented Generation (RAG) Architecture",
-    cellName: "Technical & Co-curricular Cell",
-    alumniId: 2, // Priya Kulkarni
-    alumniName: "Priya Kulkarni",
-    alumniEmail: "priya.kulkarni@infosys.com",
-    sentBy: 1,
-    expectedRole: "Keynote Speaker & Hands-on Instructor",
-    responseDeadline: "2026-11-18",
-    responseNote: "Honored to lead this session for IMCC MCA students. I will bring live code examples of LangChain & RAG.",
-    sentViaEmail: true,
-    sentViaWhatsapp: true,
-    status: InvitationStatus.ACCEPTED,
-    sentAt: "2026-11-06T10:00:00.000Z",
-    respondedAt: "2026-11-07T12:30:00.000Z",
-  },
-  {
-    invitationId: 502,
-    activityId: 106,
-    activityTitle: "Hands-on Generative AI & Retrieval-Augmented Generation (RAG) Architecture",
-    cellName: "Technical & Co-curricular Cell",
-    alumniId: 1, // Aarav Deshmukh
-    alumniName: "Aarav Deshmukh",
-    alumniEmail: "aarav.deshmukh@persistent.com",
-    sentBy: 1,
-    expectedRole: "Industry Panelist & Cloud Mentor",
-    responseDeadline: "2026-11-18",
-    responseNote: null,
-    sentViaEmail: true,
-    sentViaWhatsapp: true,
-    status: InvitationStatus.SENT,
-    sentAt: "2026-11-06T10:05:00.000Z",
-    respondedAt: null,
-  },
-  {
-    invitationId: 503,
-    activityId: 107, // Mock Interview Bootcamp
-    activityTitle: "Persistent & Barclays Campus Recruitment: Technical Mock Rounds",
-    cellName: "Training & Placement Cell",
-    alumniId: 3, // Rohan Pawar
-    alumniName: "Rohan Pawar",
-    alumniEmail: "rohan.pawar@barclays.com",
-    sentBy: 1,
-    expectedRole: "Technical Interviewer (Algorithms & Java)",
-    responseDeadline: "2026-11-08",
-    responseNote: "Confirmed. Will conduct 4 mock interview slots on Barclays coding expectations.",
-    sentViaEmail: true,
-    sentViaWhatsapp: true,
-    status: InvitationStatus.ACCEPTED,
-    sentAt: "2026-11-04T09:00:00.000Z",
-    respondedAt: "2026-11-05T14:15:00.000Z",
-  },
-  {
-    invitationId: 504,
-    activityId: 107,
-    activityTitle: "Persistent & Barclays Campus Recruitment: Technical Mock Rounds",
-    cellName: "Training & Placement Cell",
-    alumniId: 6, // Meghna Deshpande
-    alumniName: "Meghna Deshpande",
-    alumniEmail: "meghna.deshpande@capgemini.com",
-    sentBy: 1,
-    expectedRole: "HR Interviewer (STAR Behavioral Rounds)",
-    responseDeadline: "2026-11-08",
-    responseNote: null,
-    sentViaEmail: true,
-    sentViaWhatsapp: false,
-    status: InvitationStatus.SENT,
-    sentAt: "2026-11-04T09:10:00.000Z",
-    respondedAt: null,
-  },
-  {
-    invitationId: 505,
-    activityId: 107,
-    activityTitle: "Persistent & Barclays Campus Recruitment: Technical Mock Rounds",
-    cellName: "Training & Placement Cell",
-    alumniId: 5, // Amit Chavan
-    alumniName: "Amit Chavan",
-    alumniEmail: "amit.chavan@tcs.com",
-    sentBy: 1,
-    expectedRole: "Technical Interviewer (Full Stack / React)",
-    responseDeadline: "2026-11-08",
-    responseNote: "Have client sprint release this weekend, so regretfully unable to attend.",
-    sentViaEmail: true,
-    sentViaWhatsapp: true,
-    status: InvitationStatus.DECLINED,
-    sentAt: "2026-11-04T09:15:00.000Z",
-    respondedAt: "2026-11-05T18:00:00.000Z",
-  },
-];
+export const INITIAL_IMCC_INVITATIONS: InvitationDTO[] = [];
 
 // ─── LocalStorage Persistence Helpers ─────────────────────────────────────────
-const INVITATIONS_STORAGE_KEY = "almalink_invitations_store";
+const INVITATIONS_STORAGE_KEY = "almalink_invitations_store_v2";
 
 function getLocalInvitations(): InvitationDTO[] {
   try {
+    localStorage.removeItem("almalink_invitations_store");
     const raw = localStorage.getItem(INVITATIONS_STORAGE_KEY);
-    if (!raw) {
-      localStorage.setItem(INVITATIONS_STORAGE_KEY, JSON.stringify(INITIAL_IMCC_INVITATIONS));
-      return INITIAL_IMCC_INVITATIONS;
-    }
+    if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) && parsed.length > 0 ? parsed : INITIAL_IMCC_INVITATIONS;
+    return Array.isArray(parsed) ? parsed : [];
   } catch {
-    return INITIAL_IMCC_INVITATIONS;
+    return [];
   }
 }
 

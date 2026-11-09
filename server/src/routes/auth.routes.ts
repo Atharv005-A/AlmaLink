@@ -4,6 +4,7 @@ import { requireAuth } from "../middleware/auth.middleware.js";
 import { validateBody } from "../middleware/validate.middleware.js";
 import {
   loginSchema,
+  alumniRegisterSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
 } from "@almalink/shared";
@@ -11,6 +12,8 @@ import {
 const router = Router();
 
 // Public Routes
+router.post("/register", validateBody(alumniRegisterSchema), AuthController.register);
+router.get("/registration-status", AuthController.getRegistrationStatus);
 router.post("/login", validateBody(loginSchema), AuthController.login);
 router.post("/forgot-password", validateBody(forgotPasswordSchema), AuthController.forgotPassword);
 router.post("/reset-password", validateBody(resetPasswordSchema), AuthController.resetPassword);
