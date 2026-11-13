@@ -28,4 +28,3 @@ export const verificationReviewSchema = z.object({
 
 export type ProfileCompletionInput = z.infer<typeof profileCompletionSchema>;
 export type VerificationReviewInput = z.infer<typeof verificationReviewSchema>;
-

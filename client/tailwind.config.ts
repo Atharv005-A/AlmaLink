@@ -3,10 +3,7 @@ import tailwindAnimate from "tailwindcss-animate";
 
 const config: Config = {
   darkMode: ["class"],
-  content: [
-    "./index.html",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     container: {
       center: true,
@@ -54,7 +51,7 @@ const config: Config = {
       },
       borderRadius: {
         lg: "0.625rem", // 10px
-        md: "0.5rem",   // 8px
+        md: "0.5rem", // 8px
         sm: "0.375rem", // 6px
       },
     },
@@ -63,4 +60,3 @@ const config: Config = {
 };
 
 export default config;
-

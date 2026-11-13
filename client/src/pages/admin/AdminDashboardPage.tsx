@@ -60,11 +60,32 @@ export const AdminDashboardPage: React.FC = () => {
   const totalAttended = activities.reduce((acc, a) => acc + (a.attendedCount || 0), 0);
 
   const cellCounts = [
-    { name: "Technical Cell", count: activities.filter((a) => a.cellName?.toLowerCase().includes("tech") || a.cellId === 1).length },
-    { name: "Placement Cell", count: activities.filter((a) => a.cellName?.toLowerCase().includes("place") || a.cellId === 2).length },
-    { name: "Cultural Cell", count: activities.filter((a) => a.cellName?.toLowerCase().includes("cult") || a.cellId === 3).length },
-    { name: "Sports Cell", count: activities.filter((a) => a.cellName?.toLowerCase().includes("sport") || a.cellId === 4).length },
-    { name: "Entrepreneurship Cell", count: activities.filter((a) => a.cellName?.toLowerCase().includes("entrep") || a.cellId === 5).length },
+    {
+      name: "Technical Cell",
+      count: activities.filter((a) => a.cellName?.toLowerCase().includes("tech") || a.cellId === 1)
+        .length,
+    },
+    {
+      name: "Placement Cell",
+      count: activities.filter((a) => a.cellName?.toLowerCase().includes("place") || a.cellId === 2)
+        .length,
+    },
+    {
+      name: "Cultural Cell",
+      count: activities.filter((a) => a.cellName?.toLowerCase().includes("cult") || a.cellId === 3)
+        .length,
+    },
+    {
+      name: "Sports Cell",
+      count: activities.filter((a) => a.cellName?.toLowerCase().includes("sport") || a.cellId === 4)
+        .length,
+    },
+    {
+      name: "Entrepreneurship Cell",
+      count: activities.filter(
+        (a) => a.cellName?.toLowerCase().includes("entrep") || a.cellId === 5
+      ).length,
+    },
   ];
 
   return (
@@ -76,10 +97,7 @@ export const AdminDashboardPage: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Workspace Header: Breadcrumbs & Profile Pill */}
         <AdminHeader
-          breadcrumbs={[
-            { label: "Workspace", href: "/admin/dashboard" },
-            { label: "Dashboard" },
-          ]}
+          breadcrumbs={[{ label: "Workspace", href: "/admin/dashboard" }, { label: "Dashboard" }]}
         />
 
         {/* Workspace Main Page Content (Clean, 100% Real Data) */}
@@ -96,7 +114,8 @@ export const AdminDashboardPage: React.FC = () => {
                 A stronger alumni community
               </h1>
               <p className="text-sm text-slate-500 mt-1">
-                Good morning, {user.fullName || "Dr. Joshi"}. Here's your college engagement overview.
+                Good morning, {user.fullName || "Dr. Joshi"}. Here's your college engagement
+                overview.
               </p>
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-2xs text-xs font-semibold text-slate-700">
@@ -180,9 +199,7 @@ export const AdminDashboardPage: React.FC = () => {
                   {stats.verifiedCount}
                 </p>
               </div>
-              <p className="text-xs font-medium text-slate-500 mt-3">
-                Registered alumni in system
-              </p>
+              <p className="text-xs font-medium text-slate-500 mt-3">Registered alumni in system</p>
             </div>
           </div>
 
@@ -193,9 +210,7 @@ export const AdminDashboardPage: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-base font-bold text-slate-900">Participation trend</h3>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    Approved participation records
-                  </p>
+                  <p className="text-xs text-slate-500 mt-0.5">Approved participation records</p>
                 </div>
                 <TrendingUp className="h-5 w-5 text-slate-400" />
               </div>
@@ -206,7 +221,8 @@ export const AdminDashboardPage: React.FC = () => {
                 </div>
                 <p className="text-xs font-semibold text-slate-700">No participation records yet</p>
                 <p className="text-[11px] text-slate-400 max-w-xs mt-0.5">
-                  As alumni attend campus activities and attendance is verified, trends will appear here.
+                  As alumni attend campus activities and attendance is verified, trends will appear
+                  here.
                 </p>
               </div>
 
@@ -273,9 +289,7 @@ export const AdminDashboardPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Engagement by Cell */}
             <div className="bg-white rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] p-6 space-y-4">
-              <h3 className="text-base font-bold text-slate-900">
-                Engagement by cell
-              </h3>
+              <h3 className="text-base font-bold text-slate-900">Engagement by cell</h3>
               <p className="text-xs text-slate-500">Activities by cell</p>
 
               <div className="divide-y divide-slate-100 text-sm">
@@ -293,9 +307,7 @@ export const AdminDashboardPage: React.FC = () => {
             {/* Needs Your Attention */}
             <div className="bg-white rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] p-6 space-y-4 flex flex-col justify-between">
               <div className="space-y-3">
-                <h3 className="text-base font-bold text-slate-900">
-                  Needs your attention
-                </h3>
+                <h3 className="text-base font-bold text-slate-900">Needs your attention</h3>
 
                 <div className="border border-slate-200 rounded-xl divide-y divide-slate-100 text-xs">
                   {stats.awaitingReviewCount > 0 ? (
@@ -303,7 +315,9 @@ export const AdminDashboardPage: React.FC = () => {
                       to="/admin/verifications"
                       className="p-3 flex items-center justify-between hover:bg-slate-50 transition-colors"
                     >
-                      <span className="font-semibold text-slate-700">Verify new alumni registrations</span>
+                      <span className="font-semibold text-slate-700">
+                        Verify new alumni registrations
+                      </span>
                       <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold">
                         {stats.awaitingReviewCount} pending
                       </span>
@@ -315,7 +329,9 @@ export const AdminDashboardPage: React.FC = () => {
                       to="/admin/verifications"
                       className="p-3 flex items-center justify-between hover:bg-slate-50 transition-colors"
                     >
-                      <span className="font-semibold text-slate-700">Alumni pending follow-up (Changes Requested)</span>
+                      <span className="font-semibold text-slate-700">
+                        Alumni pending follow-up (Changes Requested)
+                      </span>
                       <span className="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 font-bold">
                         {stats.changesRequestedCount} pending
                       </span>
@@ -361,7 +377,9 @@ export const AdminDashboardPage: React.FC = () => {
                 <div className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mb-2">
                   <Calendar className="h-5 w-5" />
                 </div>
-                <p className="text-xs font-semibold text-slate-700">No campus activities scheduled yet</p>
+                <p className="text-xs font-semibold text-slate-700">
+                  No campus activities scheduled yet
+                </p>
                 <p className="text-[11px] text-slate-400 max-w-xs mt-0.5">
                   Activities created by cell coordinators will appear here with live RSVP tracking.
                 </p>
@@ -383,7 +401,12 @@ export const AdminDashboardPage: React.FC = () => {
                         <td className="py-3 px-4 font-semibold text-slate-900">{act.title}</td>
                         <td className="py-3 px-4 text-slate-600">{act.cellName || "General"}</td>
                         <td className="py-3 px-4 text-slate-500">
-                          {act.startAt ? new Date(act.startAt).toLocaleDateString("en-IN", { day: "numeric", month: "short" }) : "TBD"}
+                          {act.startAt
+                            ? new Date(act.startAt).toLocaleDateString("en-IN", {
+                                day: "numeric",
+                                month: "short",
+                              })
+                            : "TBD"}
                         </td>
                         <td className="py-3 px-4 text-right font-semibold text-emerald-700">
                           {act.acceptedCount || 0} accepted / {act.invitedCount || 0} sent
@@ -399,7 +422,9 @@ export const AdminDashboardPage: React.FC = () => {
           {/* Footer */}
           <div className="p-4 rounded-xl bg-slate-100/70 border border-slate-200/80 text-xs text-slate-600 flex items-center justify-between">
             <span>IMCC AlmaLink · MES, Pune</span>
-            <span className="text-[11px] text-slate-400 font-medium">Academic year · 1 Jul 2026 – 30 Jun 2027</span>
+            <span className="text-[11px] text-slate-400 font-medium">
+              Academic year · 1 Jul 2026 – 30 Jun 2027
+            </span>
           </div>
         </main>
       </div>

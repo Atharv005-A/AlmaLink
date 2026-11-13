@@ -62,7 +62,14 @@ export const IMCC_DEMO_ALUMNI: DemoAlumnusProfile[] = [
     designation: "Technical Lead (AI Platforms)",
     graduationYear: 2019,
     program: "MCA",
-    skills: ["Python", "Generative AI", "LangChain", "Machine Learning", "Vector Databases", "Prompt Engineering"],
+    skills: [
+      "Python",
+      "Generative AI",
+      "LangChain",
+      "Machine Learning",
+      "Vector Databases",
+      "Prompt Engineering",
+    ],
     expertise: ["Large Language Models", "Retrieval Augmented Generation", "Data Science"],
     preferredActivities: ["Expert Workshops", "Hackathons", "Tech Talks"],
     availability: "Saturday Mornings",
@@ -77,7 +84,14 @@ export const IMCC_DEMO_ALUMNI: DemoAlumnusProfile[] = [
     designation: "Senior Java Developer",
     graduationYear: 2020,
     program: "MCA",
-    skills: ["Java", "Spring Boot", "Data Structures", "Algorithms", "System Design", "Technical Interviewing"],
+    skills: [
+      "Java",
+      "Spring Boot",
+      "Data Structures",
+      "Algorithms",
+      "System Design",
+      "Technical Interviewing",
+    ],
     expertise: ["FinTech Architecture", "High Throughput Systems", "Banking APIs"],
     preferredActivities: ["Mock Interviews", "Placement Training", "Curriculum Advice"],
     availability: "Flexible (Online / In-person)",
@@ -92,7 +106,14 @@ export const IMCC_DEMO_ALUMNI: DemoAlumnusProfile[] = [
     designation: "Lead Data Engineer",
     graduationYear: 2017,
     program: "MBA",
-    skills: ["Data Analytics", "SQL", "Tableau", "Power BI", "Finance Analytics", "Business Analytics"],
+    skills: [
+      "Data Analytics",
+      "SQL",
+      "Tableau",
+      "Power BI",
+      "Finance Analytics",
+      "Business Analytics",
+    ],
     expertise: ["Financial Modeling", "Business Intelligence", "ETL Pipelines"],
     preferredActivities: ["Project Evaluation", "Guest Lectures", "Case Studies"],
     availability: "Weekday Evenings & Weekends",
@@ -122,7 +143,13 @@ export const IMCC_DEMO_ALUMNI: DemoAlumnusProfile[] = [
     designation: "HR Business Partner & Talent Lead",
     graduationYear: 2016,
     program: "MBA",
-    skills: ["HR Strategy", "Technical Interviewing", "STAR Method", "Campus Recruitment", "Soft Skills Training"],
+    skills: [
+      "HR Strategy",
+      "Technical Interviewing",
+      "STAR Method",
+      "Campus Recruitment",
+      "Soft Skills Training",
+    ],
     expertise: ["Behavioral Assessment", "Talent Acquisition", "Leadership Coaching"],
     preferredActivities: ["HR Meets", "Mock Interviews", "Resume Reviews"],
     availability: "Saturday Afternoons",
@@ -137,7 +164,13 @@ export const IMCC_DEMO_ALUMNI: DemoAlumnusProfile[] = [
     designation: "Staff Software Engineer",
     graduationYear: 2017,
     program: "MCA",
-    skills: ["Software Project Evaluation", "Research Methodology", "Peer Review", "Cloud Storage", "Linux Systems"],
+    skills: [
+      "Software Project Evaluation",
+      "Research Methodology",
+      "Peer Review",
+      "Cloud Storage",
+      "Linux Systems",
+    ],
     expertise: ["Distributed File Systems", "Data Resiliency", "Academic Research"],
     preferredActivities: ["Navonmesh Project Judging", "Research Conferences", "Panel Discussions"],
     availability: "Alternate Saturdays",
@@ -191,7 +224,9 @@ export function calculateClientMatchmaking(activityId: number): ActivityMatchSco
   // Find activity
   const activities = INITIAL_IMCC_ACTIVITIES;
   const activity = activities.find((a) => a.activityId === activityId);
-  const requiredTags = activity ? activity.requiredExpertise : ["React", "Python", "Cloud Architecture"];
+  const requiredTags = activity
+    ? activity.requiredExpertise
+    : ["React", "Python", "Cloud Architecture"];
 
   const normalizedRequired = requiredTags.map((t) => t.trim().toLowerCase());
 

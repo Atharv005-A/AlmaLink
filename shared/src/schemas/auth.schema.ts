@@ -26,12 +26,7 @@ export const alumniRegisterSchema = z.object({
     .int()
     .min(1980, "Graduation year must be 1980 or later")
     .max(new Date().getFullYear(), "Graduation year cannot be in the future"),
-  enrollmentNo: z
-    .string()
-    .min(3, "Enrollment number is required")
-    .max(50)
-    .trim()
-    .toUpperCase(),
+  enrollmentNo: z.string().min(3, "Enrollment number is required").max(50).trim().toUpperCase(),
   consentGiven: z.literal(true, {
     errorMap: () => ({ message: "You must consent to IMCC storing your profile" }),
   }),
@@ -64,4 +59,3 @@ export type AlumniRegisterInput = z.infer<typeof alumniRegisterSchema>;
 export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
 export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
 export type StaffOnboardingInput = z.infer<typeof staffOnboardingSchema>;
-

@@ -258,7 +258,8 @@ export class VerificationsController {
         return;
       }
 
-      const clientIp = (req.headers["x-forwarded-for"] as string) || req.socket.remoteAddress || "127.0.0.1";
+      const clientIp =
+        (req.headers["x-forwarded-for"] as string) || req.socket.remoteAddress || "127.0.0.1";
 
       await prisma.$transaction(async (tx) => {
         await tx.alumniProfile.update({
@@ -342,7 +343,8 @@ export class VerificationsController {
         return;
       }
 
-      const clientIp = (req.headers["x-forwarded-for"] as string) || req.socket.remoteAddress || "127.0.0.1";
+      const clientIp =
+        (req.headers["x-forwarded-for"] as string) || req.socket.remoteAddress || "127.0.0.1";
 
       await prisma.$transaction(async (tx) => {
         await tx.alumniProfile.update({
@@ -402,7 +404,9 @@ export class VerificationsController {
       }
 
       if (!reason || !reason.trim()) {
-        res.status(400).json({ status: "fail", message: "A reason is required to reject this registration." });
+        res
+          .status(400)
+          .json({ status: "fail", message: "A reason is required to reject this registration." });
         return;
       }
 
@@ -416,7 +420,8 @@ export class VerificationsController {
         return;
       }
 
-      const clientIp = (req.headers["x-forwarded-for"] as string) || req.socket.remoteAddress || "127.0.0.1";
+      const clientIp =
+        (req.headers["x-forwarded-for"] as string) || req.socket.remoteAddress || "127.0.0.1";
 
       await prisma.$transaction(async (tx) => {
         await tx.alumniProfile.update({
@@ -467,4 +472,3 @@ export class VerificationsController {
     }
   }
 }
-

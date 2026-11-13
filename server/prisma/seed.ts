@@ -67,7 +67,8 @@ async function main() {
     {
       name: "Sports & Athletics Cell",
       code: "SPORTS",
-      description: "Organizes inter-collegiate tournaments, cricket leagues, and fitness initiatives.",
+      description:
+        "Organizes inter-collegiate tournaments, cricket leagues, and fitness initiatives.",
       headStaffId: adminUser.userId,
     },
     {
@@ -329,4 +330,3 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
-

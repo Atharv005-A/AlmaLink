@@ -62,7 +62,8 @@ export const InvitationTrackingPage: React.FC = () => {
   const acceptedCount = invitations.filter((i) => i.status === InvitationStatus.ACCEPTED).length;
   const pendingCount = invitations.filter((i) => i.status === InvitationStatus.SENT).length;
   const declinedCount = invitations.filter((i) => i.status === InvitationStatus.DECLINED).length;
-  const responseRate = totalSent > 0 ? Math.round(((acceptedCount + declinedCount) / totalSent) * 100) : 0;
+  const responseRate =
+    totalSent > 0 ? Math.round(((acceptedCount + declinedCount) / totalSent) * 100) : 0;
 
   // ── Filtered List ──
   const filteredList = invitations.filter((inv) => {
@@ -215,7 +216,11 @@ export const InvitationTrackingPage: React.FC = () => {
         <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
           {[
             { label: "All Invitations", value: "ALL", count: totalSent },
-            { label: "Confirmed (Accepted)", value: InvitationStatus.ACCEPTED, count: acceptedCount },
+            {
+              label: "Confirmed (Accepted)",
+              value: InvitationStatus.ACCEPTED,
+              count: acceptedCount,
+            },
             { label: "Awaiting Response", value: InvitationStatus.SENT, count: pendingCount },
             { label: "Declined", value: InvitationStatus.DECLINED, count: declinedCount },
           ].map((tab) => (
@@ -233,7 +238,9 @@ export const InvitationTrackingPage: React.FC = () => {
               <span
                 className={cn(
                   "px-1.5 py-0.5 rounded-full text-[10px] font-bold",
-                  filterStatus === tab.value ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
+                  filterStatus === tab.value
+                    ? "bg-white/20 text-white"
+                    : "bg-slate-100 text-slate-500"
                 )}
               >
                 {tab.count}
@@ -270,7 +277,10 @@ export const InvitationTrackingPage: React.FC = () => {
                   const reminderSent = reminderSentMap[invitation.invitationId];
 
                   return (
-                    <tr key={invitation.invitationId} className="hover:bg-slate-50/70 transition-colors">
+                    <tr
+                      key={invitation.invitationId}
+                      className="hover:bg-slate-50/70 transition-colors"
+                    >
                       {/* Alumnus Name & Email */}
                       <td className="px-5 py-4">
                         <p className="font-bold text-slate-900">{invitation.alumniName}</p>
@@ -343,7 +353,9 @@ export const InvitationTrackingPage: React.FC = () => {
                           </button>
                         )}
                         {invitation.status === InvitationStatus.ACCEPTED && (
-                          <span className="text-xs font-semibold text-emerald-600">Ready for Event</span>
+                          <span className="text-xs font-semibold text-emerald-600">
+                            Ready for Event
+                          </span>
                         )}
                       </td>
                     </tr>
@@ -358,7 +370,9 @@ export const InvitationTrackingPage: React.FC = () => {
         {!isLoading && filteredList.length === 0 && (
           <div className="py-16 text-center bg-white rounded-2xl border border-slate-200 p-8 space-y-3">
             <Users className="h-8 w-8 text-slate-300 mx-auto" />
-            <h4 className="text-base font-bold text-slate-800">No invitations matching this filter</h4>
+            <h4 className="text-base font-bold text-slate-800">
+              No invitations matching this filter
+            </h4>
             <p className="text-xs text-slate-500 max-w-sm mx-auto">
               Start by dispatching invitations from the Find & Invite screen.
             </p>

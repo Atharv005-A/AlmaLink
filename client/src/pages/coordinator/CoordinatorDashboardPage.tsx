@@ -64,7 +64,9 @@ export const CoordinatorDashboardPage: React.FC = () => {
                 MK
               </div>
               <div className="text-left text-xs leading-tight">
-                <p className="font-semibold text-slate-100">{user.fullName || "Prof. Meera Kulkarni"}</p>
+                <p className="font-semibold text-slate-100">
+                  {user.fullName || "Prof. Meera Kulkarni"}
+                </p>
                 <p className="text-[10px] text-slate-400">Technical Cell Lead</p>
               </div>
             </div>
@@ -83,13 +85,22 @@ export const CoordinatorDashboardPage: React.FC = () => {
         <div className="border-t border-slate-800/80 bg-[#121824] hidden md:block">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav className="flex space-x-1 py-1 text-xs font-semibold">
-              <Link to="/coordinator/dashboard" className="px-3 py-2 rounded-lg bg-brand-iris text-white shadow-xs">
+              <Link
+                to="/coordinator/dashboard"
+                className="px-3 py-2 rounded-lg bg-brand-iris text-white shadow-xs"
+              >
                 Dashboard
               </Link>
-              <Link to="/coordinator/activities" className="px-3 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60">
+              <Link
+                to="/coordinator/activities"
+                className="px-3 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
+              >
                 Activities
               </Link>
-              <Link to="/coordinator/activities/create" className="px-3 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60">
+              <Link
+                to="/coordinator/activities/create"
+                className="px-3 py-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
+              >
                 Create activity
               </Link>
             </nav>
@@ -113,7 +124,8 @@ export const CoordinatorDashboardPage: React.FC = () => {
               Your Technical cell workspace
             </h1>
             <p className="text-sm text-slate-500 mt-1">
-              Welcome, {user.fullName || "Prof. Meera Kulkarni"}. Coordinate expertise, not spreadsheets.
+              Welcome, {user.fullName || "Prof. Meera Kulkarni"}. Coordinate expertise, not
+              spreadsheets.
             </p>
           </div>
 
@@ -129,7 +141,9 @@ export const CoordinatorDashboardPage: React.FC = () => {
         <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200/80 text-xs text-blue-900 flex items-start gap-3">
           <ShieldCheck className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
           <p className="leading-relaxed">
-            <strong>Assigned cell · Technical:</strong> Activities, invitations, and participation records shown here belong to Technical Cell only. High-value scores, corrections, and faculty awards go to the college administrator.
+            <strong>Assigned cell · Technical:</strong> Activities, invitations, and participation
+            records shown here belong to Technical Cell only. High-value scores, corrections, and
+            faculty awards go to the college administrator.
           </p>
         </div>
 
@@ -140,7 +154,9 @@ export const CoordinatorDashboardPage: React.FC = () => {
               <span>Upcoming activities</span>
               <Calendar className="h-4 w-4 text-blue-500" />
             </div>
-            <p className="text-3xl font-bold text-slate-900 mt-2 font-mono">{cellActivities.length}</p>
+            <p className="text-3xl font-bold text-slate-900 mt-2 font-mono">
+              {cellActivities.length}
+            </p>
             <p className="text-xs text-slate-500 mt-1">Technical cell only</p>
           </div>
 
@@ -176,7 +192,10 @@ export const CoordinatorDashboardPage: React.FC = () => {
         <div className="bg-white rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] p-6 space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-slate-900">Your next activities</h3>
-            <Link to="/coordinator/activities" className="text-xs font-semibold text-brand-iris hover:underline">
+            <Link
+              to="/coordinator/activities"
+              className="text-xs font-semibold text-brand-iris hover:underline"
+            >
               View all activities →
             </Link>
           </div>
@@ -186,7 +205,9 @@ export const CoordinatorDashboardPage: React.FC = () => {
               <div className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mb-2">
                 <Calendar className="h-5 w-5" />
               </div>
-              <p className="text-xs font-semibold text-slate-700">No activities created yet for your cell</p>
+              <p className="text-xs font-semibold text-slate-700">
+                No activities created yet for your cell
+              </p>
               <p className="text-[11px] text-slate-400 max-w-xs mt-0.5">
                 Click 'Create activity' to schedule your first alumni engagement event.
               </p>
@@ -207,7 +228,13 @@ export const CoordinatorDashboardPage: React.FC = () => {
                     <tr key={act.activityId}>
                       <td className="py-3 px-4 font-semibold text-slate-900">{act.title}</td>
                       <td className="py-3 px-4 text-slate-500">
-                        {act.startAt ? new Date(act.startAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) : "TBD"}
+                        {act.startAt
+                          ? new Date(act.startAt).toLocaleDateString("en-IN", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            })
+                          : "TBD"}
                       </td>
                       <td className="py-3 px-4 text-emerald-700 font-semibold">
                         {act.acceptedCount || 0} / {act.invitedCount || 0} accepted
@@ -236,7 +263,9 @@ export const CoordinatorDashboardPage: React.FC = () => {
             <div className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mb-2">
               <CheckCircle2 className="h-5 w-5" />
             </div>
-            <p className="text-xs font-semibold text-slate-700">No participation records to review</p>
+            <p className="text-xs font-semibold text-slate-700">
+              No participation records to review
+            </p>
             <p className="text-[11px] text-slate-400 max-w-xs mt-0.5">
               Attendance scoring and participation records will appear here after events conclude.
             </p>
@@ -245,7 +274,10 @@ export const CoordinatorDashboardPage: React.FC = () => {
 
         {/* Footer */}
         <div className="p-4 rounded-xl bg-slate-100/70 border border-slate-200/80 text-xs text-slate-600 flex items-center justify-between">
-          <span>Normal entries within the rubric can be approved by you for Technical. Contributions outside your assigned cell remain hidden.</span>
+          <span>
+            Normal entries within the rubric can be approved by you for Technical. Contributions
+            outside your assigned cell remain hidden.
+          </span>
           <span className="text-[11px] text-slate-400 font-medium">MES IMCC Pune · 2026–2027</span>
         </div>
       </main>

@@ -23,4 +23,3 @@ export interface NotificationDTO {
   isRead: boolean;
   createdAt: string;
 }
-

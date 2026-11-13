@@ -32,4 +32,3 @@ export interface StaffCoordinatorProfile {
   assignedOn: string;
   status: UserStatus;
 }
-

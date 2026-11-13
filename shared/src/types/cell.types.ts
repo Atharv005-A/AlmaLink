@@ -15,4 +15,3 @@ export interface CellCoordinatorAssignment {
   userId: number;
   assignedOn: string;
 }
-

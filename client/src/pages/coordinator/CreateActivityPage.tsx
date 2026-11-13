@@ -158,9 +158,9 @@ export const CreateActivityPage: React.FC = () => {
   // zodResolver connects Zod schema to React Hook Form automatically
   // Any field that fails Zod validation shows an error without manual checks
   const {
-    register,       // Connects <input> fields to the form
-    control,        // For custom components (Controller) like TagInput
-    handleSubmit,   // Wraps onSubmit with validation
+    register, // Connects <input> fields to the form
+    control, // For custom components (Controller) like TagInput
+    handleSubmit, // Wraps onSubmit with validation
     formState: { errors }, // Contains per-field error messages
   } = useForm<CreateActivityInput>({
     resolver: zodResolver(createActivitySchema),
@@ -205,7 +205,6 @@ export const CreateActivityPage: React.FC = () => {
       {/* ── Form ──────────────────────────────────────────────────────── */}
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-
           {/* Hidden: cellId is auto-set from session, not user-editable */}
           <input type="hidden" {...register("cellId", { valueAsNumber: true })} />
 
@@ -217,11 +216,7 @@ export const CreateActivityPage: React.FC = () => {
             </h2>
 
             {/* Event Title */}
-            <Field
-              label="Event Title"
-              required
-              error={errors.title?.message}
-            >
+            <Field label="Event Title" required error={errors.title?.message}>
               <input
                 {...register("title")}
                 placeholder="e.g., Guest Lecture on Cloud Architecture"
@@ -270,9 +265,7 @@ export const CreateActivityPage: React.FC = () => {
 
           {/* ── Card: Date & Location ───────────────────────────────────── */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 space-y-5">
-            <h2 className="text-base font-semibold text-slate-900">
-              📅 Date, Time & Location
-            </h2>
+            <h2 className="text-base font-semibold text-slate-900">📅 Date, Time & Location</h2>
 
             {/* Start & End Date side-by-side on desktop */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -440,4 +433,3 @@ export const CreateActivityPage: React.FC = () => {
     </div>
   );
 };
-

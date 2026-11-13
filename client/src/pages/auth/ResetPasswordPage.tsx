@@ -83,11 +83,7 @@ export const ResetPasswordPage: React.FC = () => {
       {/* MOBILE TOP BAR: Brand Header (Visible ONLY on Mobile < lg)     */}
       {/* ============================================================== */}
       <div className="lg:hidden bg-[#161D2C] px-5 py-3.5 flex items-center shadow-sm shrink-0">
-        <img
-          src="/imcc-almalink-logo-white.svg"
-          alt="MES IMCC AlmaLink"
-          className="h-9 w-auto"
-        />
+        <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-9 w-auto" />
       </div>
 
       {/* ============================================================== */}
@@ -111,7 +107,8 @@ export const ResetPasswordPage: React.FC = () => {
                 A connection that grows beyond graduation.
               </h1>
               <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
-                Bring your experience back to campus. Inspire students, share expertise and shape what comes next.
+                Bring your experience back to campus. Inspire students, share expertise and shape
+                what comes next.
               </p>
             </div>
 
@@ -166,7 +163,8 @@ export const ResetPasswordPage: React.FC = () => {
                   </div>
 
                   <p className="text-xs text-slate-600 leading-relaxed pt-1">
-                    Your password has been securely updated in IMCC records. You can now proceed to sign in with your new credentials.
+                    Your password has been securely updated in IMCC records. You can now proceed to
+                    sign in with your new credentials.
                   </p>
                 </div>
 
@@ -200,9 +198,7 @@ export const ResetPasswordPage: React.FC = () => {
               {!token && (
                 <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs flex items-center gap-2 shadow-xs">
                   <AlertCircle className="h-4 w-4 shrink-0" />
-                  <span>
-                    No reset token found in URL. Please use the link sent to your email.
-                  </span>
+                  <span>No reset token found in URL. Please use the link sent to your email.</span>
                 </div>
               )}
 
@@ -219,9 +215,7 @@ export const ResetPasswordPage: React.FC = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   {/* New Password */}
                   <div className="space-y-1.5">
-                    <label className="text-sm font-semibold text-slate-700">
-                      New password
-                    </label>
+                    <label className="text-sm font-semibold text-slate-700">New password</label>
                     <div className="relative">
                       <Input
                         type={showPassword ? "text" : "password"}
@@ -256,9 +250,7 @@ export const ResetPasswordPage: React.FC = () => {
 
                   {/* Confirm Password */}
                   <div className="space-y-1.5">
-                    <label className="text-sm font-semibold text-slate-700">
-                      Confirm password
-                    </label>
+                    <label className="text-sm font-semibold text-slate-700">Confirm password</label>
                     <div className="relative">
                       <Input
                         type={showConfirmPassword ? "text" : "password"}
@@ -320,10 +312,7 @@ export const ResetPasswordPage: React.FC = () => {
           <div className="pt-0.5 px-1 space-y-0.5 text-xs text-slate-400">
             <p>
               Need help?{" "}
-              <a
-                href="mailto:alumni@imcc.mespune.in"
-                className="text-slate-600 hover:underline"
-              >
+              <a href="mailto:alumni@imcc.mespune.in" className="text-slate-600 hover:underline">
                 alumni@imcc.mespune.in
               </a>
             </p>

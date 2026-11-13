@@ -71,11 +71,7 @@ export const LoginPage: React.FC = () => {
       {/* MOBILE TOP BAR: Brand Header (Visible ONLY on Mobile < lg)     */}
       {/* ============================================================== */}
       <div className="lg:hidden bg-[#161D2C] px-5 py-3.5 flex items-center shadow-sm shrink-0">
-        <img
-          src="/imcc-almalink-logo-white.svg"
-          alt="MES IMCC AlmaLink"
-          className="h-9 w-auto"
-        />
+        <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-9 w-auto" />
       </div>
 
       {/* ============================================================== */}
@@ -99,7 +95,8 @@ export const LoginPage: React.FC = () => {
                 A connection that grows beyond graduation.
               </h1>
               <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
-                Bring your experience back to campus. Inspire students, share expertise and shape what comes next.
+                Bring your experience back to campus. Inspire students, share expertise and shape
+                what comes next.
               </p>
             </div>
 
@@ -151,9 +148,7 @@ export const LoginPage: React.FC = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Email Address */}
               <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-slate-700">
-                  Email address
-                </label>
+                <label className="text-sm font-semibold text-slate-700">Email address</label>
                 <Input
                   type="email"
                   placeholder="Enter your email address"
@@ -162,16 +157,12 @@ export const LoginPage: React.FC = () => {
                   autoComplete="email"
                   className="h-11 rounded-xl bg-slate-50/50 hover:bg-slate-50/90 focus:bg-white border-slate-200 focus:border-brand-iris focus:ring-4 focus:ring-brand-iris/10 text-sm transition-all"
                 />
-                {errors.email && (
-                  <p className="text-xs text-rose-600">{errors.email.message}</p>
-                )}
+                {errors.email && <p className="text-xs text-rose-600">{errors.email.message}</p>}
               </div>
 
               {/* Password */}
               <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-slate-700">
-                  Password
-                </label>
+                <label className="text-sm font-semibold text-slate-700">Password</label>
                 <div className="relative">
                   <Input
                     type={showPassword ? "text" : "password"}
@@ -187,11 +178,7 @@ export const LoginPage: React.FC = () => {
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none"
                     aria-label={showPassword ? "Hide password" : "Show password"}
                   >
-                    {showPassword ? (
-                      <EyeOff className="h-4 w-4" />
-                    ) : (
-                      <Eye className="h-4 w-4" />
-                    )}
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
                 {errors.password && (
@@ -249,17 +236,15 @@ export const LoginPage: React.FC = () => {
           </div>
 
           <p className="text-xs text-slate-400 leading-snug px-1">
-            Staff accounts are created by the college administrator. Teachers should use the invitation email to set a password.
+            Staff accounts are created by the college administrator. Teachers should use the
+            invitation email to set a password.
           </p>
 
           {/* Institutional Help Footer */}
           <div className="pt-0.5 px-1 space-y-0.5 text-xs text-slate-400">
             <p>
               Need help?{" "}
-              <a
-                href="mailto:alumni@imcc.mespune.in"
-                className="text-slate-600 hover:underline"
-              >
+              <a href="mailto:alumni@imcc.mespune.in" className="text-slate-600 hover:underline">
                 alumni@imcc.mespune.in
               </a>
             </p>

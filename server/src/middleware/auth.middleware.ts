@@ -30,4 +30,3 @@ export const requireAuth = (req: Request, res: Response, next: NextFunction): vo
   req.user = decoded;
   next();
 };
-

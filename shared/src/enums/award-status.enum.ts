@@ -3,4 +3,3 @@ export enum AwardNominationStatus {
   SHORTLISTED = "SHORTLISTED",
   WINNER = "WINNER",
 }
-

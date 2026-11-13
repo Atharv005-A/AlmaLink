@@ -55,4 +55,3 @@ export interface AlumniProfileUpdatePayload {
   areaOfInterest?: string;
   willingToParticipate?: boolean;
 }
-

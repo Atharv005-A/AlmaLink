@@ -69,4 +69,3 @@ export const PasswordStrengthIndicator: React.FC<PasswordStrengthIndicatorProps>
     </div>
   );
 };
-

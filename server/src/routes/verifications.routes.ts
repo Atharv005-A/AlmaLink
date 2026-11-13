@@ -16,4 +16,3 @@ router.post("/:id/request-changes", VerificationsController.requestChanges);
 router.post("/:id/reject", VerificationsController.reject);
 
 export default router;
-

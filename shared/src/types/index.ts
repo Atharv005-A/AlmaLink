@@ -6,4 +6,3 @@ export * from "./invitation.types.js";
 export * from "./participation.types.js";
 export * from "./awards.types.js";
 export * from "./audit.types.js";
-

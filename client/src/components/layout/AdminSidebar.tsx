@@ -27,10 +27,20 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
 
   const navItems = [
     { id: "dashboard", label: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
-    { id: "verifications", label: "Verifications", href: "/admin/verifications", icon: CheckCircle2 },
+    {
+      id: "verifications",
+      label: "Verifications",
+      href: "/admin/verifications",
+      icon: CheckCircle2,
+    },
     { id: "alumni", label: "Alumni directory", href: "/admin/alumni", icon: Users },
     { id: "activities", label: "Activities", href: "/coordinator/activities", icon: Calendar },
-    { id: "invitations", label: "Invitations", href: "/coordinator/activities/1/invitations", icon: Mail },
+    {
+      id: "invitations",
+      label: "Invitations",
+      href: "/coordinator/activities/1/invitations",
+      icon: Mail,
+    },
     { id: "approvals", label: "Approvals", href: "/admin/verifications", icon: ShieldCheck },
     { id: "leaderboard", label: "Leaderboard", href: "/admin/leaderboard", icon: ListOrdered },
     { id: "awards", label: "Awards", href: "/admin/awards", icon: Award },
@@ -46,11 +56,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
       {/* Brand Logo */}
       <div className="space-y-4">
         <Link to="/admin/dashboard" className="block px-2">
-          <img
-            src="/imcc-almalink-logo-white.svg"
-            alt="MES IMCC AlmaLink"
-            className="h-8 w-auto"
-          />
+          <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-8 w-auto" />
         </Link>
 
         {/* Navigation Items (Figma Frame 3314:45305) */}
@@ -104,10 +110,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
           className="lg:hidden fixed inset-0 bg-black/60 z-40 backdrop-blur-xs"
           onClick={() => setMobileOpen(false)}
         >
-          <div
-            className="w-[236px] h-full"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="w-[236px] h-full" onClick={(e) => e.stopPropagation()}>
             {sidebarContent}
           </div>
         </div>

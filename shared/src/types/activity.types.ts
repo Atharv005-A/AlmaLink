@@ -34,4 +34,3 @@ export interface ActivityMatchScore {
   matchPercentage: number;
   isAvailable: boolean;
 }
-

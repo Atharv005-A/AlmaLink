@@ -5,4 +5,3 @@ export enum InvitationStatus {
   DECLINED = "DECLINED",
   EXPIRED = "EXPIRED",
 }
-

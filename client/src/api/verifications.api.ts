@@ -84,10 +84,9 @@ export const verificationsApi = {
   },
 
   requestChanges: async (id: number, message: string): Promise<string> => {
-    const res = await apiClient.post<{ message: string }>(
-      `/verifications/${id}/request-changes`,
-      { message }
-    );
+    const res = await apiClient.post<{ message: string }>(`/verifications/${id}/request-changes`, {
+      message,
+    });
     return res.data.message;
   },
 
@@ -116,4 +115,3 @@ export function useVerificationQueue(params?: {
     placeholderData: keepPreviousData,
   });
 }
-

@@ -51,10 +51,7 @@ export async function getActivityCategories() {
  * @param cellId   - The ID of the cell (coordinator is restricted to their own cell)
  * @param status   - Optional filter: DRAFT | PUBLISHED | ONGOING | COMPLETED
  */
-export async function getActivitiesByCell(
-  cellId: number,
-  status?: string
-) {
+export async function getActivitiesByCell(cellId: number, status?: string) {
   return prisma.activity.findMany({
     where: {
       cellId,
@@ -100,10 +97,7 @@ export async function getActivityById(activityId: number) {
  * @param data       - Validated input from createActivitySchema (Zod)
  * @param createdBy  - The userId of the coordinator creating this activity
  */
-export async function createActivity(
-  data: CreateActivityInput,
-  createdBy: number
-) {
+export async function createActivity(data: CreateActivityInput, createdBy: number) {
   return prisma.activity.create({
     data: {
       cellId: data.cellId,
@@ -111,13 +105,13 @@ export async function createActivity(
       createdBy,
       title: data.title,
       description: data.description,
-      requiredExpertise: data.requiredExpertise,     // JSON array: ["React", "Node.js"]
+      requiredExpertise: data.requiredExpertise, // JSON array: ["React", "Node.js"]
       startAt: new Date(data.startAt),
       endAt: new Date(data.endAt),
       venue: data.venue,
       meetingLink: data.meetingLink || null,
       pointsWeight: data.pointsWeight ?? 10,
-      status: "DRAFT",                               // Always starts as DRAFT
+      status: "DRAFT", // Always starts as DRAFT
     },
     include: {
       category: { select: { categoryId: true, name: true } },
@@ -146,10 +140,10 @@ export async function updateActivityStatus(
 ) {
   // Allowed forward transitions only
   const VALID_TRANSITIONS: Record<string, string[]> = {
-    DRAFT:     ["PUBLISHED"],
-    PUBLISHED: ["ONGOING", "DRAFT"],   // Allow un-publishing back to Draft
-    ONGOING:   ["COMPLETED"],
-    COMPLETED: [],                     // Terminal state — no further transitions
+    DRAFT: ["PUBLISHED"],
+    PUBLISHED: ["ONGOING", "DRAFT"], // Allow un-publishing back to Draft
+    ONGOING: ["COMPLETED"],
+    COMPLETED: [], // Terminal state — no further transitions
   };
 
   const activity = await prisma.activity.findUnique({
@@ -162,9 +156,7 @@ export async function updateActivityStatus(
 
   const allowedNext = VALID_TRANSITIONS[activity.status] ?? [];
   if (!allowedNext.includes(newStatus)) {
-    throw new Error(
-      `Cannot transition activity from ${activity.status} to ${newStatus}.`
-    );
+    throw new Error(`Cannot transition activity from ${activity.status} to ${newStatus}.`);
   }
 
   return prisma.activity.update({
@@ -196,4 +188,3 @@ export async function deleteActivity(activityId: number) {
 
   return prisma.activity.delete({ where: { activityId } });
 }
-

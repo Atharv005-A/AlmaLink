@@ -147,9 +147,7 @@ export function useCreateActivity() {
   return useMutation({
     mutationFn: async (input: CreateActivityInput) => {
       // Find category name
-      const category = IMCC_ACTIVITY_CATEGORIES.find(
-        (c) => c.categoryId === input.categoryId
-      );
+      const category = IMCC_ACTIVITY_CATEGORIES.find((c) => c.categoryId === input.categoryId);
 
       const newActivity: ActivityDTO = {
         activityId: Date.now(),
@@ -201,18 +199,9 @@ export function useUpdateActivityStatus() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({
-      activityId,
-      status,
-    }: {
-      activityId: number;
-      status: string;
-    }) => {
+    mutationFn: async ({ activityId, status }: { activityId: number; status: string }) => {
       try {
-        const { data } = await apiClient.patch(
-          `/activities/${activityId}/status`,
-          { status }
-        );
+        const { data } = await apiClient.patch(`/activities/${activityId}/status`, { status });
         if (data?.data) {
           const current = getLocalActivities();
           const updated = current.map((a) =>
@@ -227,9 +216,7 @@ export function useUpdateActivityStatus() {
 
       const current = getLocalActivities();
       const updated = current.map((a) =>
-        a.activityId === activityId
-          ? { ...a, status: status as ActivityStatus }
-          : a
+        a.activityId === activityId ? { ...a, status: status as ActivityStatus } : a
       );
       saveLocalActivities(updated);
       return updated.find((a) => a.activityId === activityId)!;

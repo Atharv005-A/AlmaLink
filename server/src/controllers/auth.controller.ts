@@ -38,7 +38,8 @@ export class AuthController {
       if (existingUser) {
         res.status(409).json({
           status: "fail",
-          message: "An account with this email address already exists. Please sign in or use another email.",
+          message:
+            "An account with this email address already exists. Please sign in or use another email.",
         });
         return;
       }
@@ -51,7 +52,8 @@ export class AuthController {
       if (existingAlumni) {
         res.status(409).json({
           status: "fail",
-          message: "An alumni registration with this enrollment number already exists. If this is an error, please contact college administration.",
+          message:
+            "An alumni registration with this enrollment number already exists. If this is an error, please contact college administration.",
         });
         return;
       }
@@ -73,7 +75,8 @@ export class AuthController {
       const passwordHash = await AuthService.hashPassword(password);
 
       // 5. Create user and profile in transaction
-      const clientIp = (req.headers["x-forwarded-for"] as string) || req.socket.remoteAddress || "127.0.0.1";
+      const clientIp =
+        (req.headers["x-forwarded-for"] as string) || req.socket.remoteAddress || "127.0.0.1";
 
       const { user, profile } = await prisma.$transaction(async (tx) => {
         const newUser = await tx.user.create({
@@ -122,7 +125,11 @@ export class AuthController {
       const referenceId = `AL-${String(profile.alumniId).padStart(4, "0")}`;
 
       // 6. Send acknowledgment email asynchronously
-      EmailService.sendAlumniRegistrationReceivedEmail(user.email, user.fullName, referenceId).catch((err) => {
+      EmailService.sendAlumniRegistrationReceivedEmail(
+        user.email,
+        user.fullName,
+        referenceId
+      ).catch((err) => {
         console.error("[EMAIL ERROR] Failed to send registration email:", err);
       });
 
@@ -523,4 +530,3 @@ export class AuthController {
     }
   }
 }
-

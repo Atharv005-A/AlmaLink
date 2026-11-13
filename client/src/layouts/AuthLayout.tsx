@@ -45,7 +45,8 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           </h2>
 
           <p className="text-sm text-slate-300 leading-relaxed">
-            Coordinating cell activities, smart tag-based matchmaking for hackathons & guest lectures, verifiable contribution points, and annual alumni recognition.
+            Coordinating cell activities, smart tag-based matchmaking for hackathons & guest
+            lectures, verifiable contribution points, and annual alumni recognition.
           </p>
 
           <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800">
@@ -53,14 +54,18 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
               <ShieldCheck className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-white">Verified Alumni Pool</p>
-                <p className="text-xs text-slate-400">Directly matched with IMCC graduation records.</p>
+                <p className="text-xs text-slate-400">
+                  Directly matched with IMCC graduation records.
+                </p>
               </div>
             </div>
             <div className="flex items-start gap-2.5">
               <ShieldCheck className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-white">Cell Workspace</p>
-                <p className="text-xs text-slate-400">Coordinated guest lectures & placement drives.</p>
+                <p className="text-xs text-slate-400">
+                  Coordinated guest lectures & placement drives.
+                </p>
               </div>
             </div>
           </div>
@@ -120,4 +125,3 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
     </div>
   );
 };
-

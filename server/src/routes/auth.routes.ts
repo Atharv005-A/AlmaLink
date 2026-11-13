@@ -24,4 +24,3 @@ router.get("/me", requireAuth, AuthController.getCurrentUser);
 router.post("/logout", requireAuth, AuthController.logout);
 
 export default router;
-

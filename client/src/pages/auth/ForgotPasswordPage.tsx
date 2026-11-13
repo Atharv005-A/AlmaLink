@@ -50,11 +50,7 @@ export const ForgotPasswordPage: React.FC = () => {
       {/* MOBILE TOP BAR: Brand Header (Visible ONLY on Mobile < lg)     */}
       {/* ============================================================== */}
       <div className="lg:hidden bg-[#161D2C] px-5 py-3.5 flex items-center shadow-sm shrink-0">
-        <img
-          src="/imcc-almalink-logo-white.svg"
-          alt="MES IMCC AlmaLink"
-          className="h-9 w-auto"
-        />
+        <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-9 w-auto" />
       </div>
 
       {/* ============================================================== */}
@@ -78,7 +74,8 @@ export const ForgotPasswordPage: React.FC = () => {
                 A connection that grows beyond graduation.
               </h1>
               <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
-                Bring your experience back to campus. Inspire students, share expertise and shape what comes next.
+                Bring your experience back to campus. Inspire students, share expertise and shape
+                what comes next.
               </p>
             </div>
 
@@ -134,13 +131,14 @@ export const ForgotPasswordPage: React.FC = () => {
 
                   <p className="text-xs text-slate-600 leading-relaxed pt-1">
                     If an account exists for{" "}
-                    <span className="font-semibold text-slate-900">{submittedEmail}</span>,
-                    a secure reset link has been emailed. The link expires in 60 minutes.
+                    <span className="font-semibold text-slate-900">{submittedEmail}</span>, a secure
+                    reset link has been emailed. The link expires in 60 minutes.
                   </p>
                 </div>
 
                 <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-500 leading-relaxed">
-                  Didn't receive it? Check your spam folder or request another email after 60 seconds. Your existing password remains unchanged until you reset it.
+                  Didn't receive it? Check your spam folder or request another email after 60
+                  seconds. Your existing password remains unchanged until you reset it.
                 </div>
 
                 <div className="pt-2">
@@ -233,7 +231,8 @@ export const ForgotPasswordPage: React.FC = () => {
               </div>
 
               <p className="text-xs text-slate-400 leading-snug px-1">
-                Staff accounts are managed by the college administrator. Teachers can also request password resets here.
+                Staff accounts are managed by the college administrator. Teachers can also request
+                password resets here.
               </p>
             </>
           )}
@@ -242,10 +241,7 @@ export const ForgotPasswordPage: React.FC = () => {
           <div className="pt-0.5 px-1 space-y-0.5 text-xs text-slate-400">
             <p>
               Need help?{" "}
-              <a
-                href="mailto:alumni@imcc.mespune.in"
-                className="text-slate-600 hover:underline"
-              >
+              <a href="mailto:alumni@imcc.mespune.in" className="text-slate-600 hover:underline">
                 alumni@imcc.mespune.in
               </a>
             </p>

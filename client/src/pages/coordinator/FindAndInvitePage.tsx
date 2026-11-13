@@ -330,7 +330,9 @@ export const FindAndInvitePage: React.FC = () => {
                         </h3>
                         <p className="text-xs text-slate-500 font-medium mt-0.5">
                           {fullDetails?.program ?? "MCA"} Class of {alumnus.graduationYear} ·{" "}
-                          <span className="text-slate-800 font-semibold">{alumnus.organization}</span>
+                          <span className="text-slate-800 font-semibold">
+                            {alumnus.organization}
+                          </span>
                         </p>
                         <p className="text-xs text-slate-600 mt-0.5">{alumnus.designation}</p>
                       </div>

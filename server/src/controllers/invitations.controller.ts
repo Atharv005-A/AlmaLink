@@ -31,7 +31,9 @@ export async function getRecommendations(req: Request, res: Response): Promise<v
       data: matches,
     });
   } catch (error: any) {
-    res.status(500).json({ status: "error", message: error.message || "Failed to calculate matches" });
+    res
+      .status(500)
+      .json({ status: "error", message: error.message || "Failed to calculate matches" });
   }
 }
 
@@ -47,7 +49,9 @@ export async function dispatch(req: Request, res: Response): Promise<void> {
       data: result,
     });
   } catch (error: any) {
-    res.status(500).json({ status: "error", message: error.message || "Failed to dispatch invitations" });
+    res
+      .status(500)
+      .json({ status: "error", message: error.message || "Failed to dispatch invitations" });
   }
 }
 
@@ -67,7 +71,9 @@ export async function getByActivity(req: Request, res: Response): Promise<void> 
       data: roster,
     });
   } catch (error: any) {
-    res.status(500).json({ status: "error", message: error.message || "Failed to fetch invitation roster" });
+    res
+      .status(500)
+      .json({ status: "error", message: error.message || "Failed to fetch invitation roster" });
   }
 }
 
@@ -83,7 +89,9 @@ export async function getMyInvitations(req: Request, res: Response): Promise<voi
       data: invitations,
     });
   } catch (error: any) {
-    res.status(500).json({ status: "error", message: error.message || "Failed to fetch your invitations" });
+    res
+      .status(500)
+      .json({ status: "error", message: error.message || "Failed to fetch your invitations" });
   }
 }
 

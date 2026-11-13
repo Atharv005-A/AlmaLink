@@ -58,9 +58,12 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
   // Determine what the "next action" button should say based on current status
   const getNextAction = (): { label: string; status: ActivityStatus } | null => {
     if (!isCoordinator) return null;
-    if (activity.status === ActivityStatus.DRAFT)      return { label: "Publish",  status: ActivityStatus.PUBLISHED };
-    if (activity.status === ActivityStatus.PUBLISHED)  return { label: "Mark Ongoing", status: ActivityStatus.ONGOING };
-    if (activity.status === ActivityStatus.ONGOING)    return { label: "Mark Completed", status: ActivityStatus.COMPLETED };
+    if (activity.status === ActivityStatus.DRAFT)
+      return { label: "Publish", status: ActivityStatus.PUBLISHED };
+    if (activity.status === ActivityStatus.PUBLISHED)
+      return { label: "Mark Ongoing", status: ActivityStatus.ONGOING };
+    if (activity.status === ActivityStatus.ONGOING)
+      return { label: "Mark Completed", status: ActivityStatus.COMPLETED };
     return null;
   };
 
@@ -77,9 +80,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
       </div>
 
       {/* ── Title ── */}
-      <h3 className="text-sm font-semibold text-slate-900 leading-snug">
-        {activity.title}
-      </h3>
+      <h3 className="text-sm font-semibold text-slate-900 leading-snug">{activity.title}</h3>
 
       {/* ── Date & Venue ── */}
       <div className="space-y-1.5">
@@ -165,4 +166,3 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
     </div>
   );
 };
-

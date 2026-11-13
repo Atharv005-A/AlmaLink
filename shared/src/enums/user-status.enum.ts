@@ -3,4 +3,3 @@ export enum UserStatus {
   ARCHIVED = "ARCHIVED",
   INVITED = "INVITED",
 }
-

@@ -2,12 +2,7 @@ import { z } from "zod";
 
 export const createCellSchema = z.object({
   name: z.string().min(2, "Cell name must be at least 2 characters").max(100).trim(),
-  code: z
-    .string()
-    .min(2, "Cell code must be at least 2 characters")
-    .max(20)
-    .trim()
-    .toUpperCase(),
+  code: z.string().min(2, "Cell code must be at least 2 characters").max(20).trim().toUpperCase(),
   description: z.string().max(500).trim().optional(),
   headStaffId: z.number().int().positive().optional(),
 });
@@ -27,4 +22,3 @@ export const inviteStaffSchema = z.object({
 export type CreateCellInput = z.infer<typeof createCellSchema>;
 export type AssignCoordinatorInput = z.infer<typeof assignCoordinatorSchema>;
 export type InviteStaffInput = z.infer<typeof inviteStaffSchema>;
-

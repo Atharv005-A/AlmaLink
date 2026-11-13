@@ -8,10 +8,7 @@ interface AdminHeaderProps {
 }
 
 export const AdminHeader: React.FC<AdminHeaderProps> = ({
-  breadcrumbs = [
-    { label: "Workspace", href: "/admin/dashboard" },
-    { label: "Dashboard" },
-  ],
+  breadcrumbs = [{ label: "Workspace", href: "/admin/dashboard" }, { label: "Dashboard" }],
 }) => {
   const navigate = useNavigate();
 
@@ -31,7 +28,10 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
     const parts = name.trim().split(/\s+/).filter(Boolean);
     if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
     const cleanParts = parts.filter(
-      (p) => !["dr.", "dr", "prof.", "prof", "mr.", "mr", "ms.", "ms", "mrs.", "mrs"].includes(p.toLowerCase())
+      (p) =>
+        !["dr.", "dr", "prof.", "prof", "mr.", "mr", "ms.", "ms", "mrs.", "mrs"].includes(
+          p.toLowerCase()
+        )
     );
     if (cleanParts.length >= 2) {
       return (cleanParts[0][0] + cleanParts[cleanParts.length - 1][0]).toUpperCase();

@@ -19,4 +19,3 @@ apiRouter.use("/activities", activitiesRoutes);
 apiRouter.use("/invitations", invitationsRoutes);
 
 export default apiRouter;
-

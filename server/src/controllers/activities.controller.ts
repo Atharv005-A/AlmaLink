@@ -44,8 +44,7 @@ export async function listCategories(req: Request, res: Response): Promise<void>
 export async function listActivities(req: Request, res: Response): Promise<void> {
   try {
     // Parse cellId from query string; fall back to the coordinator's own cell
-    const cellId =
-      parseInt(req.query.cellId as string, 10) || req.user?.cellId;
+    const cellId = parseInt(req.query.cellId as string, 10) || req.user?.cellId;
 
     if (!cellId) {
       res.status(400).json({ status: "fail", message: "cellId is required." });
@@ -108,10 +107,7 @@ export async function createActivity(req: Request, res: Response): Promise<void>
     // req.user is set by requireAuth middleware after JWT verification
     const coordinatorUserId = req.user!.userId;
 
-    const activity = await ActivitiesService.createActivity(
-      req.body,
-      coordinatorUserId
-    );
+    const activity = await ActivitiesService.createActivity(req.body, coordinatorUserId);
 
     res.status(201).json({
       status: "success",
@@ -181,4 +177,3 @@ export async function deleteActivity(req: Request, res: Response): Promise<void>
     res.status(400).json({ status: "fail", message: error.message });
   }
 }
-

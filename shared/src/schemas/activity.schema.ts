@@ -5,7 +5,9 @@ export const createActivitySchema = z.object({
   categoryId: z.number().int().positive(),
   title: z.string().min(3).max(150).trim(),
   description: z.string().min(10).max(2000).trim(),
-  requiredExpertise: z.array(z.string().min(1).max(50)).min(1, "At least one expertise tag is required"),
+  requiredExpertise: z
+    .array(z.string().min(1).max(50))
+    .min(1, "At least one expertise tag is required"),
   startAt: z.string().datetime("Please provide a valid ISO start date and time"),
   endAt: z.string().datetime("Please provide a valid ISO end date and time"),
   venue: z.string().min(2).max(200).trim(),
@@ -41,15 +43,23 @@ export const recordParticipationSchema = z.object({
 });
 
 export const createAwardNominationSchema = z.object({
-  academicYear: z.string().regex(/^\d{4}-\d{2}$/, "Academic year must be formatted as YYYY-YY (e.g. 2026-27)"),
+  academicYear: z
+    .string()
+    .regex(/^\d{4}-\d{2}$/, "Academic year must be formatted as YYYY-YY (e.g. 2026-27)"),
   cellId: z.number().int().positive(),
   alumniId: z.number().int().positive(),
-  justification: z.string().min(20, "Justification must be at least 20 characters").max(2000).trim(),
+  justification: z
+    .string()
+    .min(20, "Justification must be at least 20 characters")
+    .max(2000)
+    .trim(),
 });
 
 export const castAwardVoteSchema = z.object({
   nominationId: z.number().int().positive(),
-  academicYear: z.string().regex(/^\d{4}-\d{2}$/, "Academic year must be formatted as YYYY-YY (e.g. 2026-27)"),
+  academicYear: z
+    .string()
+    .regex(/^\d{4}-\d{2}$/, "Academic year must be formatted as YYYY-YY (e.g. 2026-27)"),
 });
 
 export type CreateActivityInput = z.infer<typeof createActivitySchema>;
@@ -58,4 +68,3 @@ export type RsvpInvitationInput = z.infer<typeof rsvpInvitationSchema>;
 export type RecordParticipationInput = z.infer<typeof recordParticipationSchema>;
 export type CreateAwardNominationInput = z.infer<typeof createAwardNominationSchema>;
 export type CastAwardVoteInput = z.infer<typeof castAwardVoteSchema>;
-

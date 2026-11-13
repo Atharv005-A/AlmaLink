@@ -19,10 +19,7 @@ import { cn } from "@/lib/utils";
 import { ActivityStatus } from "@almalink/shared";
 
 // Map each status to its Design System color classes
-const STATUS_CONFIG: Record<
-  ActivityStatus,
-  { label: string; className: string; dot: string }
-> = {
+const STATUS_CONFIG: Record<ActivityStatus, { label: string; className: string; dot: string }> = {
   [ActivityStatus.DRAFT]: {
     label: "Draft",
     className: "bg-slate-100 text-slate-700 border-slate-200",
@@ -50,10 +47,7 @@ interface ActivityStatusBadgeProps {
   className?: string;
 }
 
-export const ActivityStatusBadge: React.FC<ActivityStatusBadgeProps> = ({
-  status,
-  className,
-}) => {
+export const ActivityStatusBadge: React.FC<ActivityStatusBadgeProps> = ({ status, className }) => {
   const config = STATUS_CONFIG[status] ?? {
     label: status,
     className: "bg-slate-100 text-slate-600 border-slate-200",
@@ -74,4 +68,3 @@ export const ActivityStatusBadge: React.FC<ActivityStatusBadgeProps> = ({
     </span>
   );
 };
-

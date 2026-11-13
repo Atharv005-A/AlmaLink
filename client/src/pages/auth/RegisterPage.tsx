@@ -73,11 +73,7 @@ export const RegisterPage: React.FC = () => {
       {/* MOBILE TOP BAR: Brand Header (Visible ONLY on Mobile < lg)     */}
       {/* ============================================================== */}
       <div className="lg:hidden bg-[#161D2C] px-5 py-3.5 flex items-center shadow-sm shrink-0">
-        <img
-          src="/imcc-almalink-logo-white.svg"
-          alt="MES IMCC AlmaLink"
-          className="h-9 w-auto"
-        />
+        <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-9 w-auto" />
       </div>
 
       {/* ============================================================== */}
@@ -101,8 +97,8 @@ export const RegisterPage: React.FC = () => {
                 A connection that grows beyond graduation.
               </h1>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Bring your experience back to campus. Inspire students, share expertise
-                and shape what comes next.
+                Bring your experience back to campus. Inspire students, share expertise and shape
+                what comes next.
               </p>
             </div>
 
@@ -156,7 +152,8 @@ export const RegisterPage: React.FC = () => {
               <div>
                 <p className="font-semibold">Please check the highlighted details</p>
                 <p className="text-amber-700 text-xs mt-0.5">
-                  Use a valid email, a 10-digit Indian mobile number and a graduation year from 1985–{currentYear}. Enrollment number is required.
+                  Use a valid email, a 10-digit Indian mobile number and a graduation year from
+                  1985–{currentYear}. Enrollment number is required.
                 </p>
               </div>
             </div>
@@ -218,9 +215,7 @@ export const RegisterPage: React.FC = () => {
                   autoComplete="email"
                   className="h-10 rounded-xl bg-slate-50/50 hover:bg-slate-50/90 focus:bg-white border-slate-200 focus:border-brand-iris focus:ring-4 focus:ring-brand-iris/10 text-sm transition-all"
                 />
-                {errors.email && (
-                  <p className="text-xs text-rose-600">{errors.email.message}</p>
-                )}
+                {errors.email && <p className="text-xs text-rose-600">{errors.email.message}</p>}
               </div>
 
               {/* Row 3: Password */}
@@ -242,11 +237,7 @@ export const RegisterPage: React.FC = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none transition-colors"
                   >
-                    {showPassword ? (
-                      <EyeOff className="h-4 w-4" />
-                    ) : (
-                      <Eye className="h-4 w-4" />
-                    )}
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
                 {errors.password ? (
@@ -329,13 +320,14 @@ export const RegisterPage: React.FC = () => {
                     className="mt-1 h-4 w-4 rounded border-slate-300 text-brand-iris focus:ring-brand-iris/20 shrink-0"
                   />
                   <span className="text-xs text-slate-600 leading-snug">
-                    I consent to IMCC storing my profile and contacting me for college activities.
-                    I can withdraw consent through the coordinator.
+                    I consent to IMCC storing my profile and contacting me for college activities. I
+                    can withdraw consent through the coordinator.
                   </span>
                 </label>
                 {errors.consentGiven && (
                   <p className="text-xs text-rose-600 mt-1">
-                    {errors.consentGiven.message || "Please provide consent to create your alumni account."}
+                    {errors.consentGiven.message ||
+                      "Please provide consent to create your alumni account."}
                   </p>
                 )}
               </div>
@@ -353,9 +345,7 @@ export const RegisterPage: React.FC = () => {
 
             {/* Back to Sign In Link */}
             <div className="mt-4 pt-3 border-t border-slate-100 text-center">
-              <span className="text-xs sm:text-sm text-slate-500">
-                Already registered?{" "}
-              </span>
+              <span className="text-xs sm:text-sm text-slate-500">Already registered? </span>
               <Link
                 to="/login"
                 className="text-xs sm:text-sm font-semibold text-brand-iris hover:text-brand-iris/80 transition-colors"
@@ -386,4 +376,3 @@ export const RegisterPage: React.FC = () => {
   );
 };
 export default RegisterPage;
-

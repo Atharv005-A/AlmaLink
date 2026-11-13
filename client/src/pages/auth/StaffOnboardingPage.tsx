@@ -8,7 +8,16 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { authApi } from "@/api/auth.api";
 import { PasswordStrengthIndicator } from "@/components/common/PasswordStrengthIndicator";
-import { Eye, EyeOff, CheckCircle2, Building2, UserCheck, AlertCircle, ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  CheckCircle2,
+  Building2,
+  UserCheck,
+  AlertCircle,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
 
 const staffOnboardingFormSchema = z
   .object({
@@ -81,7 +90,9 @@ export const StaffOnboardingPage: React.FC = () => {
 
   const onSubmit = async (data: StaffOnboardingFormInput) => {
     if (!token) {
-      setServerError("Onboarding token is missing. Please use the invitation link from your email.");
+      setServerError(
+        "Onboarding token is missing. Please use the invitation link from your email."
+      );
       return;
     }
 
@@ -111,11 +122,7 @@ export const StaffOnboardingPage: React.FC = () => {
       {/* MOBILE TOP BAR: Brand Header (Visible ONLY on Mobile < lg)     */}
       {/* ============================================================== */}
       <div className="lg:hidden bg-[#161D2C] px-5 py-3.5 flex items-center shadow-sm shrink-0">
-        <img
-          src="/imcc-almalink-logo-white.svg"
-          alt="MES IMCC AlmaLink"
-          className="h-9 w-auto"
-        />
+        <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-9 w-auto" />
       </div>
 
       {/* ============================================================== */}
@@ -139,7 +146,8 @@ export const StaffOnboardingPage: React.FC = () => {
                 A connection that grows beyond graduation.
               </h1>
               <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
-                Empowering college faculty and department cell coordinators to engage alumni with ease.
+                Empowering college faculty and department cell coordinators to engage alumni with
+                ease.
               </p>
             </div>
 
@@ -194,8 +202,12 @@ export const StaffOnboardingPage: React.FC = () => {
                   </div>
 
                   <p className="text-xs text-slate-600 leading-relaxed pt-1">
-                    Your password has been configured and your cell coordinator permissions are active for{" "}
-                    <span className="font-semibold text-slate-900">{staffDetails.assignedCell}</span>.
+                    Your password has been configured and your cell coordinator permissions are
+                    active for{" "}
+                    <span className="font-semibold text-slate-900">
+                      {staffDetails.assignedCell}
+                    </span>
+                    .
                   </p>
                 </div>
 
@@ -257,7 +269,8 @@ export const StaffOnboardingPage: React.FC = () => {
                 <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs flex items-center gap-2 shadow-xs">
                   <AlertCircle className="h-4 w-4 shrink-0" />
                   <span>
-                    Demo mode: No token in URL. In production, teachers open the link from their invitation email.
+                    Demo mode: No token in URL. In production, teachers open the link from their
+                    invitation email.
                   </span>
                 </div>
               )}
@@ -275,9 +288,7 @@ export const StaffOnboardingPage: React.FC = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   {/* New Password */}
                   <div className="space-y-1.5">
-                    <label className="text-sm font-semibold text-slate-700">
-                      Create password
-                    </label>
+                    <label className="text-sm font-semibold text-slate-700">Create password</label>
                     <div className="relative">
                       <Input
                         type={showPassword ? "text" : "password"}
@@ -312,9 +323,7 @@ export const StaffOnboardingPage: React.FC = () => {
 
                   {/* Confirm Password */}
                   <div className="space-y-1.5">
-                    <label className="text-sm font-semibold text-slate-700">
-                      Confirm password
-                    </label>
+                    <label className="text-sm font-semibold text-slate-700">Confirm password</label>
                     <div className="relative">
                       <Input
                         type={showConfirmPassword ? "text" : "password"}
@@ -376,10 +385,7 @@ export const StaffOnboardingPage: React.FC = () => {
           <div className="pt-0.5 px-1 space-y-0.5 text-xs text-slate-400">
             <p>
               Need help?{" "}
-              <a
-                href="mailto:alumni@imcc.mespune.in"
-                className="text-slate-600 hover:underline"
-              >
+              <a href="mailto:alumni@imcc.mespune.in" className="text-slate-600 hover:underline">
                 alumni@imcc.mespune.in
               </a>
             </p>

@@ -134,8 +134,8 @@ export const InvitationsHubPage: React.FC = () => {
               Invitations & Campus Requests
             </h1>
             <p className="text-xs text-slate-500">
-              Welcome back, <span className="font-semibold text-slate-800">{alumnus.fullName}</span> (
-              {alumnus.program} Class of {alumnus.graduationYear} · {alumnus.organization})
+              Welcome back, <span className="font-semibold text-slate-800">{alumnus.fullName}</span>{" "}
+              ({alumnus.program} Class of {alumnus.graduationYear} · {alumnus.organization})
             </p>
           </div>
 
@@ -163,7 +163,8 @@ export const InvitationsHubPage: React.FC = () => {
                 Give back to your Alma Mater & Earn Contribution Points
               </p>
               <p className="text-xs text-slate-600 mt-0.5">
-                Every session you conduct or judge earns official points towards the Annual MES IMCC Alumni of the Year Honors.
+                Every session you conduct or judge earns official points towards the Annual MES IMCC
+                Alumni of the Year Honors.
               </p>
             </div>
           </div>
@@ -179,7 +180,11 @@ export const InvitationsHubPage: React.FC = () => {
           {[
             { label: "All Invitations", value: "ALL", count: invitations.length },
             { label: "Action Required", value: InvitationStatus.SENT, count: pendingCount },
-            { label: "Accepted & Confirmed", value: InvitationStatus.ACCEPTED, count: acceptedCount },
+            {
+              label: "Accepted & Confirmed",
+              value: InvitationStatus.ACCEPTED,
+              count: acceptedCount,
+            },
             { label: "Declined", value: InvitationStatus.DECLINED, count: declinedCount },
           ].map((tab) => (
             <button
@@ -229,8 +234,8 @@ export const InvitationsHubPage: React.FC = () => {
                     isPending
                       ? "border-amber-200 ring-2 ring-amber-100 bg-amber-50/[0.02]"
                       : isAccepted
-                      ? "border-emerald-200"
-                      : "border-slate-200 opacity-80"
+                        ? "border-emerald-200"
+                        : "border-slate-200 opacity-80"
                   )}
                 >
                   {/* Top Bar: Cell Name + Status Badge + Points */}
@@ -292,7 +297,9 @@ export const InvitationsHubPage: React.FC = () => {
                   {/* Response Note (if already responded) */}
                   {invitation.responseNote && (
                     <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-700">
-                      <span className="font-semibold text-slate-500 block mb-0.5">Your Response Note:</span>
+                      <span className="font-semibold text-slate-500 block mb-0.5">
+                        Your Response Note:
+                      </span>
                       <p className="italic">"{invitation.responseNote}"</p>
                     </div>
                   )}
@@ -325,9 +332,12 @@ export const InvitationsHubPage: React.FC = () => {
         {!isLoading && filteredInvitations.length === 0 && (
           <div className="py-20 text-center bg-white rounded-2xl border border-slate-200 p-8 space-y-3">
             <Inbox className="h-10 w-10 text-slate-300 mx-auto" />
-            <h4 className="text-base font-bold text-slate-800">No invitations matching this filter</h4>
+            <h4 className="text-base font-bold text-slate-800">
+              No invitations matching this filter
+            </h4>
             <p className="text-xs text-slate-500 max-w-sm mx-auto">
-              You are all caught up! New requests from MES IMCC coordinators will appear here and in your WhatsApp/Email.
+              You are all caught up! New requests from MES IMCC coordinators will appear here and in
+              your WhatsApp/Email.
             </p>
           </div>
         )}

@@ -14,7 +14,11 @@
  */
 
 import { prisma } from "../config/prisma.js";
-import { ActivityMatchScore, BulkDispatchInvitationsInput, RsvpInvitationInput } from "@almalink/shared";
+import {
+  ActivityMatchScore,
+  BulkDispatchInvitationsInput,
+  RsvpInvitationInput,
+} from "@almalink/shared";
 
 // ─── 1. Calculate Match Recommendations for an Activity ──────────────────────
 export async function getMatchRecommendations(activityId: number): Promise<ActivityMatchScore[]> {
@@ -89,7 +93,8 @@ export async function bulkDispatchInvitations(
   payload: BulkDispatchInvitationsInput,
   senderUserId: number
 ) {
-  const { activityId, alumniIds, expectedRole, responseDeadline, sendEmail, sendWhatsapp } = payload;
+  const { activityId, alumniIds, expectedRole, responseDeadline, sendEmail, sendWhatsapp } =
+    payload;
 
   const activity = await prisma.activity.findUnique({
     where: { activityId },
@@ -168,10 +173,7 @@ export async function getAlumniInvitations(userId: number) {
 }
 
 // ─── 5. Record Alumni RSVP (Accept or Decline) ────────────────────────────────
-export async function rsvpInvitation(
-  invitationId: number,
-  payload: RsvpInvitationInput
-) {
+export async function rsvpInvitation(invitationId: number, payload: RsvpInvitationInput) {
   const invitation = await prisma.invitation.findUnique({
     where: { invitationId },
   });

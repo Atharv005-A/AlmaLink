@@ -78,9 +78,7 @@ export const authApi = {
   },
 
   getCurrentUser: async (): Promise<UserSession> => {
-    const res = await apiClient.get<{ status: string; data: { user: UserSession } }>(
-      "/auth/me"
-    );
+    const res = await apiClient.get<{ status: string; data: { user: UserSession } }>("/auth/me");
     return res.data.data.user;
   },
 
@@ -122,4 +120,3 @@ export const authApi = {
     return res.data.data;
   },
 };
-

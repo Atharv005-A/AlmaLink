@@ -4,4 +4,3 @@ export enum Role {
   CELL_COORDINATOR = "CELL_COORDINATOR",
   ALUMNI = "ALUMNI",
 }
-

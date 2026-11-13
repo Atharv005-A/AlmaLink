@@ -7,18 +7,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-brand-iris text-white shadow-sm hover:bg-brand-iris-hover active:scale-[0.99]",
-        destructive:
-          "bg-rose-600 text-white shadow-sm hover:bg-rose-700",
+        default: "bg-brand-iris text-white shadow-sm hover:bg-brand-iris-hover active:scale-[0.99]",
+        destructive: "bg-rose-600 text-white shadow-sm hover:bg-rose-700",
         outline:
           "border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 hover:text-slate-900",
-        secondary:
-          "bg-brand-iris-light text-brand-iris hover:bg-brand-iris-subtle",
-        ghost:
-          "hover:bg-slate-100 hover:text-slate-900 text-slate-600",
-        link:
-          "text-brand-iris underline-offset-4 hover:underline",
+        secondary: "bg-brand-iris-light text-brand-iris hover:bg-brand-iris-subtle",
+        ghost: "hover:bg-slate-100 hover:text-slate-900 text-slate-600",
+        link: "text-brand-iris underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -35,8 +30,7 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   isLoading?: boolean;
 }
 
@@ -64,11 +58,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               stroke="currentColor"
               strokeWidth="4"
             ></circle>
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8v8H4z"
-            ></path>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
           </svg>
         )}
         {children}
@@ -79,4 +69,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
-

@@ -53,15 +53,18 @@ export const AlumniHomePage: React.FC = () => {
       try {
         const parsed = JSON.parse(raw);
         if (parsed.email) {
-          authApi.checkRegistrationStatus({ email: parsed.email }).then((res) => {
-            if (res) {
-              setAlumniDetails({
-                program: res.program,
-                graduationYear: res.graduationYear,
-                enrollmentNo: res.referenceId,
-              });
-            }
-          }).catch(() => {});
+          authApi
+            .checkRegistrationStatus({ email: parsed.email })
+            .then((res) => {
+              if (res) {
+                setAlumniDetails({
+                  program: res.program,
+                  graduationYear: res.graduationYear,
+                  enrollmentNo: res.referenceId,
+                });
+              }
+            })
+            .catch(() => {});
         }
       } catch {}
     }
@@ -128,7 +131,8 @@ export const AlumniHomePage: React.FC = () => {
               Welcome back, {displayName}!
             </h1>
             <p className="text-sm text-slate-500">
-              {alumniDetails?.program || "MCA"} · Class of {alumniDetails?.graduationYear || "2024"} · MES Institute of Management & Career Courses, Pune.
+              {alumniDetails?.program || "MCA"} · Class of {alumniDetails?.graduationYear || "2024"}{" "}
+              · MES Institute of Management & Career Courses, Pune.
             </p>
           </div>
         </div>
@@ -149,7 +153,8 @@ export const AlumniHomePage: React.FC = () => {
                   Invitations Hub
                 </h3>
                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  Review and accept invitations from college cells for guest lectures, hackathon mentoring, and mock interviews.
+                  Review and accept invitations from college cells for guest lectures, hackathon
+                  mentoring, and mock interviews.
                 </p>
               </div>
             </div>
@@ -167,11 +172,10 @@ export const AlumniHomePage: React.FC = () => {
                 <Calendar className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900">
-                  Campus Engagements
-                </h3>
+                <h3 className="text-base font-bold text-slate-900">Campus Engagements</h3>
                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  Stay connected with IMCC academic cells. Your verified participations will record contribution points.
+                  Stay connected with IMCC academic cells. Your verified participations will record
+                  contribution points.
                 </p>
               </div>
             </div>

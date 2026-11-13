@@ -30,4 +30,3 @@ export interface AwardVoteDTO {
   academicYear: string;
   createdAt: string;
 }
-

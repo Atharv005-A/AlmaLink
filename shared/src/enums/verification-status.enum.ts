@@ -4,4 +4,3 @@ export enum VerificationStatus {
   VERIFIED = "VERIFIED",
   REJECTED = "REJECTED",
 }
-

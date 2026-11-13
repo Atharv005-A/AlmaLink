@@ -19,7 +19,12 @@ export class EmailService {
   /**
    * Dispatches a transactional email via Brevo REST API
    */
-  static async sendEmail({ toEmail, toName, subject, htmlContent }: SendEmailParams): Promise<boolean> {
+  static async sendEmail({
+    toEmail,
+    toName,
+    subject,
+    htmlContent,
+  }: SendEmailParams): Promise<boolean> {
     const isConfigured = this.apiKey && this.apiKey !== "placeholder_brevo_key";
 
     if (!isConfigured) {
@@ -63,7 +68,11 @@ export class EmailService {
   /**
    * Dispatches a secure Password Reset email with branded HTML template
    */
-  static async sendPasswordResetEmail(toEmail: string, toName: string, resetLink: string): Promise<boolean> {
+  static async sendPasswordResetEmail(
+    toEmail: string,
+    toName: string,
+    resetLink: string
+  ): Promise<boolean> {
     const htmlContent = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 580px; margin: 0 auto; padding: 24px; border: 1px solid #E2E8F0; border-radius: 12px; background: #ffffff;">
         <div style="text-align: center; margin-bottom: 24px;">
@@ -317,4 +326,3 @@ export class EmailService {
     });
   }
 }
-

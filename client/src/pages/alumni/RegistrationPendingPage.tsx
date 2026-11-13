@@ -98,11 +98,7 @@ export const RegistrationPendingPage: React.FC = () => {
       {/* MOBILE TOP BAR: Brand Header (Visible ONLY on Mobile < lg)     */}
       {/* ============================================================== */}
       <div className="lg:hidden bg-[#161D2C] px-5 py-3.5 flex items-center shadow-sm shrink-0">
-        <img
-          src="/imcc-almalink-logo-white.svg"
-          alt="MES IMCC AlmaLink"
-          className="h-9 w-auto"
-        />
+        <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-9 w-auto" />
       </div>
 
       {/* ============================================================== */}
@@ -126,8 +122,8 @@ export const RegistrationPendingPage: React.FC = () => {
                 A connection that grows beyond graduation.
               </h1>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Bring your experience back to campus. Inspire students, share expertise
-                and shape what comes next.
+                Bring your experience back to campus. Inspire students, share expertise and shape
+                what comes next.
               </p>
             </div>
 
@@ -159,9 +155,7 @@ export const RegistrationPendingPage: React.FC = () => {
           {/* Heading & Subtitle */}
           <div className="space-y-1">
             <h2 className="text-2xl sm:text-[28px] font-bold tracking-tight text-slate-900">
-              {isVerified
-                ? `You're approved, ${firstName}!`
-                : `You're on the list, ${firstName}.`}
+              {isVerified ? `You're approved, ${firstName}!` : `You're on the list, ${firstName}.`}
             </h2>
             <p className="text-sm text-slate-500 leading-snug">
               {isVerified
@@ -192,11 +186,10 @@ export const RegistrationPendingPage: React.FC = () => {
               <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs sm:text-sm flex items-start gap-3 animate-in fade-in duration-300">
                 <Sparkles className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-emerald-950">
-                    Registration Verified & Approved!
-                  </p>
+                  <p className="font-bold text-emerald-950">Registration Verified & Approved!</p>
                   <p className="text-xs text-emerald-800 mt-0.5 leading-relaxed">
-                    College administration verified your academic records. You now have full access to the Alumni Portal, events, and cell invitations.
+                    College administration verified your academic records. You now have full access
+                    to the Alumni Portal, events, and cell invitations.
                   </p>
                 </div>
               </div>
@@ -207,11 +200,10 @@ export const RegistrationPendingPage: React.FC = () => {
               <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm flex items-start gap-3">
                 <AlertCircle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-amber-950">
-                    Action Required: Clarification Needed
-                  </p>
+                  <p className="font-bold text-amber-950">Action Required: Clarification Needed</p>
                   <p className="text-xs text-amber-800 mt-0.5 leading-relaxed">
-                    {verificationNote || "Please contact alumni@imcc.mespune.in to verify your details."}
+                    {verificationNote ||
+                      "Please contact alumni@imcc.mespune.in to verify your details."}
                   </p>
                 </div>
               </div>
@@ -221,15 +213,15 @@ export const RegistrationPendingPage: React.FC = () => {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-semibold text-slate-800">
-                    What happens next?
-                  </h3>
+                  <h3 className="text-sm font-semibold text-slate-800">What happens next?</h3>
                   <button
                     onClick={checkStatus}
                     title="Check status now"
                     className="p-1 rounded text-slate-400 hover:text-brand-iris transition-colors"
                   >
-                    <RefreshCw className={`h-3 w-3 ${isChecking ? "animate-spin text-brand-iris" : ""}`} />
+                    <RefreshCw
+                      className={`h-3 w-3 ${isChecking ? "animate-spin text-brand-iris" : ""}`}
+                    />
                   </button>
                 </div>
 
@@ -262,29 +254,45 @@ export const RegistrationPendingPage: React.FC = () => {
                 </div>
 
                 {/* Step 2: College verification */}
-                <div className={`p-3 flex items-center justify-between ${isVerified ? "bg-emerald-50/30" : "bg-amber-50/30"}`}>
+                <div
+                  className={`p-3 flex items-center justify-between ${isVerified ? "bg-emerald-50/30" : "bg-amber-50/30"}`}
+                >
                   <div className="flex items-center gap-2.5">
-                    <div className={`h-5 w-5 rounded-full ${isVerified ? "bg-emerald-500" : "bg-amber-500"} text-white flex items-center justify-center text-[10px] font-bold`}>
+                    <div
+                      className={`h-5 w-5 rounded-full ${isVerified ? "bg-emerald-500" : "bg-amber-500"} text-white flex items-center justify-center text-[10px] font-bold`}
+                    >
                       {isVerified ? "✓" : "2"}
                     </div>
                     <span className="font-medium text-slate-800">College verification</span>
                   </div>
-                  <span className={`inline-flex items-center gap-1 ${isVerified ? "text-emerald-700 font-semibold" : "text-amber-700 font-semibold"}`}>
+                  <span
+                    className={`inline-flex items-center gap-1 ${isVerified ? "text-emerald-700 font-semibold" : "text-amber-700 font-semibold"}`}
+                  >
                     <span className="text-[10px]">●</span> {isVerified ? "Completed" : "Pending"}
                   </span>
                 </div>
 
                 {/* Step 3: Alumni portal access */}
-                <div className={`p-3 flex items-center justify-between ${isVerified ? "bg-emerald-50/20" : "opacity-70"}`}>
+                <div
+                  className={`p-3 flex items-center justify-between ${isVerified ? "bg-emerald-50/20" : "opacity-70"}`}
+                >
                   <div className="flex items-center gap-2.5">
-                    <div className={`h-5 w-5 rounded-full ${isVerified ? "bg-emerald-500 text-white" : "bg-slate-300 text-slate-600"} flex items-center justify-center text-[10px] font-bold`}>
+                    <div
+                      className={`h-5 w-5 rounded-full ${isVerified ? "bg-emerald-500 text-white" : "bg-slate-300 text-slate-600"} flex items-center justify-center text-[10px] font-bold`}
+                    >
                       {isVerified ? "✓" : "3"}
                     </div>
-                    <span className={`font-medium ${isVerified ? "text-slate-800 font-semibold" : "text-slate-500"}`}>
+                    <span
+                      className={`font-medium ${isVerified ? "text-slate-800 font-semibold" : "text-slate-500"}`}
+                    >
                       Alumni portal access
                     </span>
                   </div>
-                  <span className={isVerified ? "text-emerald-700 font-bold" : "text-slate-400 font-medium"}>
+                  <span
+                    className={
+                      isVerified ? "text-emerald-700 font-bold" : "text-slate-400 font-medium"
+                    }
+                  >
                     {isVerified ? "Active" : "After approval"}
                   </span>
                 </div>
@@ -295,13 +303,16 @@ export const RegistrationPendingPage: React.FC = () => {
             <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 text-xs text-slate-600 leading-relaxed">
               {isVerified ? (
                 <span>
-                  Your profile is fully verified. Click the button below to sign in and open your alumni portal.
+                  Your profile is fully verified. Click the button below to sign in and open your
+                  alumni portal.
                 </span>
               ) : (
                 <span>
                   Verification usually takes <strong>2–3 working days</strong>. We'll email{" "}
-                  <span className="font-semibold text-slate-800">{email || "your registered email"}</span> when your account is
-                  verified or if we need changes.
+                  <span className="font-semibold text-slate-800">
+                    {email || "your registered email"}
+                  </span>{" "}
+                  when your account is verified or if we need changes.
                 </span>
               )}
             </div>
@@ -329,7 +340,8 @@ export const RegistrationPendingPage: React.FC = () => {
             {/* Restriction Helper */}
             {!isVerified && (
               <p className="text-[11px] text-slate-400 text-center leading-relaxed">
-                While verification is pending, activity invitations and contribution records are unavailable.
+                While verification is pending, activity invitations and contribution records are
+                unavailable.
               </p>
             )}
           </div>

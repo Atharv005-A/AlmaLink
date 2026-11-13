@@ -33,4 +33,3 @@ export interface InvitationRsvpPayload {
   status: InvitationStatus.ACCEPTED | InvitationStatus.DECLINED;
   responseNote?: string;
 }
-

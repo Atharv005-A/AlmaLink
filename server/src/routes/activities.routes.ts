@@ -62,7 +62,7 @@ router.get(
 // validateBody runs the Zod createActivitySchema before the controller fires
 router.post(
   "/",
-  requireRole(Role.CELL_COORDINATOR),  // ← Only coordinators can add events
+  requireRole(Role.CELL_COORDINATOR), // ← Only coordinators can add events
   requireCellAccess,
   validateBody(createActivitySchema),
   ActivitiesController.createActivity
@@ -73,7 +73,7 @@ router.post(
 // Body: { status: "PUBLISHED" | "ONGOING" | "COMPLETED" }
 router.patch(
   "/:id/status",
-  requireRole(Role.CELL_COORDINATOR),  // ← Only coordinators can publish events
+  requireRole(Role.CELL_COORDINATOR), // ← Only coordinators can publish events
   ActivitiesController.updateActivityStatus
 );
 
@@ -81,9 +81,8 @@ router.patch(
 // DELETE /api/activities/:id
 router.delete(
   "/:id",
-  requireRole(Role.CELL_COORDINATOR),  // ← Only coordinators can delete their drafts
+  requireRole(Role.CELL_COORDINATOR), // ← Only coordinators can delete their drafts
   ActivitiesController.deleteActivity
 );
 
 export default router;
-

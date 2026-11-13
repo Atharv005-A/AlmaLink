@@ -27,4 +27,3 @@ export interface AttendanceSubmissionPayload {
   evidenceUrl?: string;
   completionStatus?: string;
 }
-
