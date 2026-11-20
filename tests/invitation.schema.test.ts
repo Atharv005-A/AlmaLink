@@ -77,7 +77,7 @@ describe("Invitation & RSVP Schemas (Module 4)", () => {
     });
 
     it("should verify InvitationStatus enum values", () => {
-      expect(InvitationStatus.PENDING).toBe("PENDING");
+      expect(InvitationStatus.SENT).toBe("SENT");
       expect(InvitationStatus.ACCEPTED).toBe("ACCEPTED");
       expect(InvitationStatus.DECLINED).toBe("DECLINED");
     });

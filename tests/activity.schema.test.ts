@@ -6,7 +6,8 @@ describe("Activity & Event Creation Schemas (Module 3)", () => {
     cellId: 1,
     categoryId: 2,
     title: "Expert Lecture on Cloud Architecture & Kubernetes",
-    description: "Industry session for MCA students exploring scalable microservices in production.",
+    description:
+      "Industry session for MCA students exploring scalable microservices in production.",
     requiredExpertise: ["Cloud Computing", "Kubernetes", "DevOps"],
     startAt: "2026-11-25T10:00:00.000Z",
     endAt: "2026-11-25T13:00:00.000Z",

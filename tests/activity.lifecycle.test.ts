@@ -45,13 +45,23 @@ describe("Activity Lifecycle & Timeline Management (Module 3)", () => {
 
     it("should classify event as UPCOMING when current time is before start time", () => {
       const beforeTime = new Date("2026-11-24T12:00:00.000Z");
-      const result = getActivityTimelineStatus(ActivityStatus.PUBLISHED, startAt, endAt, beforeTime);
+      const result = getActivityTimelineStatus(
+        ActivityStatus.PUBLISHED,
+        startAt,
+        endAt,
+        beforeTime
+      );
       expect(result).toBe("UPCOMING");
     });
 
     it("should classify event as ONGOING when current time is within duration", () => {
       const duringTime = new Date("2026-11-25T11:30:00.000Z");
-      const result = getActivityTimelineStatus(ActivityStatus.PUBLISHED, startAt, endAt, duringTime);
+      const result = getActivityTimelineStatus(
+        ActivityStatus.PUBLISHED,
+        startAt,
+        endAt,
+        duringTime
+      );
       expect(result).toBe("ONGOING");
     });
 
