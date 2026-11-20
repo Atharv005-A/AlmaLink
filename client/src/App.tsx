@@ -101,6 +101,26 @@ export const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/coordinator/invitations"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <InvitationTrackingPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/invitations"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <InvitationTrackingPage />
+              </ProtectedRoute>
+            }
+          />
           {/* Module 4: Alumni Invitations Hub (Alumni Portal) */}
           <Route
             path="/alumni/invitations"

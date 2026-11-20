@@ -59,7 +59,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
         {
           id: "invitations",
           label: "Invitations",
-          href: "/coordinator/activities",
+          href: "/coordinator/invitations",
           icon: Mail,
         },
         {
@@ -88,7 +88,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
         {
           id: "invitations",
           label: "Invitations",
-          href: "/coordinator/activities",
+          href: "/coordinator/invitations",
           icon: Mail,
         },
         { id: "approvals", label: "Approvals", href: "/admin/verifications", icon: ShieldCheck },
