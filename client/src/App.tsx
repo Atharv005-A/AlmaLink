@@ -19,6 +19,7 @@ import { CreateActivityPage } from "@/pages/coordinator/CreateActivityPage";
 import { FindAndInvitePage } from "@/pages/coordinator/FindAndInvitePage";
 import { InvitationTrackingPage } from "@/pages/coordinator/InvitationTrackingPage";
 import { InvitationsHubPage } from "@/pages/alumni/InvitationsHubPage";
+import { AlumniProfilePage } from "@/pages/alumni/AlumniProfilePage";
 
 // TanStack Query client — manages all data fetching, caching, and invalidation
 // staleTime: 60s means data fetched in the last 60s is used from cache without refetching
@@ -127,6 +128,15 @@ export const App: React.FC = () => {
                 allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
               >
                 <CoordinatorDashboardPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/alumni/profile"
+            element={
+              <ProtectedRoute allowedRoles={[Role.ALUMNI, Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <AlumniProfilePage />
               </ProtectedRoute>
             }
           />
