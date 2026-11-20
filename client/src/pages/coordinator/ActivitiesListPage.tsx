@@ -34,6 +34,7 @@ import {
   Award,
   Sparkles,
   RefreshCw,
+  Mail,
 } from "lucide-react";
 
 import {
@@ -428,18 +429,32 @@ export const ActivitiesListPage: React.FC = () => {
                             <div className="flex items-center justify-end gap-1.5">
                               {/* Find & Invite Alumni shortcut */}
                               {activity.status !== ActivityStatus.DRAFT && (
-                                <button
-                                  onClick={() =>
-                                    navigate(
-                                      `/coordinator/activities/${activity.activityId}/invite`
-                                    )
-                                  }
-                                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition-colors"
-                                  title="Match & Invite Alumni"
-                                >
-                                  <Users className="h-3.5 w-3.5" />
-                                  Invite
-                                </button>
+                                <>
+                                  <button
+                                    onClick={() =>
+                                      navigate(
+                                        `/coordinator/activities/${activity.activityId}/invite`
+                                      )
+                                    }
+                                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition-colors"
+                                    title="Match & Invite Alumni"
+                                  >
+                                    <Users className="h-3.5 w-3.5" />
+                                    Invite
+                                  </button>
+                                  <button
+                                    onClick={() =>
+                                      navigate(
+                                        `/coordinator/activities/${activity.activityId}/invitations`
+                                      )
+                                    }
+                                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 transition-colors"
+                                    title="View Invitation Tracking Roster"
+                                  >
+                                    <Mail className="h-3.5 w-3.5" />
+                                    Invitations
+                                  </button>
+                                </>
                               )}
 
                               {/* Lifecycle transition button — Coordinator only */}
@@ -623,17 +638,30 @@ export const ActivitiesListPage: React.FC = () => {
                   </button>
 
                   {selectedActivity.status !== ActivityStatus.DRAFT && (
-                    <button
-                      onClick={() => {
-                        const id = selectedActivity.activityId;
-                        setSelectedActivity(null);
-                        navigate(`/coordinator/activities/${id}/invite`);
-                      }}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 font-semibold transition-colors shadow-sm"
-                    >
-                      <Users className="h-4 w-4" />
-                      Find & Invite Alumni
-                    </button>
+                    <>
+                      <button
+                        onClick={() => {
+                          const id = selectedActivity.activityId;
+                          setSelectedActivity(null);
+                          navigate(`/coordinator/activities/${id}/invite`);
+                        }}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 font-semibold transition-colors shadow-sm"
+                      >
+                        <Users className="h-4 w-4" />
+                        Find & Invite Alumni
+                      </button>
+                      <button
+                        onClick={() => {
+                          const id = selectedActivity.activityId;
+                          setSelectedActivity(null);
+                          navigate(`/coordinator/activities/${id}/invitations`);
+                        }}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-xl bg-blue-600 text-white hover:bg-blue-700 font-semibold transition-colors shadow-sm"
+                      >
+                        <Mail className="h-4 w-4" />
+                        View Invitations
+                      </button>
+                    </>
                   )}
 
                   {isCoordinator && getNextAction(selectedActivity.status as ActivityStatus) && (

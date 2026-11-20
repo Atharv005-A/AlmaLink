@@ -31,7 +31,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-import { useActivity } from "@/api/activities.api";
+import { useActivity, useActivities } from "@/api/activities.api";
 import { useActivityInvitations } from "@/api/invitations.api";
 import { InvitationStatus, InvitationDTO } from "@almalink/shared";
 import { cn } from "@/lib/utils";
@@ -49,7 +49,8 @@ function formatDate(isoString: string): string {
 export const InvitationTrackingPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const activityId = parseInt(id || "106", 10);
+  const { data: allActivities = [] } = useActivities();
+  const activityId = id ? parseInt(id, 10) : allActivities[0]?.activityId || 106;
 
   // ── Fetch Activity & Invitations ──
   const { data: activity } = useActivity(activityId);
@@ -144,6 +145,24 @@ export const InvitationTrackingPage: React.FC = () => {
                   <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 mt-0.5">
                     {activity?.title ?? "Activity Invitations"}
                   </h1>
+                  {allActivities.length > 1 && (
+                    <div className="mt-2 flex items-center gap-2">
+                      <span className="text-xs text-slate-400 font-medium">Select event:</span>
+                      <select
+                        value={activityId}
+                        onChange={(e) =>
+                          navigate(`/coordinator/activities/${e.target.value}/invitations`)
+                        }
+                        className="text-xs font-semibold bg-slate-100 hover:bg-slate-200/80 border border-slate-200 rounded-lg px-2.5 py-1 text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-iris/20 cursor-pointer transition-colors"
+                      >
+                        {allActivities.map((a) => (
+                          <option key={a.activityId} value={a.activityId}>
+                            {a.title} ({a.status})
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
                 </div>
               </div>
 
