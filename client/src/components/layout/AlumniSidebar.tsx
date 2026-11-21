@@ -50,7 +50,11 @@ export const AlumniSidebar: React.FC<AlumniSidebarProps> = ({ activeNav }) => {
       {/* Brand Header */}
       <div className="space-y-6">
         <Link to="/alumni/home" className="block px-2">
-          <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-8 w-auto" />
+          <img
+            src="/imcc-almalink-logo-white.svg"
+            alt="MES IMCC AlmaLink"
+            className="h-10 w-auto"
+          />
         </Link>
 
         {/* Navigation Links */}
@@ -97,7 +101,11 @@ export const AlumniSidebar: React.FC<AlumniSidebarProps> = ({ activeNav }) => {
   return (
     <>
       {/* Desktop Persistent Sidebar */}
-      <aside className="hidden lg:block shrink-0">{sidebarContent}</aside>
+      <aside className="hidden lg:block w-[236px] flex-shrink-0">
+        <div className="fixed top-0 left-0 w-[236px] h-screen overflow-y-auto z-40">
+          {sidebarContent}
+        </div>
+      </aside>
 
       {/* Mobile Menu Button */}
       <div className="lg:hidden fixed top-4 left-4 z-50">
