@@ -122,6 +122,46 @@ export const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/admin/activities"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <ActivitiesListPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/activities/create"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <CreateActivityPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/activities/:id/invite"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <FindAndInvitePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/activities/:id/invitations"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <InvitationTrackingPage />
+              </ProtectedRoute>
+            }
+          />
           {/* Module 4: Alumni Invitations Hub (Alumni Portal) */}
           <Route
             path="/alumni/invitations"
@@ -166,6 +206,14 @@ export const App: React.FC = () => {
             element={
               <ProtectedRoute allowedRoles={[Role.ALUMNI, Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
                 <AlumniHomePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/alumni/notifications"
+            element={
+              <ProtectedRoute allowedRoles={[Role.ALUMNI, Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <Navigate to="/alumni/home" replace />
               </ProtectedRoute>
             }
           />

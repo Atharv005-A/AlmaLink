@@ -12,15 +12,31 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  let user: { fullName?: string; email?: string; role?: string } = {
-    fullName: "Dr. Anjali Joshi",
-    email: "admin@imcc.mespune.in",
-    role: "COLLEGE_ADMIN",
-  };
+  let user: { fullName?: string; email?: string; role?: string } | null = null;
   try {
     const raw = localStorage.getItem("almalink_user");
     if (raw) user = JSON.parse(raw);
   } catch {}
+
+  const isCoordinator = user
+    ? user.role === "CELL_COORDINATOR"
+    : window.location.pathname.startsWith("/coordinator");
+
+  if (!user) {
+    if (isCoordinator) {
+      user = {
+        fullName: "Prof. Meera Kulkarni",
+        email: "meera.tech@imcc.mespune.in",
+        role: "CELL_COORDINATOR",
+      };
+    } else {
+      user = {
+        fullName: "Dr. Anjali Joshi",
+        email: "admin@imcc.mespune.in",
+        role: "COLLEGE_ADMIN",
+      };
+    }
+  }
 
   // Compute initials dynamically (e.g. "Dr. Anjali Joshi" -> "AJ", "Prithviraj Patil" -> "PP")
   const getInitials = (name?: string) => {

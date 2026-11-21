@@ -29,17 +29,33 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
   const navigate = useNavigate();
 
   // Retrieve user session dynamically
-  let user: { fullName?: string; email?: string; role?: string } = {
-    fullName: "Dr. Anjali Joshi",
-    email: "admin@imcc.mespune.in",
-    role: "COLLEGE_ADMIN",
-  };
+  let user: { fullName?: string; email?: string; role?: string } | null = null;
   try {
     const raw = localStorage.getItem("almalink_user");
     if (raw) user = JSON.parse(raw);
   } catch {}
 
-  const isCoordinator = user.role === "CELL_COORDINATOR";
+  // If user session exists, their authenticated role determines the sidebar.
+  // Otherwise fallback to route-based detection for preview/unauthenticated testing.
+  const isCoordinator = user
+    ? user.role === "CELL_COORDINATOR"
+    : window.location.pathname.startsWith("/coordinator");
+
+  if (!user) {
+    if (isCoordinator) {
+      user = {
+        fullName: "Prof. Meera Kulkarni",
+        email: "meera.tech@imcc.mespune.in",
+        role: "CELL_COORDINATOR",
+      };
+    } else {
+      user = {
+        fullName: "Dr. Anjali Joshi",
+        email: "admin@imcc.mespune.in",
+        role: "COLLEGE_ADMIN",
+      };
+    }
+  }
 
   // Navigation Items customized by role (Figma Frame 3314:45305 & 3314:46128)
   const navItems = isCoordinator
@@ -84,11 +100,11 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
           icon: CheckCircle2,
         },
         { id: "alumni", label: "Alumni directory", href: "/admin/alumni", icon: Users },
-        { id: "activities", label: "Activities", href: "/coordinator/activities", icon: Calendar },
+        { id: "activities", label: "Activities", href: "/admin/activities", icon: Calendar },
         {
           id: "invitations",
           label: "Invitations",
-          href: "/coordinator/invitations",
+          href: "/admin/invitations",
           icon: Mail,
         },
         { id: "approvals", label: "Approvals", href: "/admin/verifications", icon: ShieldCheck },
@@ -98,7 +114,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
         { id: "staff", label: "Staff & cells", href: "/admin/staff", icon: FolderGit2 },
         { id: "rubric", label: "Scoring rubric", href: "/admin/rubric", icon: BookOpen },
         { id: "audit", label: "Audit log", href: "/admin/audit", icon: FileText },
-        { id: "notifications", label: "Notifications", href: "/admin/notifications", icon: Bell },
+        { id: "notifications", label: "Notifications", href: "/admin/dashboard", icon: Bell },
       ];
 
   const getInitials = (name?: string) => {

@@ -54,6 +54,17 @@ export const FindAndInvitePage: React.FC = () => {
   const { data: activity } = useActivity(activityId);
   const { data: matches = [], isLoading } = useMatchmaking(activityId);
 
+  // ── Role & Path Context ──
+  let user: { role?: string } | null = null;
+  try {
+    const raw = localStorage.getItem("almalink_user");
+    if (raw) user = JSON.parse(raw);
+  } catch {}
+  const isCoordinator = user
+    ? user.role === "CELL_COORDINATOR"
+    : window.location.pathname.startsWith("/coordinator");
+  const basePath = isCoordinator ? "/coordinator" : "/admin";
+
   // ── Local UI State ──
   const [searchQuery, setSearchQuery] = useState("");
   const [minMatchFilter, setMinMatchFilter] = useState<number>(0);
@@ -144,8 +155,8 @@ export const FindAndInvitePage: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0">
         <AdminHeader
           breadcrumbs={[
-            { label: "Workspace", href: "/coordinator/dashboard" },
-            { label: "Activities", href: "/coordinator/activities" },
+            { label: "Workspace", href: `${basePath}/dashboard` },
+            { label: "Activities", href: `${basePath}/activities` },
             { label: activity?.title || "Find & Invite Alumni" },
           ]}
         />
@@ -156,7 +167,7 @@ export const FindAndInvitePage: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="flex items-center gap-3">
                 <button
-                  onClick={() => navigate("/coordinator/activities")}
+                  onClick={() => navigate(`${basePath}/activities`)}
                   className="p-2 rounded-xl text-slate-500 hover:bg-slate-100 transition-colors"
                 >
                   <ArrowLeft className="h-5 w-5" />
