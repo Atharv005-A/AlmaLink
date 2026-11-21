@@ -50,7 +50,11 @@ export const AlumniSidebar: React.FC<AlumniSidebarProps> = ({ activeNav }) => {
       {/* Brand Header */}
       <div className="space-y-6">
         <Link to="/alumni/home" className="block px-2">
-          <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-10 w-auto" />
+          <img
+            src="/imcc-almalink-logo-white.svg"
+            alt="MES IMCC AlmaLink"
+            className="h-10 w-auto"
+          />
         </Link>
 
         {/* Navigation Links */}
