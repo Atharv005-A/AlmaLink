@@ -57,6 +57,7 @@ export const AlumniSidebar: React.FC<AlumniSidebarProps> = ({ activeNav }) => {
         <nav className="space-y-1">
           {navItems.map((item) => {
             const isActive = currentActive === item.id;
+            const Icon = item.icon;
             return (
               <Link
                 key={item.id}
@@ -68,6 +69,9 @@ export const AlumniSidebar: React.FC<AlumniSidebarProps> = ({ activeNav }) => {
                     : "text-slate-300 hover:text-white hover:bg-slate-800/60"
                 }`}
               >
+                <Icon
+                  className={`h-4 w-4 shrink-0 ${isActive ? "text-[#5D5FEF]" : "text-slate-400"}`}
+                />
                 <span>{item.label}</span>
               </Link>
             );

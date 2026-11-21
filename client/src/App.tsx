@@ -169,6 +169,14 @@ export const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/alumni/notifications"
+            element={
+              <ProtectedRoute allowedRoles={[Role.ALUMNI, Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <Navigate to="/alumni/home" replace />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Default Redirect to Login */}
           <Route path="/" element={<Navigate to="/login" replace />} />
