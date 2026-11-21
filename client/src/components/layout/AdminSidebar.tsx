@@ -155,7 +155,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
       {/* Brand Logo & College Staff Badge */}
       <div className="space-y-3">
         <Link to={homeHref} className="block px-2">
-          <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-8 w-auto" />
+          <img src="/imcc-almalink-logo-white.svg" alt="MES IMCC AlmaLink" className="h-10 w-auto" />
         </Link>
 
         {/* Figma Badge: INTERNAL ONLY · College staff */}
