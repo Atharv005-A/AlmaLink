@@ -71,9 +71,9 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
   };
 
   return (
-    <header className="h-[76px] bg-[#161D2C] border-b border-[#2A3448] px-6 sm:px-8 flex items-center justify-between sticky top-0 z-30">
+    <header className="h-14 bg-[#161D2C] border-b border-[#2A3448] px-6 sm:px-8 flex items-center justify-between sticky top-0 z-30">
       {/* Left: Breadcrumbs (Figma 3314:45305) */}
-      <nav className="flex items-center gap-2 pl-10 lg:pl-0 text-xs">
+      <nav className="flex items-center gap-2 pl-10 lg:pl-0 text-sm">
         {breadcrumbs.map((b, i) => {
           const isLast = i === breadcrumbs.length - 1;
           return (
@@ -84,7 +84,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
               ) : (
                 <Link
                   to={b.href || "#"}
-                  className="text-[#B8BFD1] hover:text-white transition-colors"
+                  className="text-[#B8BFD1] hover:text-white font-medium transition-colors"
                 >
                   {b.label}
                 </Link>
@@ -106,7 +106,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
         </button>
 
         {/* Profile Pill */}
-        <div className="h-10 px-3 rounded-lg bg-white/5 border border-white/10 flex items-center gap-2.5">
+        <div className="h-9 px-3 rounded-lg bg-white/5 border border-white/10 flex items-center gap-2.5">
           <div className="h-6 w-6 rounded-full bg-[#5D5FEF] text-white flex items-center justify-center font-bold text-[10px]">
             {getInitials(user.fullName)}
           </div>
