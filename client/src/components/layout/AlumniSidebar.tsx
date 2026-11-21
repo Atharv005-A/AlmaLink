@@ -97,7 +97,11 @@ export const AlumniSidebar: React.FC<AlumniSidebarProps> = ({ activeNav }) => {
   return (
     <>
       {/* Desktop Persistent Sidebar */}
-      <aside className="hidden lg:block shrink-0">{sidebarContent}</aside>
+      <aside className="hidden lg:block w-[236px] flex-shrink-0">
+        <div className="fixed top-0 left-0 w-[236px] h-screen overflow-y-auto z-40">
+          {sidebarContent}
+        </div>
+      </aside>
 
       {/* Mobile Menu Button */}
       <div className="lg:hidden fixed top-4 left-4 z-50">
