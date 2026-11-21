@@ -22,6 +22,19 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
     if (raw) user = JSON.parse(raw);
   } catch {}
 
+  const isCoordinatorRoute = window.location.pathname.startsWith("/coordinator");
+  const isCoordinator =
+    user.role === "CELL_COORDINATOR" || (isCoordinatorRoute && user.role !== "SUPER_ADMIN");
+
+  // In coordinator workspace, default to Cell Coordinator identity if default admin
+  if (isCoordinator && user.email === "admin@imcc.mespune.in") {
+    user = {
+      fullName: "Prof. Meera Kulkarni",
+      email: "meera.tech@imcc.mespune.in",
+      role: "CELL_COORDINATOR",
+    };
+  }
+
   // Compute initials dynamically (e.g. "Dr. Anjali Joshi" -> "AJ", "Prithviraj Patil" -> "PP")
   const getInitials = (name?: string) => {
     if (!name) return "AJ";

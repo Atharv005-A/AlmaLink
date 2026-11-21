@@ -39,7 +39,18 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
     if (raw) user = JSON.parse(raw);
   } catch {}
 
-  const isCoordinator = user.role === "CELL_COORDINATOR";
+  const isCoordinatorRoute = window.location.pathname.startsWith("/coordinator");
+  const isCoordinator =
+    user.role === "CELL_COORDINATOR" || (isCoordinatorRoute && user.role !== "SUPER_ADMIN");
+
+  // In coordinator workspace, default to Cell Coordinator identity if default admin
+  if (isCoordinator && user.email === "admin@imcc.mespune.in") {
+    user = {
+      fullName: "Prof. Meera Kulkarni",
+      email: "meera.tech@imcc.mespune.in",
+      role: "CELL_COORDINATOR",
+    };
+  }
 
   // Navigation Items customized by role (Figma Frame 3314:45305 & 3314:46128)
   const navItems = isCoordinator
