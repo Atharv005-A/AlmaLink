@@ -156,6 +156,17 @@ export const CreateActivityPage: React.FC = () => {
   // ── Mutation hook for creating the activity ──
   const { mutate: createActivity, isPending: isCreating } = useCreateActivity();
 
+  // ── Role & Path Context ──
+  let user: { role?: string } | null = null;
+  try {
+    const raw = localStorage.getItem("almalink_user");
+    if (raw) user = JSON.parse(raw);
+  } catch {}
+  const isCoordinator = user
+    ? user.role === "CELL_COORDINATOR"
+    : window.location.pathname.startsWith("/coordinator");
+  const basePath = isCoordinator ? "/coordinator" : "/admin";
+
   // ── React Hook Form setup with Zod validation ──
   // zodResolver connects Zod schema to React Hook Form automatically
   // Any field that fails Zod validation shows an error without manual checks
@@ -178,7 +189,7 @@ export const CreateActivityPage: React.FC = () => {
     createActivity(data, {
       onSuccess: () => {
         // After creation, go back to the activities list
-        navigate("/coordinator/activities");
+        navigate(`${basePath}/activities`);
       },
     });
   };
@@ -192,8 +203,8 @@ export const CreateActivityPage: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0">
         <AdminHeader
           breadcrumbs={[
-            { label: "Workspace", href: "/coordinator/dashboard" },
-            { label: "Activities", href: "/coordinator/activities" },
+            { label: "Workspace", href: `${basePath}/dashboard` },
+            { label: "Activities", href: `${basePath}/activities` },
             { label: "Add New Event" },
           ]}
         />

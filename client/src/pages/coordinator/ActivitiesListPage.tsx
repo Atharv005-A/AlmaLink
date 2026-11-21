@@ -93,8 +93,16 @@ export const ActivitiesListPage: React.FC = () => {
   const navigate = useNavigate();
   const session = MOCK_SESSION;
 
-  // Whether the current user can add/edit/delete activities
-  const isCoordinator = session.role === "CELL_COORDINATOR";
+  // Retrieve user session dynamically to stay in correct workspace
+  let user: { role?: string } | null = null;
+  try {
+    const raw = localStorage.getItem("almalink_user");
+    if (raw) user = JSON.parse(raw);
+  } catch {}
+  const isCoordinator = user
+    ? user.role === "CELL_COORDINATOR"
+    : window.location.pathname.startsWith("/coordinator");
+  const basePath = isCoordinator ? "/coordinator" : "/admin";
 
   // Track which status tab is active (undefined = "All")
   const [activeStatus, setActiveStatus] = useState<ActivityStatus | undefined>(undefined);
@@ -210,7 +218,7 @@ export const ActivitiesListPage: React.FC = () => {
                  */}
                 {isCoordinator && (
                   <button
-                    onClick={() => navigate("/coordinator/activities/create")}
+                    onClick={() => navigate(`${basePath}/activities/create`)}
                     className={cn(
                       "inline-flex items-center gap-2 px-4 py-2.5 rounded-xl",
                       "bg-brand-iris text-white text-sm font-semibold",
@@ -290,7 +298,7 @@ export const ActivitiesListPage: React.FC = () => {
                 </p>
                 {isCoordinator && (
                   <button
-                    onClick={() => navigate("/coordinator/activities/create")}
+                    onClick={() => navigate(`${basePath}/activities/create`)}
                     className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-iris text-white text-sm font-semibold hover:bg-brand-iris/90 transition-colors"
                   >
                     <Plus className="h-4 w-4" />
@@ -433,7 +441,7 @@ export const ActivitiesListPage: React.FC = () => {
                                   <button
                                     onClick={() =>
                                       navigate(
-                                        `/coordinator/activities/${activity.activityId}/invite`
+                                        `${basePath}/activities/${activity.activityId}/invite`
                                       )
                                     }
                                     className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition-colors"
@@ -445,7 +453,7 @@ export const ActivitiesListPage: React.FC = () => {
                                   <button
                                     onClick={() =>
                                       navigate(
-                                        `/coordinator/activities/${activity.activityId}/invitations`
+                                        `${basePath}/activities/${activity.activityId}/invitations`
                                       )
                                     }
                                     className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 transition-colors"
@@ -643,7 +651,7 @@ export const ActivitiesListPage: React.FC = () => {
                         onClick={() => {
                           const id = selectedActivity.activityId;
                           setSelectedActivity(null);
-                          navigate(`/coordinator/activities/${id}/invite`);
+                          navigate(`${basePath}/activities/${id}/invite`);
                         }}
                         className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 font-semibold transition-colors shadow-sm"
                       >
@@ -654,7 +662,7 @@ export const ActivitiesListPage: React.FC = () => {
                         onClick={() => {
                           const id = selectedActivity.activityId;
                           setSelectedActivity(null);
-                          navigate(`/coordinator/activities/${id}/invitations`);
+                          navigate(`${basePath}/activities/${id}/invitations`);
                         }}
                         className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-xl bg-blue-600 text-white hover:bg-blue-700 font-semibold transition-colors shadow-sm"
                       >

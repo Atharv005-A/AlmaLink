@@ -68,6 +68,17 @@ export const InvitationTrackingPage: React.FC = () => {
   const responseRate =
     totalSent > 0 ? Math.round(((acceptedCount + declinedCount) / totalSent) * 100) : 0;
 
+  // ── Role & Path Context ──
+  let user: { role?: string } | null = null;
+  try {
+    const raw = localStorage.getItem("almalink_user");
+    if (raw) user = JSON.parse(raw);
+  } catch {}
+  const isCoordinator = user
+    ? user.role === "CELL_COORDINATOR"
+    : window.location.pathname.startsWith("/coordinator");
+  const basePath = isCoordinator ? "/coordinator" : "/admin";
+
   // ── Filtered List ──
   const filteredList = invitations.filter((inv) => {
     if (filterStatus === "ALL") return true;
@@ -115,8 +126,8 @@ export const InvitationTrackingPage: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0">
         <AdminHeader
           breadcrumbs={[
-            { label: "Workspace", href: "/coordinator/dashboard" },
-            { label: "Activities", href: "/coordinator/activities" },
+            { label: "Workspace", href: `${basePath}/dashboard` },
+            { label: "Activities", href: `${basePath}/activities` },
             { label: activity?.title || "Invitations" },
           ]}
         />
@@ -127,7 +138,7 @@ export const InvitationTrackingPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="flex items-center gap-3">
                 <button
-                  onClick={() => navigate("/coordinator/activities")}
+                  onClick={() => navigate(`${basePath}/activities`)}
                   className="p-2 rounded-xl text-slate-500 hover:bg-slate-100 transition-colors"
                 >
                   <ArrowLeft className="h-5 w-5" />
@@ -151,7 +162,7 @@ export const InvitationTrackingPage: React.FC = () => {
                       <select
                         value={activityId}
                         onChange={(e) =>
-                          navigate(`/coordinator/activities/${e.target.value}/invitations`)
+                          navigate(`${basePath}/activities/${e.target.value}/invitations`)
                         }
                         className="text-xs font-semibold bg-slate-100 hover:bg-slate-200/80 border border-slate-200 rounded-lg px-2.5 py-1 text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-iris/20 cursor-pointer transition-colors"
                       >
@@ -168,7 +179,7 @@ export const InvitationTrackingPage: React.FC = () => {
 
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => navigate(`/coordinator/activities/${activityId}/invite`)}
+                  onClick={() => navigate(`${basePath}/activities/${activityId}/invite`)}
                   className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-iris text-white text-xs sm:text-sm font-semibold hover:bg-brand-iris/90 shadow-sm shadow-brand-iris/30 transition-all"
                 >
                   <UserPlus className="h-4 w-4" />
