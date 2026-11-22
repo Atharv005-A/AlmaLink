@@ -5,6 +5,8 @@ export const createCellSchema = z.object({
   code: z.string().min(2, "Cell code must be at least 2 characters").max(20).trim().toUpperCase(),
   description: z.string().max(500).trim().optional(),
   headStaffId: z.number().int().positive().optional(),
+  coordinatorUserId: z.number().int().positive().optional(),
+  status: z.enum(["Active", "Inactive"]).optional(),
 });
 
 export const assignCoordinatorSchema = z.object({
@@ -17,6 +19,8 @@ export const inviteStaffSchema = z.object({
   email: z.string().email("Please provide a valid email address").toLowerCase().trim(),
   cellId: z.number().int().positive(),
   role: z.enum(["CELL_COORDINATOR", "COLLEGE_ADMIN"]),
+  message: z.string().max(1000).optional(),
+  sendEmailImmediately: z.boolean().optional(),
 });
 
 export type CreateCellInput = z.infer<typeof createCellSchema>;

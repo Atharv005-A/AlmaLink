@@ -15,3 +15,31 @@ export interface CellCoordinatorAssignment {
   userId: number;
   assignedOn: string;
 }
+
+export interface StaffMemberDTO {
+  userId: number;
+  fullName: string;
+  email: string;
+  phone?: string;
+  role: string;
+  roleId: number;
+  assignedCellId?: number | null;
+  assignedCellName?: string | null;
+  status: "ACTIVE" | "INVITED" | "INACTIVE" | "ARCHIVED";
+  createdAt: string;
+  lastLogin?: string | null;
+  invitationExpiresAt?: string | null;
+}
+
+export interface CellDetailDTO extends CellDTO {
+  focus?: string;
+  upcomingCount: number;
+  approvedRecordsCount: number;
+  coordinators: Array<{
+    userId: number;
+    fullName: string;
+    email: string;
+    status: string;
+    assignedOn: string;
+  }>;
+}

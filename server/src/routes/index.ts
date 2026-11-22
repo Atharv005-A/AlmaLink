@@ -3,6 +3,7 @@ import authRoutes from "./auth.routes.js";
 import activitiesRoutes from "./activities.routes.js";
 import invitationsRoutes from "./invitations.routes.js";
 import verificationsRoutes from "./verifications.routes.js";
+import staffCellsRoutes from "./staff-cells.routes.js";
 
 const apiRouter = Router();
 
@@ -17,5 +18,8 @@ apiRouter.use("/activities", activitiesRoutes);
 
 // Module 4: Alumni Invitations & Matchmaking
 apiRouter.use("/invitations", invitationsRoutes);
+
+// Module 5: College Cell & Staff Management
+apiRouter.use("/staff-cells", staffCellsRoutes);
 
 export default apiRouter;
