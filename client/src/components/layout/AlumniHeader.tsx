@@ -55,20 +55,23 @@ export const AlumniHeader: React.FC<AlumniHeaderProps> = ({
   };
 
   return (
-    <header className="h-[64px] bg-[#161D2C] border-b border-[#2A3448] px-6 sm:px-8 flex items-center justify-between sticky top-0 z-30">
+    <header className="h-14 bg-[#161D2C] border-b border-[#2A3448] px-6 sm:px-8 flex items-center justify-between sticky top-0 z-30">
       {/* Left: Breadcrumbs (Figma 3314:47367) */}
-      <nav className="flex items-center gap-2 pl-10 lg:pl-0 text-xs">
+      <nav className="flex items-center gap-2 pl-10 lg:pl-0 text-sm">
         {breadcrumbs.map((crumb, idx) => {
           const isLast = idx === breadcrumbs.length - 1;
           return (
             <React.Fragment key={idx}>
               {idx > 0 && <span className="text-slate-500">/</span>}
               {crumb.href && !isLast ? (
-                <Link to={crumb.href} className="text-slate-400 hover:text-white transition-colors">
+                <Link
+                  to={crumb.href}
+                  className="text-slate-400 hover:text-white font-medium transition-colors"
+                >
                   {crumb.label}
                 </Link>
               ) : (
-                <span className={isLast ? "font-semibold text-slate-200" : "text-slate-400"}>
+                <span className={isLast ? "font-semibold text-white" : "text-slate-400"}>
                   {crumb.label}
                 </span>
               )}
