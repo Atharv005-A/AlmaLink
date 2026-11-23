@@ -62,9 +62,16 @@ export const castAwardVoteSchema = z.object({
     .regex(/^\d{4}-\d{2}$/, "Academic year must be formatted as YYYY-YY (e.g. 2026-27)"),
 });
 
+export const updateScoringPolicySchema = z.object({
+  activityType: z.string().min(2).max(100).trim(),
+  defaultPoints: z.number().int().min(1).max(100),
+  description: z.string().max(500).trim().optional(),
+});
+
 export type CreateActivityInput = z.infer<typeof createActivitySchema>;
 export type BulkDispatchInvitationsInput = z.infer<typeof bulkDispatchInvitationsSchema>;
 export type RsvpInvitationInput = z.infer<typeof rsvpInvitationSchema>;
 export type RecordParticipationInput = z.infer<typeof recordParticipationSchema>;
 export type CreateAwardNominationInput = z.infer<typeof createAwardNominationSchema>;
 export type CastAwardVoteInput = z.infer<typeof castAwardVoteSchema>;
+export type UpdateScoringPolicyInput = z.infer<typeof updateScoringPolicySchema>;
