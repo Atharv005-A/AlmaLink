@@ -5,6 +5,7 @@ import invitationsRoutes from "./invitations.routes.js";
 import verificationsRoutes from "./verifications.routes.js";
 import staffCellsRoutes from "./staff-cells.routes.js";
 import alumniRoutes from "./alumni.routes.js";
+import auditRoutes from "./audit.routes.js";
 
 const apiRouter = Router();
 
@@ -23,5 +24,8 @@ apiRouter.use("/invitations", invitationsRoutes);
 
 // Module 5: College Cell & Staff Management
 apiRouter.use("/staff-cells", staffCellsRoutes);
+
+// Module 8: Governance, Reporting & Audit Logging
+apiRouter.use("/audit-logs", auditRoutes);
 
 export default apiRouter;
