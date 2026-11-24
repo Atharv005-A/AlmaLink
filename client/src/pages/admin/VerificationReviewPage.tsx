@@ -29,6 +29,12 @@ export const VerificationReviewPage: React.FC = () => {
   const [showRejectModal, setShowRejectModal] = useState(false);
   const [rejectReason, setRejectReason] = useState("");
 
+  let currentUser: { fullName?: string; role?: string } | null = null;
+  try {
+    const raw = localStorage.getItem("almalink_user");
+    if (raw) currentUser = JSON.parse(raw);
+  } catch {}
+
   const fetchRecord = async () => {
     if (!id) return;
     setIsLoading(true);
@@ -427,8 +433,11 @@ export const VerificationReviewPage: React.FC = () => {
                 {/* Reviewer Attribution Footer */}
                 <div className="pt-3 border-t border-slate-100 text-[11px] text-slate-400">
                   <p>
-                    Reviewed by <strong className="text-slate-700">Dr. Anjali Joshi</strong> ·
-                    College Administrator
+                    Reviewed by{" "}
+                    <strong className="text-slate-700">
+                      {currentUser?.fullName || "Dr. Anjali Joshi"}
+                    </strong>{" "}
+                    · College Administrator
                   </p>
                   {data.verifiedAt && data.verifiedBy && (
                     <p className="mt-1 text-emerald-700">
