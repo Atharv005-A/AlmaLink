@@ -23,6 +23,7 @@ import { AlumniProfilePage } from "@/pages/alumni/AlumniProfilePage";
 import { StaffAndCellsPage } from "@/pages/admin/StaffAndCellsPage";
 import { CreateCellPage } from "@/pages/admin/CreateCellPage";
 import { InviteStaffPage } from "@/pages/admin/InviteStaffPage";
+import { AuditLogPage } from "@/pages/admin/AuditLogPage";
 
 // TanStack Query client — manages all data fetching, caching, and invalidation
 // staleTime: 60s means data fetched in the last 60s is used from cache without refetching
@@ -86,6 +87,15 @@ export const App: React.FC = () => {
             element={
               <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
                 <InviteStaffPage />
+              </ProtectedRoute>
+            }
+          />
+          {/* Module 8: Security & Governance Audit Log */}
+          <Route
+            path="/admin/audit"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <AuditLogPage />
               </ProtectedRoute>
             }
           />
