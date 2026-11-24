@@ -106,9 +106,6 @@ export const InviteStaffPage: React.FC = () => {
           {/* Top Title & Header Section */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
             <div className="space-y-1">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
-                ADMINISTRATION / WORKSPACE
-              </span>
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
                 Invite a colleague
               </h1>

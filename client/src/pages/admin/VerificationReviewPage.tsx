@@ -179,28 +179,16 @@ export const VerificationReviewPage: React.FC = () => {
         />
 
         <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-[1280px] w-full">
-          {/* Breadcrumb Context */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 tracking-wide uppercase">
-              <Link to="/admin/verifications" className="hover:text-slate-800 transition-colors">
-                Verifications
-              </Link>
-              <span>/</span>
-              <span className="text-slate-800">Profile review</span>
-            </div>
-
-            <Link
-              to="/admin/verifications"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" />
-              <span>Back to queue</span>
-            </Link>
-          </div>
-
           {/* Header Bar */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-5">
             <div>
+              <Link
+                to="/admin/verifications"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors mb-2"
+              >
+                <ArrowLeft className="h-3.5 w-3.5" />
+                <span>Back to verification queue</span>
+              </Link>
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
                 Review alumni registration
               </h1>

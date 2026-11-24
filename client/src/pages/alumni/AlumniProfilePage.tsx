@@ -187,9 +187,6 @@ export const AlumniProfilePage: React.FC = () => {
           {/* Header row (Figma 3314:45198) */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
-                ALUMNI PORTAL
-              </span>
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
                 Let us know your expertise
               </h1>

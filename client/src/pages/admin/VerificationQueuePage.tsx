@@ -168,13 +168,6 @@ export const VerificationQueuePage: React.FC = () => {
 
         {/* Main Container */}
         <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-[1280px] w-full">
-          {/* Breadcrumb Context */}
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 tracking-wide uppercase">
-            <span>Verifications</span>
-            <span>/</span>
-            <span className="text-slate-800">Verification queue</span>
-          </div>
-
           {/* Hero Section */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
