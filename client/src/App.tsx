@@ -22,6 +22,8 @@ import { InvitationsHubPage } from "@/pages/alumni/InvitationsHubPage";
 import { AlumniProfilePage } from "@/pages/alumni/AlumniProfilePage";
 import { AttendanceRecordingPage } from "@/pages/coordinator/AttendanceRecordingPage";
 import { ScoringRubricPage } from "@/pages/admin/ScoringRubricPage";
+import { LeaderboardPage } from "@/pages/admin/LeaderboardPage";
+import { AwardsManagementPage } from "@/pages/admin/AwardsManagementPage";
 
 // TanStack Query client — manages all data fetching, caching, and invalidation
 // staleTime: 60s means data fetched in the last 60s is used from cache without refetching
@@ -210,6 +212,47 @@ export const App: React.FC = () => {
             element={
               <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
                 <ScoringRubricPage />
+              </ProtectedRoute>
+            }
+          />
+          {/* Module 7: Private Staff Leaderboard & Annual Awards */}
+          <Route
+            path="/admin/leaderboard"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <LeaderboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/coordinator/leaderboard"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <LeaderboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/awards"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <AwardsManagementPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/coordinator/awards"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <AwardsManagementPage />
               </ProtectedRoute>
             }
           />

@@ -4,6 +4,7 @@ import activitiesRoutes from "./activities.routes.js";
 import invitationsRoutes from "./invitations.routes.js";
 import verificationsRoutes from "./verifications.routes.js";
 import participationsRoutes from "./participations.routes.js";
+import awardsRoutes from "./awards.routes.js";
 
 const apiRouter = Router();
 
@@ -22,5 +23,9 @@ apiRouter.use("/invitations", invitationsRoutes);
 // Module 6: Attendance & Contribution Points Engine
 apiRouter.use("/participations", participationsRoutes);
 apiRouter.use("/scoring-rubric", participationsRoutes);
+
+// Module 7: Private Leaderboard, Award Nominations & Staff Voting
+apiRouter.use("/awards", awardsRoutes);
+apiRouter.use("/", awardsRoutes); // Exposes /leaderboard as /api/leaderboard
 
 export default apiRouter;
