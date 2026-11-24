@@ -85,10 +85,10 @@ export class StaffCellsController {
         };
       });
 
-      res.status(200).json({ success: true, data: formatted });
+      res.status(200).json({ status: "success", success: true, data: formatted });
     } catch (error) {
       console.error("[GET CELLS ERROR]:", error);
-      res.status(500).json({ success: false, message: "Failed to fetch cells" });
+      res.status(500).json({ status: "error", success: false, message: "Failed to fetch cells" });
     }
   }
 
@@ -101,6 +101,7 @@ export class StaffCellsController {
       const parsed = createCellSchema.safeParse(req.body);
       if (!parsed.success) {
         res.status(400).json({
+          status: "fail",
           success: false,
           message: "Invalid cell data",
           errors: parsed.error.format(),
@@ -122,6 +123,7 @@ export class StaffCellsController {
 
       if (existing) {
         res.status(409).json({
+          status: "fail",
           success: false,
           message: `A cell with code "${code}" or name "${name}" already exists.`,
         });
@@ -171,13 +173,14 @@ export class StaffCellsController {
       }
 
       res.status(201).json({
+        status: "success",
         success: true,
         message: "Cell created successfully",
         data: newCell,
       });
     } catch (error) {
       console.error("[CREATE CELL ERROR]:", error);
-      res.status(500).json({ success: false, message: "Failed to create cell" });
+      res.status(500).json({ status: "error", success: false, message: "Failed to create cell" });
     }
   }
 
@@ -189,13 +192,13 @@ export class StaffCellsController {
     try {
       const cellId = parseInt(req.params.id, 10);
       if (isNaN(cellId)) {
-        res.status(400).json({ success: false, message: "Invalid cell ID" });
+        res.status(400).json({ status: "fail", success: false, message: "Invalid cell ID" });
         return;
       }
 
       const cell = await prisma.cell.findUnique({ where: { cellId } });
       if (!cell) {
-        res.status(404).json({ success: false, message: "Cell not found" });
+        res.status(404).json({ status: "fail", success: false, message: "Cell not found" });
         return;
       }
 
@@ -222,13 +225,14 @@ export class StaffCellsController {
       }
 
       res.status(200).json({
+        status: "success",
         success: true,
         message: `Cell status updated to ${updated.isActive ? "Active" : "Inactive"}`,
         data: updated,
       });
     } catch (error) {
       console.error("[TOGGLE CELL ERROR]:", error);
-      res.status(500).json({ success: false, message: "Failed to update cell status" });
+      res.status(500).json({ status: "error", success: false, message: "Failed to update cell status" });
     }
   }
 
@@ -246,6 +250,7 @@ export class StaffCellsController {
 
       if (!parsed.success) {
         res.status(400).json({
+          status: "fail",
           success: false,
           message: "Invalid assignment data",
           errors: parsed.error.format(),
@@ -286,13 +291,14 @@ export class StaffCellsController {
       }
 
       res.status(200).json({
+        status: "success",
         success: true,
         message: "Coordinator assigned successfully",
         data: assignment,
       });
     } catch (error) {
       console.error("[ASSIGN COORDINATOR ERROR]:", error);
-      res.status(500).json({ success: false, message: "Failed to assign coordinator" });
+      res.status(500).json({ status: "error", success: false, message: "Failed to assign coordinator" });
     }
   }
 
@@ -387,10 +393,10 @@ export class StaffCellsController {
           );
         });
 
-      res.status(200).json({ success: true, data: formatted });
+      res.status(200).json({ status: "success", success: true, data: formatted });
     } catch (error) {
       console.error("[GET STAFF ERROR]:", error);
-      res.status(500).json({ success: false, message: "Failed to fetch staff directory" });
+      res.status(500).json({ status: "error", success: false, message: "Failed to fetch staff directory" });
     }
   }
 
@@ -403,6 +409,7 @@ export class StaffCellsController {
       const parsed = inviteStaffSchema.safeParse(req.body);
       if (!parsed.success) {
         res.status(400).json({
+          status: "fail",
           success: false,
           message: "Invalid invitation data",
           errors: parsed.error.format(),
@@ -415,7 +422,7 @@ export class StaffCellsController {
       // 1. Check if cell exists
       const targetCell = await prisma.cell.findUnique({ where: { cellId } });
       if (!targetCell) {
-        res.status(404).json({ success: false, message: "Target cell not found" });
+        res.status(404).json({ status: "fail", success: false, message: "Target cell not found" });
         return;
       }
 
@@ -424,7 +431,7 @@ export class StaffCellsController {
         where: { name: role },
       });
       if (!roleRecord) {
-        res.status(400).json({ success: false, message: "Invalid role selected" });
+        res.status(400).json({ status: "fail", success: false, message: "Invalid role selected" });
         return;
       }
 
@@ -435,6 +442,7 @@ export class StaffCellsController {
       if (user) {
         if (user.status === "ACTIVE") {
           res.status(409).json({
+            status: "fail",
             success: false,
             message: `User with email ${email} is already active in the system.`,
           });
@@ -515,6 +523,7 @@ export class StaffCellsController {
       }
 
       res.status(201).json({
+        status: "success",
         success: true,
         message: `Invitation successfully sent to ${email}`,
         data: {
@@ -528,7 +537,7 @@ export class StaffCellsController {
       });
     } catch (error) {
       console.error("[INVITE STAFF ERROR]:", error);
-      res.status(500).json({ success: false, message: "Failed to invite staff member" });
+      res.status(500).json({ status: "error", success: false, message: "Failed to invite staff member" });
     }
   }
 
@@ -542,13 +551,13 @@ export class StaffCellsController {
       const { status } = req.body;
 
       if (!["ACTIVE", "INACTIVE", "ARCHIVED"].includes(status)) {
-        res.status(400).json({ success: false, message: "Invalid status value" });
+        res.status(400).json({ status: "fail", success: false, message: "Invalid status value" });
         return;
       }
 
       const user = await prisma.user.findUnique({ where: { userId } });
       if (!user) {
-        res.status(404).json({ success: false, message: "Staff member not found" });
+        res.status(404).json({ status: "fail", success: false, message: "Staff member not found" });
         return;
       }
 
@@ -575,13 +584,14 @@ export class StaffCellsController {
       }
 
       res.status(200).json({
+        status: "success",
         success: true,
         message: `Staff member status updated to ${status}`,
         data: updated,
       });
     } catch (error) {
       console.error("[UPDATE STAFF STATUS ERROR]:", error);
-      res.status(500).json({ success: false, message: "Failed to update staff status" });
+      res.status(500).json({ status: "error", success: false, message: "Failed to update staff status" });
     }
   }
 
@@ -602,6 +612,7 @@ export class StaffCellsController {
 
       if (!user || user.status !== "INVITED") {
         res.status(400).json({
+          status: "fail",
           success: false,
           message: "User is not in an invited state or does not exist",
         });
@@ -629,13 +640,14 @@ export class StaffCellsController {
       );
 
       res.status(200).json({
+        status: "success",
         success: true,
         message: `Invitation email resent to ${user.email}`,
         data: { invitationLink },
       });
     } catch (error) {
       console.error("[RESEND INVITATION ERROR]:", error);
-      res.status(500).json({ success: false, message: "Failed to resend invitation email" });
+      res.status(500).json({ status: "error", success: false, message: "Failed to resend invitation email" });
     }
   }
 }
