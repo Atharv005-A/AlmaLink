@@ -170,7 +170,7 @@ export const AdminDashboardPage: React.FC = () => {
 
             {/* Card 3: Upcoming Activities */}
             <Link
-              to="/coordinator/activities"
+              to="/admin/activities"
               className="group bg-white rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] p-5 flex flex-col justify-between hover:border-[#5D5FEF]/40 transition-colors"
             >
               <div>
@@ -364,7 +364,7 @@ export const AdminDashboardPage: React.FC = () => {
             <div className="flex items-center justify-between">
               <h3 className="text-base font-bold text-slate-900">Coming up on campus</h3>
               <Link
-                to="/coordinator/activities"
+                to="/admin/activities"
                 className="text-xs font-semibold text-[#5D5FEF] hover:underline flex items-center gap-1"
               >
                 <span>View all activities</span>

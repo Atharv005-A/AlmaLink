@@ -272,7 +272,7 @@ export const RegisterPage: React.FC = () => {
                     Graduation year <span className="text-rose-500">*</span>
                   </label>
                   <select
-                    {...register("graduationYear")}
+                    {...register("graduationYear", { valueAsNumber: true })}
                     className="w-full h-10 rounded-xl bg-slate-50/50 hover:bg-slate-50/90 focus:bg-white border border-slate-200 focus:border-brand-iris focus:ring-4 focus:ring-brand-iris/10 text-sm transition-all px-3 text-slate-700 font-medium"
                   >
                     {graduationYears.map((yr) => (

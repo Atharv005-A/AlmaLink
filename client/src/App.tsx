@@ -24,6 +24,9 @@ import { AttendanceRecordingPage } from "@/pages/coordinator/AttendanceRecording
 import { ScoringRubricPage } from "@/pages/admin/ScoringRubricPage";
 import { LeaderboardPage } from "@/pages/admin/LeaderboardPage";
 import { AwardsManagementPage } from "@/pages/admin/AwardsManagementPage";
+import { StaffAndCellsPage } from "@/pages/admin/StaffAndCellsPage";
+import { CreateCellPage } from "@/pages/admin/CreateCellPage";
+import { InviteStaffPage } from "@/pages/admin/InviteStaffPage";
 
 // TanStack Query client — manages all data fetching, caching, and invalidation
 // staleTime: 60s means data fetched in the last 60s is used from cache without refetching
@@ -61,6 +64,32 @@ export const App: React.FC = () => {
             element={
               <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
                 <VerificationReviewPage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Module 5: Staff & Cells Management (Admin Portal) */}
+          <Route
+            path="/admin/staff"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <StaffAndCellsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/cells/create"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <CreateCellPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/staff/invite"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <InviteStaffPage />
               </ProtectedRoute>
             }
           />

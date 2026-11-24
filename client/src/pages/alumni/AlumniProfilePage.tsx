@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { AlumniSidebar } from "@/components/layout/AlumniSidebar";
 import { AlumniHeader } from "@/components/layout/AlumniHeader";
-import { authApi } from "@/api/auth.api";
-import { X, Check } from "lucide-react";
+import { useAlumniProfile, useUpdateAlumniProfile } from "@/api/alumni.api";
+import { X, Check, Loader2 } from "lucide-react";
 
 const INDUSTRY_OPTIONS = [
   "Information technology",
@@ -68,37 +68,35 @@ export const AlumniProfilePage: React.FC = () => {
   const [isSaved, setIsSaved] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
-  useEffect(() => {
-    // Load current authenticated user session if available
-    try {
-      const raw = localStorage.getItem("almalink_user");
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        setUser((prev) => ({
-          ...prev,
-          fullName: parsed.fullName || prev.fullName,
-          email: parsed.email || prev.email,
-          phone: parsed.phone || prev.phone,
-          enrollmentNo: parsed.enrollmentNo || prev.enrollmentNo,
-          program: parsed.program || prev.program,
-          graduationYear: parsed.graduationYear || prev.graduationYear,
-        }));
-      }
-    } catch {}
+  const { data: profileData, isLoading: isLoadingProfile } = useAlumniProfile();
+  const updateProfileMutation = useUpdateAlumniProfile();
 
-    authApi
-      .getCurrentUser()
-      .then((session) => {
-        if (session) {
-          setUser((prev) => ({
-            ...prev,
-            fullName: session.fullName || prev.fullName,
-            email: session.email || prev.email,
-          }));
-        }
-      })
-      .catch(() => {});
-  }, []);
+  useEffect(() => {
+    if (profileData) {
+      setUser({
+        fullName: profileData.fullName,
+        email: profileData.email,
+        phone: profileData.phone,
+        enrollmentNo: profileData.enrollmentNo,
+        program: profileData.program,
+        graduationYear: profileData.graduationYear,
+      });
+      if (profileData.organization) setOrganization(profileData.organization);
+      if (profileData.designation) setDesignation(profileData.designation);
+      if (profileData.industry) setIndustry(profileData.industry);
+      if (profileData.linkedinUrl) setLinkedinUrl(profileData.linkedinUrl);
+      if (profileData.skills && profileData.skills.length > 0) setSkills(profileData.skills);
+      if (profileData.expertise && profileData.expertise.length > 0) {
+        setAreasOfExpertise(profileData.expertise.join(", "));
+      }
+      if (profileData.availability) setAvailability(profileData.availability);
+      if (profileData.preferredFormat) setPreferredFormat(profileData.preferredFormat);
+      if (profileData.preferredActivities && profileData.preferredActivities.length > 0) {
+        setPreferredActivities(profileData.preferredActivities);
+      }
+      if (profileData.areaOfInterest) setAvailabilityNotes(profileData.areaOfInterest);
+    }
+  }, [profileData]);
 
   const handleAddSkill = () => {
     const val = newSkillInput.trim();
@@ -121,13 +119,35 @@ export const AlumniProfilePage: React.FC = () => {
     }
   };
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
-    setTimeout(() => {
-      setIsSaving(false);
+    setIsSaved(false);
+    try {
+      const expertiseArray = areasOfExpertise
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+
+      await updateProfileMutation.mutateAsync({
+        organization,
+        designation,
+        industry,
+        linkedinUrl,
+        skills,
+        expertise: expertiseArray,
+        areaOfInterest: availabilityNotes,
+        availability,
+        preferredFormat,
+        preferredActivities,
+      });
       setIsSaved(true);
-    }, 400);
+      setTimeout(() => setIsSaved(false), 3000);
+    } catch (err) {
+      console.error("Failed to save profile:", err);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   // Dynamic Completeness Calculation (Figma shows 90%)
@@ -180,9 +200,10 @@ export const AlumniProfilePage: React.FC = () => {
 
             <button
               onClick={handleSave}
-              disabled={isSaving}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-iris hover:bg-brand-iris-hover text-white text-xs font-semibold shadow-xs transition-colors shrink-0 self-start sm:self-auto"
+              disabled={isSaving || isLoadingProfile}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-iris hover:bg-brand-iris-hover text-white text-xs font-semibold shadow-xs transition-colors shrink-0 self-start sm:self-auto disabled:opacity-50"
             >
+              {isSaving && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
               {isSaving ? "Saving..." : "Save profile"}
             </button>
           </div>
