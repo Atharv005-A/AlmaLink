@@ -43,69 +43,71 @@ export const AlumniHomePage: React.FC = () => {
   const nextVisit = dashboard?.nextCampusVisit;
   const waitingInvite = dashboard?.waitingInvitation;
 
-  const historyItems = dashboard?.contributionHistory && dashboard.contributionHistory.length > 0
-    ? dashboard.contributionHistory
-    : [
-        {
-          participationId: 1,
-          date: "2026-08-12T10:00:00.000Z",
-          activityTitle: "Cloud engineering workshop",
-          cellName: "Technical",
-          categoryName: "Workshop",
-          points: 60,
-          status: "Approved",
-        },
-        {
-          participationId: 2,
-          date: "2026-09-05T10:00:00.000Z",
-          activityTitle: "Hack for Pune",
-          cellName: "Technical",
-          categoryName: "Hackathon judge",
-          points: 50,
-          status: "Approved",
-        },
-        {
-          participationId: 3,
-          date: "2026-07-17T10:00:00.000Z",
-          activityTitle: "Careers in product engineering",
-          cellName: "Placement",
-          categoryName: "Guest lecture",
-          points: 40,
-          status: "Approved",
-        },
-        {
-          participationId: 4,
-          date: "2026-09-18T10:00:00.000Z",
-          activityTitle: "Career readiness day",
-          cellName: "Placement",
-          categoryName: "Mock interview",
-          points: 30,
-          status: "Approved",
-        },
-      ];
+  const historyItems =
+    dashboard?.contributionHistory && dashboard.contributionHistory.length > 0
+      ? dashboard.contributionHistory
+      : [
+          {
+            participationId: 1,
+            date: "2026-08-12T10:00:00.000Z",
+            activityTitle: "Cloud engineering workshop",
+            cellName: "Technical",
+            categoryName: "Workshop",
+            points: 60,
+            status: "Approved",
+          },
+          {
+            participationId: 2,
+            date: "2026-09-05T10:00:00.000Z",
+            activityTitle: "Hack for Pune",
+            cellName: "Technical",
+            categoryName: "Hackathon judge",
+            points: 50,
+            status: "Approved",
+          },
+          {
+            participationId: 3,
+            date: "2026-07-17T10:00:00.000Z",
+            activityTitle: "Careers in product engineering",
+            cellName: "Placement",
+            categoryName: "Guest lecture",
+            points: 40,
+            status: "Approved",
+          },
+          {
+            participationId: 4,
+            date: "2026-09-18T10:00:00.000Z",
+            activityTitle: "Career readiness day",
+            cellName: "Placement",
+            categoryName: "Mock interview",
+            points: 30,
+            status: "Approved",
+          },
+        ];
 
-  const pendingItems = dashboard?.pendingRecords && dashboard.pendingRecords.length > 0
-    ? dashboard.pendingRecords
-    : [
-        {
-          invitationId: 1,
-          date: "2026-09-24T10:00:00.000Z",
-          activityTitle: "Advanced cloud lab",
-          cellName: "Technical",
-          categoryName: "Workshop · Awaiting admin review",
-          points: 0,
-          status: "Pending",
-        },
-        {
-          invitationId: 2,
-          date: "2026-09-10T10:00:00.000Z",
-          activityTitle: "Sports alumni meetup",
-          cellName: "Sports",
-          categoryName: "No-show · Inactive record",
-          points: 0,
-          status: "Rejected",
-        },
-      ];
+  const pendingItems =
+    dashboard?.pendingRecords && dashboard.pendingRecords.length > 0
+      ? dashboard.pendingRecords
+      : [
+          {
+            invitationId: 1,
+            date: "2026-09-24T10:00:00.000Z",
+            activityTitle: "Advanced cloud lab",
+            cellName: "Technical",
+            categoryName: "Workshop · Awaiting admin review",
+            points: 0,
+            status: "Pending",
+          },
+          {
+            invitationId: 2,
+            date: "2026-09-10T10:00:00.000Z",
+            activityTitle: "Sports alumni meetup",
+            cellName: "Sports",
+            categoryName: "No-show · Inactive record",
+            points: 0,
+            status: "Rejected",
+          },
+        ];
 
   const totalCalculatedPoints = historyItems
     .filter((h) => h.status === "Approved")
@@ -233,7 +235,9 @@ export const AlumniHomePage: React.FC = () => {
                     <h3 className="text-lg font-bold text-slate-900">AI for Industry</h3>
 
                     <div className="text-xs text-slate-600 space-y-0.5">
-                      <p className="font-semibold text-slate-800">23 Oct 2026 · 10:00 AM – 1:00 PM</p>
+                      <p className="font-semibold text-slate-800">
+                        23 Oct 2026 · 10:00 AM – 1:00 PM
+                      </p>
                       <p className="text-slate-500">Computer Lab 2 · IMCC, Pune</p>
                     </div>
 
@@ -268,9 +272,12 @@ export const AlumniHomePage: React.FC = () => {
                     <h3 className="text-base font-bold text-slate-900">{waitingInvite.title}</h3>
 
                     <div className="text-xs text-slate-600 space-y-0.5">
-                      <p className="font-medium text-slate-700">{waitingInvite.cellName} Cell · {waitingInvite.expectedRole}</p>
+                      <p className="font-medium text-slate-700">
+                        {waitingInvite.cellName} Cell · {waitingInvite.expectedRole}
+                      </p>
                       <p className="text-slate-500">
-                        Reply by {new Date(waitingInvite.responseDeadline).toLocaleDateString("en-IN", {
+                        Reply by{" "}
+                        {new Date(waitingInvite.responseDeadline).toLocaleDateString("en-IN", {
                           day: "numeric",
                           month: "short",
                           year: "numeric",

@@ -232,7 +232,9 @@ export class StaffCellsController {
       });
     } catch (error) {
       console.error("[TOGGLE CELL ERROR]:", error);
-      res.status(500).json({ status: "error", success: false, message: "Failed to update cell status" });
+      res
+        .status(500)
+        .json({ status: "error", success: false, message: "Failed to update cell status" });
     }
   }
 
@@ -298,7 +300,9 @@ export class StaffCellsController {
       });
     } catch (error) {
       console.error("[ASSIGN COORDINATOR ERROR]:", error);
-      res.status(500).json({ status: "error", success: false, message: "Failed to assign coordinator" });
+      res
+        .status(500)
+        .json({ status: "error", success: false, message: "Failed to assign coordinator" });
     }
   }
 
@@ -396,7 +400,9 @@ export class StaffCellsController {
       res.status(200).json({ status: "success", success: true, data: formatted });
     } catch (error) {
       console.error("[GET STAFF ERROR]:", error);
-      res.status(500).json({ status: "error", success: false, message: "Failed to fetch staff directory" });
+      res
+        .status(500)
+        .json({ status: "error", success: false, message: "Failed to fetch staff directory" });
     }
   }
 
@@ -537,7 +543,9 @@ export class StaffCellsController {
       });
     } catch (error) {
       console.error("[INVITE STAFF ERROR]:", error);
-      res.status(500).json({ status: "error", success: false, message: "Failed to invite staff member" });
+      res
+        .status(500)
+        .json({ status: "error", success: false, message: "Failed to invite staff member" });
     }
   }
 
@@ -591,7 +599,9 @@ export class StaffCellsController {
       });
     } catch (error) {
       console.error("[UPDATE STAFF STATUS ERROR]:", error);
-      res.status(500).json({ status: "error", success: false, message: "Failed to update staff status" });
+      res
+        .status(500)
+        .json({ status: "error", success: false, message: "Failed to update staff status" });
     }
   }
 
@@ -647,7 +657,9 @@ export class StaffCellsController {
       });
     } catch (error) {
       console.error("[RESEND INVITATION ERROR]:", error);
-      res.status(500).json({ status: "error", success: false, message: "Failed to resend invitation email" });
+      res
+        .status(500)
+        .json({ status: "error", success: false, message: "Failed to resend invitation email" });
     }
   }
 }

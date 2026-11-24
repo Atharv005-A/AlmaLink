@@ -129,10 +129,13 @@ export class AlumniController {
         const newProfile = await tx.alumniProfile.update({
           where: { userId },
           data: {
-            organization: organization !== undefined ? String(organization).trim() : existing.organization,
-            designation: designation !== undefined ? String(designation).trim() : existing.designation,
+            organization:
+              organization !== undefined ? String(organization).trim() : existing.organization,
+            designation:
+              designation !== undefined ? String(designation).trim() : existing.designation,
             industry: industry !== undefined ? String(industry).trim() : existing.industry,
-            linkedinUrl: linkedinUrl !== undefined ? String(linkedinUrl).trim() : existing.linkedinUrl,
+            linkedinUrl:
+              linkedinUrl !== undefined ? String(linkedinUrl).trim() : existing.linkedinUrl,
             experienceYears:
               experienceYears !== undefined
                 ? Number(experienceYears) || null
@@ -150,7 +153,9 @@ export class AlumniController {
             availability:
               availability !== undefined ? String(availability).trim() : existing.availability,
             areaOfInterest:
-              areaOfInterest !== undefined ? String(areaOfInterest).trim() : existing.areaOfInterest,
+              areaOfInterest !== undefined
+                ? String(areaOfInterest).trim()
+                : existing.areaOfInterest,
             willingToParticipate:
               willingToParticipate !== undefined
                 ? Boolean(willingToParticipate)
@@ -296,8 +301,7 @@ export class AlumniController {
       const acceptedUpcoming = invitations
         .filter((i) => i.status === "ACCEPTED" && new Date(i.activity.startAt) >= new Date())
         .sort(
-          (a, b) =>
-            new Date(a.activity.startAt).getTime() - new Date(b.activity.startAt).getTime()
+          (a, b) => new Date(a.activity.startAt).getTime() - new Date(b.activity.startAt).getTime()
         );
 
       const nextVisit = acceptedUpcoming[0]
@@ -309,7 +313,8 @@ export class AlumniController {
             startAt: acceptedUpcoming[0].activity.startAt.toISOString(),
             endAt: acceptedUpcoming[0].activity.endAt.toISOString(),
             venue: acceptedUpcoming[0].activity.venue,
-            coordinatorName: acceptedUpcoming[0].activity.creator?.fullName || "Faculty Coordinator",
+            coordinatorName:
+              acceptedUpcoming[0].activity.creator?.fullName || "Faculty Coordinator",
           }
         : null;
 

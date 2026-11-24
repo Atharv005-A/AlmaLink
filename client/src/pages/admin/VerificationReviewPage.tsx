@@ -433,8 +433,11 @@ export const VerificationReviewPage: React.FC = () => {
                 {/* Reviewer Attribution Footer */}
                 <div className="pt-3 border-t border-slate-100 text-[11px] text-slate-400">
                   <p>
-                    Reviewed by <strong className="text-slate-700">{currentUser?.fullName || "Dr. Anjali Joshi"}</strong> ·
-                    College Administrator
+                    Reviewed by{" "}
+                    <strong className="text-slate-700">
+                      {currentUser?.fullName || "Dr. Anjali Joshi"}
+                    </strong>{" "}
+                    · College Administrator
                   </p>
                   {data.verifiedAt && data.verifiedBy && (
                     <p className="mt-1 text-emerald-700">
