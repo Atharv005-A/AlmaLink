@@ -4,14 +4,16 @@ import activitiesRoutes from "./activities.routes.js";
 import invitationsRoutes from "./invitations.routes.js";
 import verificationsRoutes from "./verifications.routes.js";
 import staffCellsRoutes from "./staff-cells.routes.js";
+import alumniRoutes from "./alumni.routes.js";
 
 const apiRouter = Router();
 
 // Module 1: Authentication & Role Management
 apiRouter.use("/auth", authRoutes);
 
-// Module 2: Alumni Verification Queue
+// Module 2: Alumni Verification Queue & Alumni Portal
 apiRouter.use("/verifications", verificationsRoutes);
+apiRouter.use("/alumni", alumniRoutes);
 
 // Module 3: Activity & Event Management
 apiRouter.use("/activities", activitiesRoutes);
