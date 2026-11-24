@@ -3,6 +3,8 @@ import authRoutes from "./auth.routes.js";
 import activitiesRoutes from "./activities.routes.js";
 import invitationsRoutes from "./invitations.routes.js";
 import verificationsRoutes from "./verifications.routes.js";
+import participationsRoutes from "./participations.routes.js";
+import awardsRoutes from "./awards.routes.js";
 import staffCellsRoutes from "./staff-cells.routes.js";
 import alumniRoutes from "./alumni.routes.js";
 
@@ -23,5 +25,13 @@ apiRouter.use("/invitations", invitationsRoutes);
 
 // Module 5: College Cell & Staff Management
 apiRouter.use("/staff-cells", staffCellsRoutes);
+
+// Module 6: Attendance & Contribution Points Engine
+apiRouter.use("/participations", participationsRoutes);
+apiRouter.use("/scoring-rubric", participationsRoutes);
+
+// Module 7: Private Leaderboard, Award Nominations & Staff Voting
+apiRouter.use("/awards", awardsRoutes);
+apiRouter.use("/", awardsRoutes); // Exposes /leaderboard as /api/leaderboard
 
 export default apiRouter;

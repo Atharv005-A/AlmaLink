@@ -27,3 +27,12 @@ export interface AttendanceSubmissionPayload {
   evidenceUrl?: string;
   completionStatus?: string;
 }
+
+export interface ScoringPolicyDTO {
+  policyId: number;
+  activityType: string;
+  defaultPoints: number;
+  description?: string | null;
+  updatedById?: number;
+  updatedAt?: string;
+}

@@ -7,6 +7,9 @@ export interface AwardNominationDTO {
   cellName?: string;
   alumniId: number;
   alumniName?: string;
+  enrollmentNo?: string;
+  program?: string;
+  graduationYear?: number;
   nominatedBy: number;
   nominatorName?: string;
   justification: string;
@@ -29,4 +32,26 @@ export interface AwardVoteDTO {
   voterId: number;
   academicYear: string;
   createdAt: string;
+}
+
+export interface LeaderboardActivityBreakdown {
+  activityId: number;
+  activityTitle: string;
+  role: string;
+  pointsAwarded: number;
+  attendedAt?: string;
+  cellName?: string;
+}
+
+export interface LeaderboardEntryDTO {
+  rank: number;
+  alumniId: number;
+  alumniName: string;
+  email?: string;
+  graduationYear?: number;
+  program?: string;
+  primaryCellName?: string;
+  activitiesCount: number;
+  totalPoints: number;
+  activities?: LeaderboardActivityBreakdown[];
 }

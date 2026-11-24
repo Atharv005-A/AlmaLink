@@ -35,6 +35,7 @@ import {
   Sparkles,
   RefreshCw,
   Mail,
+  CheckCircle2,
 } from "lucide-react";
 
 import {
@@ -462,6 +463,18 @@ export const ActivitiesListPage: React.FC = () => {
                                     <Mail className="h-3.5 w-3.5" />
                                     Invitations
                                   </button>
+                                  <button
+                                    onClick={() =>
+                                      navigate(
+                                        `${basePath}/activities/${activity.activityId}/participation`
+                                      )
+                                    }
+                                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-50 text-brand-iris hover:bg-indigo-100 border border-brand-iris/20 transition-colors"
+                                    title="Record Attendance & Points"
+                                  >
+                                    <CheckCircle2 className="h-3.5 w-3.5" />
+                                    Attendance
+                                  </button>
                                 </>
                               )}
 
@@ -668,6 +681,17 @@ export const ActivitiesListPage: React.FC = () => {
                       >
                         <Mail className="h-4 w-4" />
                         View Invitations
+                      </button>
+                      <button
+                        onClick={() => {
+                          const id = selectedActivity.activityId;
+                          setSelectedActivity(null);
+                          navigate(`${basePath}/activities/${id}/participation`);
+                        }}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-xl bg-brand-iris text-white hover:bg-brand-iris/90 font-semibold transition-colors shadow-sm"
+                      >
+                        <CheckCircle2 className="h-4 w-4" />
+                        Record Attendance
                       </button>
                     </>
                   )}

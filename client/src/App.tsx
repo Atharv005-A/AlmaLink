@@ -20,6 +20,10 @@ import { FindAndInvitePage } from "@/pages/coordinator/FindAndInvitePage";
 import { InvitationTrackingPage } from "@/pages/coordinator/InvitationTrackingPage";
 import { InvitationsHubPage } from "@/pages/alumni/InvitationsHubPage";
 import { AlumniProfilePage } from "@/pages/alumni/AlumniProfilePage";
+import { AttendanceRecordingPage } from "@/pages/coordinator/AttendanceRecordingPage";
+import { ScoringRubricPage } from "@/pages/admin/ScoringRubricPage";
+import { LeaderboardPage } from "@/pages/admin/LeaderboardPage";
+import { AwardsManagementPage } from "@/pages/admin/AwardsManagementPage";
 import { StaffAndCellsPage } from "@/pages/admin/StaffAndCellsPage";
 import { CreateCellPage } from "@/pages/admin/CreateCellPage";
 import { InviteStaffPage } from "@/pages/admin/InviteStaffPage";
@@ -188,6 +192,96 @@ export const App: React.FC = () => {
                 allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
               >
                 <InvitationTrackingPage />
+              </ProtectedRoute>
+            }
+          />
+          {/* Module 6: Attendance Recording & Contribution Points */}
+          <Route
+            path="/coordinator/activities/:id/participation"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <AttendanceRecordingPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/coordinator/participation"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <AttendanceRecordingPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/activities/:id/participation"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <AttendanceRecordingPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/participation"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <AttendanceRecordingPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/rubric"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <ScoringRubricPage />
+              </ProtectedRoute>
+            }
+          />
+          {/* Module 7: Private Staff Leaderboard & Annual Awards */}
+          <Route
+            path="/admin/leaderboard"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <LeaderboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/coordinator/leaderboard"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <LeaderboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/awards"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <AwardsManagementPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/coordinator/awards"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <AwardsManagementPage />
               </ProtectedRoute>
             }
           />

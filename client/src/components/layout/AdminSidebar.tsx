@@ -79,6 +79,24 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
           icon: Mail,
         },
         {
+          id: "participation",
+          label: "Attendance & Points",
+          href: "/coordinator/participation",
+          icon: CheckCircle2,
+        },
+        {
+          id: "leaderboard",
+          label: "Leaderboard",
+          href: "/coordinator/leaderboard",
+          icon: ListOrdered,
+        },
+        {
+          id: "awards",
+          label: "Awards & Honors",
+          href: "/coordinator/awards",
+          icon: Award,
+        },
+        {
           id: "alumni",
           label: "Alumni directory",
           href: "/coordinator/activities",
