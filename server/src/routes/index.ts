@@ -35,4 +35,3 @@ apiRouter.use("/awards", awardsRoutes);
 apiRouter.use("/", awardsRoutes); // Exposes /leaderboard as /api/leaderboard
 
 export default apiRouter;
-
