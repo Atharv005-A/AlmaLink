@@ -6,6 +6,7 @@ import { AuditController } from "../controllers/audit.controller.js";
 
 const router = Router();
 
+// Audit logs are read-only and strictly restricted to Super Admin & College Admin
 router.use(requireAuth);
 router.use(requireRole(Role.SUPER_ADMIN, Role.COLLEGE_ADMIN));
 

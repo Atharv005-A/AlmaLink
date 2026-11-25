@@ -99,6 +99,15 @@ export const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
+          {/* Module 8: Security & Governance Audit Log */}
+          <Route
+            path="/admin/audit"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <AuditLogPage />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Module 3 & 4: Activity & Event Management (Cell Coordinator Workspace) */}
           <Route

@@ -47,11 +47,6 @@ export const CoordinatorDashboardPage: React.FC = () => {
 
         {/* Main Container */}
         <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-[1280px] w-full">
-          {/* Top Kicker Label */}
-          <div className="text-[11px] font-bold tracking-wider text-[#71778A] uppercase">
-            TECHNICAL CELL / WORKSPACE
-          </div>
-
           {/* Hero Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-5">
             <div>

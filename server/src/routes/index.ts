@@ -39,6 +39,7 @@ apiRouter.use("/", awardsRoutes); // Exposes /leaderboard as /api/leaderboard
 
 // Module 8: Audit Logs, Reports & Notifications
 apiRouter.use("/reports", reportsRoutes);
+apiRouter.use("/audit-logs", auditRoutes);
 apiRouter.use("/audit", auditRoutes);
 apiRouter.use("/notifications", notificationsRoutes);
 
