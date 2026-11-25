@@ -27,6 +27,12 @@ import { AwardsManagementPage } from "@/pages/admin/AwardsManagementPage";
 import { StaffAndCellsPage } from "@/pages/admin/StaffAndCellsPage";
 import { CreateCellPage } from "@/pages/admin/CreateCellPage";
 import { InviteStaffPage } from "@/pages/admin/InviteStaffPage";
+import { AlumniDirectoryPage } from "@/pages/admin/AlumniDirectoryPage";
+import { AlumniDetailPage } from "@/pages/admin/AlumniDetailPage";
+import { ReportsPage } from "@/pages/admin/ReportsPage";
+import { AuditLogPage } from "@/pages/admin/AuditLogPage";
+import { NotificationsPage } from "@/pages/admin/NotificationsPage";
+import { AlumniNotificationsPage } from "@/pages/alumni/AlumniNotificationsPage";
 
 // TanStack Query client — manages all data fetching, caching, and invalidation
 // staleTime: 60s means data fetched in the last 60s is used from cache without refetching
@@ -90,6 +96,15 @@ export const App: React.FC = () => {
             element={
               <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
                 <InviteStaffPage />
+              </ProtectedRoute>
+            }
+          />
+          {/* Module 8: Security & Governance Audit Log */}
+          <Route
+            path="/admin/audit"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <AuditLogPage />
               </ProtectedRoute>
             }
           />
@@ -332,11 +347,74 @@ export const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
+          {/* Module 8: Alumni Directory, Reports, Audit Logs, and Notifications */}
+          <Route
+            path="/admin/alumni"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <AlumniDirectoryPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/coordinator/alumni"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <AlumniDirectoryPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/alumni/:id"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <AlumniDetailPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/reports"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <ReportsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/audit"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <AuditLogPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/notifications"
+            element={
+              <ProtectedRoute allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
+                <NotificationsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/coordinator/notifications"
+            element={
+              <ProtectedRoute
+                allowedRoles={[Role.SUPER_ADMIN, Role.COLLEGE_ADMIN, Role.CELL_COORDINATOR]}
+              >
+                <NotificationsPage />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/alumni/notifications"
             element={
               <ProtectedRoute allowedRoles={[Role.ALUMNI, Role.SUPER_ADMIN, Role.COLLEGE_ADMIN]}>
-                <Navigate to="/alumni/home" replace />
+                <AlumniNotificationsPage />
               </ProtectedRoute>
             }
           />

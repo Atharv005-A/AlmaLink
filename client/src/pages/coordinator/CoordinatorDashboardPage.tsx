@@ -23,6 +23,13 @@ export const CoordinatorDashboardPage: React.FC = () => {
   const totalInvited = cellActivities.reduce((acc, a) => acc + (a.invitedCount || 0), 0);
   const totalAccepted = cellActivities.reduce((acc, a) => acc + (a.acceptedCount || 0), 0);
   const waitingResponses = Math.max(0, totalInvited - totalAccepted);
+  const approvedParticipationsCount = cellActivities.reduce(
+    (acc, a) => acc + (a.status === "COMPLETED" ? a.acceptedCount || 1 : 0),
+    0
+  );
+  const pendingAttendanceCount = cellActivities.filter(
+    (a) => a.status === "ONGOING" || (a.status === "COMPLETED" && !a.acceptedCount)
+  ).length;
 
   return (
     <div className="min-h-screen bg-[#F6F7FA] flex flex-col lg:flex-row">
@@ -40,11 +47,6 @@ export const CoordinatorDashboardPage: React.FC = () => {
 
         {/* Main Container */}
         <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-[1280px] w-full">
-          {/* Top Kicker Label */}
-          <div className="text-[11px] font-bold tracking-wider text-[#71778A] uppercase">
-            TECHNICAL CELL / WORKSPACE
-          </div>
-
           {/* Hero Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-5">
             <div>
@@ -93,7 +95,9 @@ export const CoordinatorDashboardPage: React.FC = () => {
                 <span>Approved participation</span>
                 <CheckCircle2 className="h-4 w-4 text-emerald-500" />
               </div>
-              <p className="text-3xl font-bold text-slate-900 mt-2 font-mono">0</p>
+              <p className="text-3xl font-bold text-slate-900 mt-2 font-mono">
+                {approvedParticipationsCount}
+              </p>
               <p className="text-xs text-slate-500 mt-1">Verified records</p>
             </div>
 
@@ -111,7 +115,9 @@ export const CoordinatorDashboardPage: React.FC = () => {
                 <span>Pending records</span>
                 <AlertCircle className="h-4 w-4 text-orange-500" />
               </div>
-              <p className="text-3xl font-bold text-slate-900 mt-2 font-mono">0</p>
+              <p className="text-3xl font-bold text-slate-900 mt-2 font-mono">
+                {pendingAttendanceCount}
+              </p>
               <p className="text-xs text-slate-500 mt-1">Attendance reviews</p>
             </div>
           </div>

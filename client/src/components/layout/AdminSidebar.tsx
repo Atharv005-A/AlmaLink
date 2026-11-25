@@ -99,13 +99,13 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
         {
           id: "alumni",
           label: "Alumni directory",
-          href: "/coordinator/activities",
+          href: "/coordinator/alumni",
           icon: Users,
         },
         {
           id: "notifications",
           label: "Notifications",
-          href: "/coordinator/dashboard",
+          href: "/coordinator/notifications",
           icon: Bell,
         },
       ]
@@ -132,7 +132,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeNav = "dashboa
         { id: "staff", label: "Staff & cells", href: "/admin/staff", icon: FolderGit2 },
         { id: "rubric", label: "Scoring rubric", href: "/admin/rubric", icon: BookOpen },
         { id: "audit", label: "Audit log", href: "/admin/audit", icon: FileText },
-        { id: "notifications", label: "Notifications", href: "/admin/dashboard", icon: Bell },
+        { id: "notifications", label: "Notifications", href: "/admin/notifications", icon: Bell },
       ];
 
   const getInitials = (name?: string) => {
