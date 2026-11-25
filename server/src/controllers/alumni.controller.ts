@@ -377,4 +377,205 @@ export class AlumniController {
       res.status(500).json({ status: "error", message: "Failed to fetch dashboard data." });
     }
   }
+
+  /**
+   * GET /api/alumni
+   * Returns list of alumni with filters and pagination for Admin / Coordinator Directory
+   */
+  static async listAlumni(req: Request, res: Response): Promise<void> {
+    try {
+      const page = Math.max(1, parseInt(req.query.page as string, 10) || 1);
+      const limit = Math.min(100, Math.max(1, parseInt(req.query.limit as string, 10) || 20));
+      const search = (req.query.search as string) || "";
+      const program = req.query.program as string | undefined;
+      const status = req.query.status as string | undefined;
+      const graduationYear = req.query.graduationYear
+        ? parseInt(req.query.graduationYear as string, 10)
+        : undefined;
+
+      const where: any = {};
+
+      if (status && status !== "ALL") {
+        where.verificationStatus = status;
+      }
+
+      if (program && program !== "ALL") {
+        where.program = program;
+      }
+
+      if (graduationYear) {
+        where.graduationYear = graduationYear;
+      }
+
+      if (search.trim()) {
+        const query = search.trim();
+        where.OR = [
+          { enrollmentNo: { contains: query, mode: "insensitive" } },
+          { organization: { contains: query, mode: "insensitive" } },
+          { designation: { contains: query, mode: "insensitive" } },
+          { user: { fullName: { contains: query, mode: "insensitive" } } },
+          { user: { email: { contains: query, mode: "insensitive" } } },
+        ];
+      }
+
+      const [profiles, total] = await Promise.all([
+        prisma.alumniProfile.findMany({
+          where,
+          include: {
+            user: {
+              select: {
+                userId: true,
+                fullName: true,
+                email: true,
+                phone: true,
+                avatarUrl: true,
+              },
+            },
+            participations: {
+              where: { attended: true },
+              select: { pointsAwarded: true },
+            },
+          },
+          orderBy: { graduationYear: "desc" },
+          skip: (page - 1) * limit,
+          take: limit,
+        }),
+        prisma.alumniProfile.count({ where }),
+      ]);
+
+      const data = profiles.map((p) => {
+        const totalPoints = p.participations.reduce((acc, curr) => acc + curr.pointsAwarded, 0);
+        return {
+          alumniId: p.alumniId,
+          userId: p.userId,
+          fullName: p.user.fullName,
+          email: p.user.email,
+          phone: p.user.phone,
+          avatarUrl: p.user.avatarUrl,
+          enrollmentNo: p.enrollmentNo,
+          program: p.program,
+          graduationYear: p.graduationYear,
+          organization: p.organization,
+          designation: p.designation,
+          industry: p.industry,
+          skills: Array.isArray(p.skills) ? p.skills : [],
+          expertise: Array.isArray(p.expertise) ? p.expertise : [],
+          verificationStatus: p.verificationStatus,
+          totalPoints,
+          participationsCount: p.participations.length,
+        };
+      });
+
+      res.status(200).json({
+        status: "success",
+        data,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
+      });
+    } catch (err: unknown) {
+      console.error("[ALUMNI LIST ERROR]:", err);
+      res.status(500).json({ status: "error", message: "Failed to list alumni." });
+    }
+  }
+
+  /**
+   * GET /api/alumni/:id
+   * Get single alumnus detail by alumniId
+   */
+  static async getAlumniById(req: Request, res: Response): Promise<void> {
+    try {
+      const alumniId = parseInt(req.params.id, 10);
+      if (isNaN(alumniId)) {
+        res.status(400).json({ status: "fail", message: "Invalid alumni ID." });
+        return;
+      }
+
+      const profile = await prisma.alumniProfile.findUnique({
+        where: { alumniId },
+        include: {
+          user: {
+            select: {
+              userId: true,
+              fullName: true,
+              email: true,
+              phone: true,
+              avatarUrl: true,
+            },
+          },
+          participations: {
+            include: {
+              activity: {
+                select: {
+                  activityId: true,
+                  title: true,
+                  startAt: true,
+                  category: { select: { name: true } },
+                  cell: { select: { name: true } },
+                },
+              },
+            },
+            orderBy: { createdAt: "desc" },
+          },
+        },
+      });
+
+      if (!profile) {
+        res.status(404).json({ status: "fail", message: "Alumnus not found." });
+        return;
+      }
+
+      const totalPoints = profile.participations.reduce(
+        (sum: number, p: any) => sum + (p.pointsAwarded || 0),
+        0
+      );
+
+      res.status(200).json({
+        status: "success",
+        data: {
+          alumniId: profile.alumniId,
+          userId: profile.userId,
+          fullName: profile.user.fullName,
+          email: profile.user.email,
+          phone: profile.user.phone,
+          avatarUrl: profile.user.avatarUrl,
+          enrollmentNo: profile.enrollmentNo,
+          program: profile.program,
+          graduationYear: profile.graduationYear,
+          organization: profile.organization,
+          designation: profile.designation,
+          industry: profile.industry,
+          linkedinUrl: profile.linkedinUrl,
+          experienceYears: profile.experienceYears,
+          skills: Array.isArray(profile.skills) ? profile.skills : [],
+          expertise: Array.isArray(profile.expertise) ? profile.expertise : [],
+          preferredActivities: Array.isArray(profile.preferredActivities)
+            ? profile.preferredActivities
+            : [],
+          preferredFormat: profile.preferredFormat,
+          availability: profile.availability,
+          areaOfInterest: profile.areaOfInterest,
+          verificationStatus: profile.verificationStatus,
+          totalPoints,
+          participations: profile.participations.map((p: any) => ({
+            participationId: p.participationId,
+            activityId: p.activityId,
+            activityTitle: p.activity.title,
+            activityType: p.activity.category?.name || "General Activity",
+            cellName: p.activity.cell?.name,
+            date: p.activity.startAt,
+            pointsAwarded: p.pointsAwarded,
+            attended: p.attended,
+            verifiedAt: p.verifiedAt,
+          })),
+        },
+      });
+    } catch (err: unknown) {
+      console.error("[ALUMNI GET BY ID ERROR]:", err);
+      res.status(500).json({ status: "error", message: "Failed to fetch alumnus details." });
+    }
+  }
 }

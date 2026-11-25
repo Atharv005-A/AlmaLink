@@ -7,6 +7,9 @@ import participationsRoutes from "./participations.routes.js";
 import awardsRoutes from "./awards.routes.js";
 import staffCellsRoutes from "./staff-cells.routes.js";
 import alumniRoutes from "./alumni.routes.js";
+import reportsRoutes from "./reports.routes.js";
+import auditRoutes from "./audit.routes.js";
+import notificationsRoutes from "./notifications.routes.js";
 
 const apiRouter = Router();
 
@@ -33,5 +36,10 @@ apiRouter.use("/scoring-rubric", participationsRoutes);
 // Module 7: Private Leaderboard, Award Nominations & Staff Voting
 apiRouter.use("/awards", awardsRoutes);
 apiRouter.use("/", awardsRoutes); // Exposes /leaderboard as /api/leaderboard
+
+// Module 8: Audit Logs, Reports & Notifications
+apiRouter.use("/reports", reportsRoutes);
+apiRouter.use("/audit", auditRoutes);
+apiRouter.use("/notifications", notificationsRoutes);
 
 export default apiRouter;

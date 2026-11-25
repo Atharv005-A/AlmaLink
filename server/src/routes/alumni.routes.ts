@@ -10,5 +10,7 @@ router.use(requireAuth);
 router.get("/profile", AlumniController.getProfile);
 router.patch("/profile", AlumniController.updateProfile);
 router.get("/dashboard", AlumniController.getDashboard);
+router.get("/", AlumniController.listAlumni);
+router.get("/:id", AlumniController.getAlumniById);
 
 export default router;
